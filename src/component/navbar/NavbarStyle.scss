@@ -1,0 +1,48 @@
+.nav-bar {
+    height: 10vh;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.5s ease-in-out;
+    .nav-links {
+        display: flex;
+        list-style: none;
+        height: 100%;
+        width: 50%;
+        margin-left: auto;
+        justify-content: space-around;
+        align-items: center;
+        .link {
+            position: relative;
+            font-size: 1.25rem;
+            text-decoration: none;
+            .line {
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                height: 3%;
+                width: 100%;
+                border-radius: 2px;
+                background: #dadada;
+                transform: scale(0);
+                transition: transform 300ms ease-in-out;
+            }
+            &.active .line {
+                transform: scale(1) !important;
+            }
+            &:hover .line {
+                transform: scale(1);
+            }
+        }
+    }
+    .logo {
+        position: absolute;
+        left: 5%;
+        font-size: 2rem;
+        font-weight: 900;
+        a {
+            text-decoration: none;
+        }
+    }
+}

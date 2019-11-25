@@ -1,0 +1,23 @@
+.outer{
+    position: relative;
+    height: 1.5em;
+    width: 4em;
+    cursor: pointer;
+    border-radius: 100px;
+    border: 0.12em solid;
+    transition: background-color .5s ease-in-out;
+    .inner{
+        position: absolute;
+        top: 50%;
+        left: 3%;
+        transform: translateY(-50%);
+        height: 1.1em;
+        width: 1.1em;
+        border-radius: 50%;
+        border: 0.12em solid;
+        transition: all .5s ease-in-out;
+    }
+}
+.circle{
+    transform: translate(39px,-50%) !important;
+}
