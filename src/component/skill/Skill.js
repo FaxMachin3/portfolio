@@ -1,15 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ThemeContext from '../../common/ThemeContext'
 
 const Skill = () => {
-    const {currentTheme} = React.useContext(ThemeContext);
+    const {currentTheme} = useContext(ThemeContext);
     const {background, primary} = currentTheme;
     const theme = {
         background: background,
         color: primary
     }
     return(
-        <section style={theme}>
+        <section id="skill" style={theme}>
             <p>Skill</p>
         </section>
     )

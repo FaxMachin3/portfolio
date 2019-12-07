@@ -1,19 +1,35 @@
-import React ,{ useEffect , useRef } from 'react'
+import React ,{ useState, useEffect, useRef } from 'react'
 import ThemeContext from '../../common/ThemeContext'
 import './ToggleButton.scss'
 
 const ToggleButton = () => {
-    let toggleButton = useRef(null);
-    let toggleButtonCircle = useRef(null);
-    const {currentTheme, changeTheme} = React.useContext(ThemeContext);
-    const {background, primary} = currentTheme;
+    let [initial, setInitial] = useState(false)
+    let toggleButton = useRef(null)
+    let toggleButtonCircle = useRef(null)
+    const {currentTheme, changeTheme} = React.useContext(ThemeContext)
+    const {background, primary} = currentTheme
+    
+    // change background
     useEffect(() => {
         toggleButton.addEventListener('click', () => {
             changeTheme((prevState) => prevState = !prevState)
         })
+        return (() => {
+                toggleButton.removeEventListener('click', () => {
+                changeTheme((prevState) => prevState = !prevState)
+            })
+        })
     },[changeTheme])
+
+    // toggle button class
     useEffect(() => {
-        toggleButtonCircle.classList.toggle('circle')
+        if(!initial){
+            setInitial(prevState => prevState = !prevState)
+        }
+        else{
+            toggleButtonCircle.classList.toggle('circle')
+        }
+        // eslint-disable-next-line
     }, [background])
     const themeOuter = {
         background: background,

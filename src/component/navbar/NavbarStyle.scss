@@ -1,10 +1,12 @@
 .nav-bar {
+    position: fixed;
     height: 10vh;
     display: flex;
     width: 100%;
     justify-content: space-between;
     align-items: center;
     transition: background-color 0.5s ease-in-out;
+    flex-wrap: wrap;
     .nav-links {
         display: flex;
         list-style: none;
@@ -13,6 +15,7 @@
         margin-left: auto;
         justify-content: space-around;
         align-items: center;
+        flex-wrap: wrap;
         .link {
             position: relative;
             font-size: 1.25rem;
@@ -24,11 +27,10 @@
                 height: 3%;
                 width: 100%;
                 border-radius: 2px;
-                background: #dadada;
                 transform: scale(0);
                 transition: transform 300ms ease-in-out;
             }
-            &.active .line {
+            &.active .line{
                 transform: scale(1) !important;
             }
             &:hover .line {

@@ -9,7 +9,7 @@ const Contact = () => {
         color: primary
     }
     return(
-        <section style={theme}>
+        <section id="contact" style={theme}>
             <p>Contact</p>
         </section>
     )

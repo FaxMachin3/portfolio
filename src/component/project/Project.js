@@ -9,7 +9,7 @@ const Project = () => {
         color: primary
     }
     return(
-        <section style={theme}>
+        <section id="project" style={theme}>
             <p>Project</p>
         </section>
     )

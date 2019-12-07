@@ -10,7 +10,7 @@ const Home = () => {
         color: primary
     };
     return (
-        <section style={theme}>
+        <section id="home" style={theme}>
             <p>Home</p>
         </section>
     );
