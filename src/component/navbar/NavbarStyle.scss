@@ -30,7 +30,7 @@
                 transform: scale(0);
                 transition: transform 300ms ease-in-out;
             }
-            &.active .line{
+            &.active .line {
                 transform: scale(1) !important;
             }
             &:hover .line {
@@ -46,5 +46,26 @@
         a {
             text-decoration: none;
         }
+    }
+}
+
+@media all and (max-width: 1100px) {
+    body,
+    html {
+        font-size: 90%;
+    }
+}
+
+@media all and (max-width: 1000px) {
+    body,
+    html {
+        font-size: 80%;
+    }
+}
+
+@media all and (max-width: 900px) {
+    .link,
+    .outer {
+        display: none;
     }
 }

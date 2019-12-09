@@ -30,4 +30,6 @@ section {
     transition: background-color 0.5s ease-in-out;
 }
 // Hidding scrollbar (Chrome/Safari)
-
+::-webkit-scrollbar{
+    display: none;
+}

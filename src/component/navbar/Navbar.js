@@ -5,28 +5,28 @@ import ThemeContext from "../../common/ThemeContext";
 import ToggleButton from "../button/ToggleButton";
 
 const Navbar = props => {
-    const { currentTheme } = useContext(ThemeContext)
-    const { background, primary } = currentTheme
+    const { currentTheme } = useContext(ThemeContext);
+    const { background, primary } = currentTheme;
     const textColor = {
         color: primary
-    }
+    };
 
     const bgColor = {
         background: primary
-    }
+    };
 
     // smooth scroll
     useEffect(() => {
         var links = window.document.querySelectorAll(".link");
         links.forEach(link => {
-            link.addEventListener("click", (e) => smoothScroll(e, props));
+            link.addEventListener("click", e => smoothScroll(e, props));
         });
         // eslint-disable-next-line
     });
 
     // adding and removing active class to links
     useEffect(() => {
-        var links = window.document.querySelectorAll(".link");
+        let links = window.document.querySelectorAll(".link");
         const removeClass = () => {
             links.forEach(link => {
                 link.classList.remove("active");
@@ -48,7 +48,11 @@ const Navbar = props => {
             </h1>
             <ul className="nav-links">
                 <li>
-                    <a className="home link active" style={textColor} href="#home">
+                    <a
+                        className="home link active"
+                        style={textColor}
+                        href="#home"
+                    >
                         Home<span style={bgColor} className="line"></span>
                     </a>
                 </li>
@@ -63,12 +67,20 @@ const Navbar = props => {
                     </a>
                 </li>
                 <li>
-                    <a className="project link" style={textColor} href="#project">
+                    <a
+                        className="project link"
+                        style={textColor}
+                        href="#project"
+                    >
                         Project<span style={bgColor} className="line"></span>
                     </a>
                 </li>
                 <li>
-                    <a className="contact link" style={textColor} href="#contact">
+                    <a
+                        className="contact link"
+                        style={textColor}
+                        href="#contact"
+                    >
                         Contact<span style={bgColor} className="line"></span>
                     </a>
                 </li>
