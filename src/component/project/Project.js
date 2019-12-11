@@ -10,7 +10,7 @@ const Project = () => {
     }
     return(
         <section id="project" style={theme}>
-            <p>Project</p>
+            <div className="test">Project</div>
         </section>
     )
 }

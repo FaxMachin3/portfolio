@@ -1,13 +1,11 @@
-export const smoothScroll = (event, { changePage }) => {
-    const target = event.target.getAttribute("href");
+export const smoothScroll = (currentPage) => {
+    const page = window.document.querySelector(currentPage);
+    const target = page.getAttribute('href')
     const targetPostion = window.document.querySelector(target).offsetTop;
     const startPosition = window.pageYOffset;
     const distance = targetPostion - startPosition;
     const duration = 1000;
     let start = null;
-
-    // change current page
-    // changePage("."+(target.split('#')[1]))
 
     // easing animation
     const easeInOutCirc = (t, b, c, d) => {

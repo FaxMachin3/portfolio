@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import ThemeContext from "../../common/ThemeContext";
 import "./ToggleButton.scss";
 
@@ -6,7 +6,7 @@ const ToggleButton = () => {
     let [initial, setInitial] = useState(false);
     let toggleButton = useRef(null);
     let toggleButtonCircle = useRef(null);
-    const { currentTheme, changeTheme } = React.useContext(ThemeContext);
+    const { currentTheme, changeTheme } = useContext(ThemeContext);
     const { background, primary } = currentTheme;
 
     // change background

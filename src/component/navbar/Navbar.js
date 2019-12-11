@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import "./NavbarStyle.scss";
-import { smoothScroll } from "../../common/SmoothScroll";
+import { smoothScrollNav } from "./SmoothScrollNav";
 import ThemeContext from "../../common/ThemeContext";
 import ToggleButton from "../button/ToggleButton";
 
@@ -17,28 +17,20 @@ const Navbar = props => {
 
     // smooth scroll
     useEffect(() => {
-        var links = window.document.querySelectorAll(".link");
+        const links = window.document.querySelectorAll(".link");
+        const logo = window.document.querySelector('.logo')
+        logo.addEventListener("click", e => smoothScrollNav(e, props))
         links.forEach(link => {
-            link.addEventListener("click", e => smoothScroll(e, props));
+            link.addEventListener("click", e => smoothScrollNav(e, props));
         });
-        // eslint-disable-next-line
+        return () => {
+            logo.removeEventListener("click", e => smoothScrollNav(e, props))
+            links.forEach(link => {
+                link.removeEventListener("click", e => smoothScrollNav(e, props));
+            });
+        }
     });
 
-    // adding and removing active class to links
-    useEffect(() => {
-        let links = window.document.querySelectorAll(".link");
-        const removeClass = () => {
-            links.forEach(link => {
-                link.classList.remove("active");
-            });
-        };
-        links.forEach(link => {
-            link.addEventListener("click", e => {
-                removeClass();
-                e.target.classList.add("active");
-            });
-        });
-    });
     return (
         <nav className="nav-bar" style={{ background: background }}>
             <h1 className="logo">

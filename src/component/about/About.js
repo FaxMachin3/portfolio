@@ -1,16 +1,17 @@
-import React from 'react'
-import ThemeContext from '../../common/ThemeContext'
+import React, { useContext } from "react"
+import ThemeContext from "../../common/ThemeContext"
 
 const About = () => {
-    const {currentTheme} = React.useContext(ThemeContext);
-    const {background, primary} = currentTheme;
+    const {currentTheme} = useContext(ThemeContext)
+    const {background, primary} = currentTheme
     const theme = {
         background: background,
         color: primary
     }
+    
     return(
         <section id="about" style={theme}>
-            <p>About</p>
+            <div className="test">About</div>
         </section>
     )
 }

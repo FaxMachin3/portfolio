@@ -10,15 +10,17 @@ import Skill from "../skill/Skill";
 import Project from "../project/Project";
 import Contact from "../contact/Contact";
 import Navbar from "../navbar/Navbar";
+import { smoothScroll } from "./SmoothScroll";
+// import { intersectionObserver } from "../../common/Observer";
 
-const App = React.memo(() => {
+const App = () => {
     const animationDuration = useRef(1000)
     let lastTime = useRef(0)
     let scrolled = useRef(true)
     let position = useRef(0)
     const [currentPage, changeCurrentPage] = useState(".home")
     const [theme, changeTheme] = useState(true)
-    const pages = useRef({
+    const pages = {
         ".home": {
             prev: ".contact",
             next: ".about"
@@ -39,7 +41,7 @@ const App = React.memo(() => {
             prev: ".project",
             next: ".home"
         }
-    });
+    };
     const themeStyle = {
         dark: {
             background: "#121212",
@@ -73,41 +75,58 @@ const App = React.memo(() => {
             lastTime.current = currentTime;
         }
     };
+    
+    const handleTouchStart = (event) => {
+        if(scrolled.current){
+            position.current = event.changedTouches[0].clientY
+        }
+    }
+    const handleTouchMove = (event) => {
+        if(scrolled.current){
+            position.current -= event.changedTouches[0].clientY
+            scrolled.current = !scrolled.current
+        }
+    }
+    const handleTouchEnd = (event) => {
+        if(!scrolled.current){
+            scrolled.current = !scrolled.current
+            if(position.current > 0){
+                changeCurrentPage(
+                    prevPage => (prevPage = pages[prevPage].next)
+                );
+            }
+            else if(position.current < 0){
+                changeCurrentPage(
+                    prevPage => (prevPage = pages[prevPage].prev)
+                );
+            }
+        }
+    }
 
     // mobile smoothscroll
     useEffect(() => {
-        window.addEventListener("touchstart", (event) => {
-            if(scrolled.current){
-                position.current = event.changedTouches[0].clientY
-            }
-        } , {
+        window.addEventListener("touchstart", (event) => { handleTouchStart(event) } , {
             passive: false
         });
-        window.addEventListener("touchmove", (event) => {
-            if(scrolled.current){
-                position.current -= event.changedTouches[0].clientY
-                scrolled.current = !scrolled.current
-            }
-        } , {
+        window.addEventListener("touchmove", (event) => { handleTouchMove(event) } , {
             passive: false
         });
-        window.addEventListener("touchend", (event) => {
-            if(!scrolled.current){
-                scrolled.current = !scrolled.current
-                if(position.current > 0){
-                    changeCurrentPage(
-                        prevPage => (prevPage = pages[prevPage].next)
-                    );
-                }
-                else if(position.current < 0){
-                    changeCurrentPage(
-                        prevPage => (prevPage = pages[prevPage].prev)
-                    );
-                }
-            }
-        } , {
+        window.addEventListener("touchend", (event) => { handleTouchEnd(event) } , {
             passive: false
         });
+
+        // unsubscribing on unmount
+        return () => {
+            window.removeEventListener("touchstart", (event) => { handleTouchStart(event) } , {
+                passive: false
+            });
+            window.removeEventListener("touchmove", (event) => { handleTouchMove(event) } , {
+                passive: false
+            });
+            window.removeEventListener("touchend", (event) => { handleTouchEnd(event) } , {
+                passive: false
+            });
+        }
     })
     
     // desktop smoothscroll
@@ -115,9 +134,55 @@ const App = React.memo(() => {
         window.addEventListener("wheel", event => smoothScrollWheel(event), {
             passive: false
         });
-        const page = window.document.querySelector(currentPage);
-        page.click(false); // dispatching click event
+        smoothScroll(currentPage)
+
+        // unsubscribing on unmount
+        return () => {
+            window.removeEventListener("wheel", event => smoothScrollWheel(event), {
+                passive: false
+            });
+        }
     });
+    
+    // Intersection Observer
+    useEffect(() => {
+        const sections = window.document.querySelectorAll(".test")
+        // const navBar = window.document.querySelector(".nav-bar")
+        const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0
+        }
+        const observer = new IntersectionObserver((entries,observer) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting){
+                    console.log(entry.target)
+                    observer.unobserve(entry.target)
+                }
+            }, options)
+        })
+
+        sections.forEach(section => {
+            observer.observe(section)
+        })
+
+        return () => {
+            observer.disconnect()
+        }
+    },[])
+
+    useEffect(() => {
+        const navBar = window.document.querySelectorAll(".link")
+        const intersectingSection = '#' + currentPage.split('.')[1]
+        console.log(window.history)
+        // const page = window.document.querySelector(intersectingSection)
+        navBar.forEach(link => {
+            link.classList.remove('active')
+            if(link.getAttribute('href') === intersectingSection){
+                link.classList.add('active')
+            }   
+        })
+    },[currentPage])
 
     return (
         <ThemeContext.Provider value={{ currentTheme, changeTheme }}>
@@ -129,6 +194,6 @@ const App = React.memo(() => {
             <Contact />
         </ThemeContext.Provider>
     );
-});
+};
 
 export default App;

@@ -11,7 +11,7 @@ const Home = () => {
     };
     return (
         <section id="home" style={theme}>
-            <p>Home</p>
+            <div className="test">Home</div>
         </section>
     );
 };

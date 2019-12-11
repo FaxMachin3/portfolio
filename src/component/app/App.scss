@@ -26,10 +26,19 @@ body {
 section {
     padding-top: 10vh;
     height: 100vh;
-    width: 100%;
+    width: 100vw;
     transition: background-color 0.5s ease-in-out;
+    position: relative;
+
+    .test{
+        background-color: red;;
+        position: absolute;
+        top: calc(50% + 10vh);
+        left: 50%;
+        transform: translate(-50%, calc(-50% - 10vh));
+    }
 }
 // Hidding scrollbar (Chrome/Safari)
-::-webkit-scrollbar{
-    display: none;
-}
+// ::-webkit-scrollbar{
+//     display: none;
+// }
