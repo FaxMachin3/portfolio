@@ -11,7 +11,7 @@ import Project from "../project/Project";
 import Contact from "../contact/Contact";
 import Navbar from "../navbar/Navbar";
 import { smoothScroll } from "./SmoothScroll";
-// import { intersectionObserver } from "../../common/Observer";
+import Indicators from "../Indicators/Indicators";
 
 const App = () => {
     const animationDuration = useRef(1000)
@@ -147,7 +147,7 @@ const App = () => {
     // Intersection Observer
     useEffect(() => {
         const sections = window.document.querySelectorAll(".test")
-        // const navBar = window.document.querySelector(".nav-bar")
+        const bars = window.document.querySelectorAll(".bar")
         const options = {
             root: null,
             rootMargin: '0px',
@@ -156,8 +156,18 @@ const App = () => {
         const observer = new IntersectionObserver((entries,observer) => {
             entries.forEach(entry => {
                 if(entry.isIntersecting){
-                    console.log(entry.target)
-                    observer.unobserve(entry.target)
+                    const newHash = entry.target.getAttribute("data-section")
+                    bars.forEach(bar => {
+                        const section = bar.getAttribute("data-section")
+                        if(section === newHash){
+                            bar.style.transform = "scaleX(1)"
+                        }
+                        else{
+                            bar.style.transform = "scaleX(0.5)"
+                        }
+                        window.location.hash = newHash
+                    })
+                    // observer.unobserve(entry.target)
                 }
             }, options)
         })
@@ -174,7 +184,6 @@ const App = () => {
     useEffect(() => {
         const navBar = window.document.querySelectorAll(".link")
         const intersectingSection = '#' + currentPage.split('.')[1]
-        console.log(window.history)
         // const page = window.document.querySelector(intersectingSection)
         navBar.forEach(link => {
             link.classList.remove('active')
@@ -187,6 +196,7 @@ const App = () => {
     return (
         <ThemeContext.Provider value={{ currentTheme, changeTheme }}>
             <Navbar changePage={changeCurrentPage}/>
+            <Indicators />
             <Home />
             <About />
             <Skill />

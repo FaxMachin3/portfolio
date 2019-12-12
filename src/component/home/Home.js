@@ -11,7 +11,7 @@ const Home = () => {
     };
     return (
         <section id="home" style={theme}>
-            <div className="test">Home</div>
+            <div className="test" data-section="home">Home</div>
         </section>
     );
 };

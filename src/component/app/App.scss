@@ -30,8 +30,8 @@ section {
     transition: background-color 0.5s ease-in-out;
     position: relative;
 
-    .test{
-        background-color: red;;
+    .test {
+        opacity: 0;
         position: absolute;
         top: calc(50% + 10vh);
         left: 50%;
@@ -42,3 +42,24 @@ section {
 // ::-webkit-scrollbar{
 //     display: none;
 // }
+
+@media all and (max-width: 1100px) {
+    body,
+    html {
+        font-size: 90%;
+    }
+}
+
+@media all and (max-width: 1000px) {
+    body,
+    html {
+        font-size: 80%;
+    }
+}
+
+@media all and (max-width: 768px) {
+    .link,
+    .outer {
+        display: none;
+    }
+}

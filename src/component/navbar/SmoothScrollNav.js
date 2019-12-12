@@ -6,9 +6,6 @@ export const smoothScrollNav = (event, { changePage }) => {
     const duration = 1000;
     let start = null;
 
-    // change current page
-    changePage("."+(target.split('#')[1]))
-
     // easing animation
     const easeInOutCirc = (t, b, c, d) => {
         t /= d / 2;
@@ -33,4 +30,7 @@ export const smoothScrollNav = (event, { changePage }) => {
 
     // api
     window.requestAnimationFrame(scroll);
+
+    // change current page
+    changePage("." + target.split("#")[1]);
 };

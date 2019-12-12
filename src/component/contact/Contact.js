@@ -10,7 +10,7 @@ const Contact = () => {
     }
     return(
         <section id="contact" style={theme}>
-            <div className="test">Contact</div>
+            <div className="test" data-section="contact">Contact</div>
         </section>
     )
 }

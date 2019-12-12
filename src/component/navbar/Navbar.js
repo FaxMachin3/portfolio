@@ -38,6 +38,11 @@ const Navbar = props => {
                     SR
                 </a>
             </h1>
+            <div className="hamburger">
+                <div className="upper-layer"></div>
+                <div className="middle-layer"></div>
+                <div className="lower-layer"></div>
+            </div>
             <ul className="nav-links">
                 <li>
                     <a
@@ -81,7 +86,7 @@ const Navbar = props => {
                 </li>
             </ul>
         </nav>
-    );
-};
+    )
+}
 
 export default Navbar;

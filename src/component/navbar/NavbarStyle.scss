@@ -1,6 +1,6 @@
 .nav-bar {
     position: fixed;
-    z-index: 1;
+    z-index: 3;
     height: 10vh;
     display: flex;
     width: 100%;
@@ -23,15 +23,16 @@
             text-decoration: none;
             .line {
                 position: absolute;
-                bottom: -2px;
+                bottom: -0.15em;
                 left: 0;
-                height: 3%;
+                height: 10%;
                 width: 100%;
-                border-radius: 2px;
+                border-radius: 0.15em;
                 transform: scale(0);
-                transition: transform 300ms ease-in-out;
+                transition: transform 500ms ease-in-out;
             }
             &.active .line {
+                transition-delay: 500ms;
                 transform: scale(1) !important;
             }
             &:hover .line {
@@ -50,23 +51,40 @@
     }
 }
 
-@media all and (max-width: 1100px) {
-    body,
-    html {
-        font-size: 90%;
+@media all and (max-width: 768px) {
+    .hamburger {
+        height: 40%;
+        width: 9%;
+        position: absolute;
+        top: 50%;
+        right: 5%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        cursor: pointer;
+        .upper-layer,
+        .middle-layer,
+        .lower-layer{
+            height: 7%;
+            width: 100%;
+            background-color: #dadada;
+            transition: transform 500ms ease-in-out
+        }
+        &:hover .middle-layer{
+            transform: scale(0);
+        }
+        &:hover .upper-layer{
+            // transform: translateY(1em) rotate(45deg);
+            animation: hamUP 500ms ease-in-out alternate;
+        }
+        &:hover .lower-layer{
+            // transform: translateY(-1em) rotate(-45deg);
+            animation: hamLP 500ms ease-in-out alternate;
+        }
     }
-}
 
-@media all and (max-width: 1000px) {
-    body,
-    html {
-        font-size: 80%;
-    }
-}
-
-@media all and (max-width: 900px) {
-    .link,
-    .outer {
-        display: none;
+    @keyframes hamUP {
+        
     }
 }

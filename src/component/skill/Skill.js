@@ -10,7 +10,7 @@ const Skill = () => {
     }
     return(
         <section id="skill" style={theme}>
-            <div className="test">Skill</div>
+            <div className="test"  data-section="skill">Skill</div>
         </section>
     )
 }

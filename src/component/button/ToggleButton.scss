@@ -3,7 +3,7 @@
     height: 1.5em;
     width: 4em;
     cursor: pointer;
-    border-radius: 100px;
+    border-radius: 10px;
     border: 0.10em solid;
     transition: background-color .5s ease-in-out;
     .inner{
@@ -20,4 +20,16 @@
 }
 .circle{
     transform: translate(2.5em,-50%) !important;
+}
+
+@media all and (max-width: 1100px) {
+    .outer{
+        border-radius: 8px;
+    }
+}
+
+@media all and (max-width: 1000px) {
+    .outer{
+        border-radius: 6px;
+    }
 }

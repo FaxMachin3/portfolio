@@ -11,7 +11,7 @@ const About = () => {
     
     return(
         <section id="about" style={theme}>
-            <div className="test">About</div>
+            <div className="test" data-section="about">About</div>
         </section>
     )
 }
