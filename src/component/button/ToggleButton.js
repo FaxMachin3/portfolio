@@ -31,7 +31,6 @@ const ToggleButton = () => {
         // eslint-disable-next-line
     }, [background]);
     const themeOuter = {
-        background: background,
         borderColor: primary
     };
     const themeInner = {

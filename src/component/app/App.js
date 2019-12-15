@@ -18,6 +18,7 @@ const App = () => {
     let lastTime = useRef(0)
     let scrolled = useRef(true)
     let position = useRef(0)
+    const scroll = useRef(true);
     const [currentPage, changeCurrentPage] = useState(".home")
     const [theme, changeTheme] = useState(true)
     const pages = {
@@ -105,15 +106,31 @@ const App = () => {
 
     // mobile smoothscroll
     useEffect(() => {
-        window.addEventListener("touchstart", (event) => { handleTouchStart(event) } , {
-            passive: false
-        });
-        window.addEventListener("touchmove", (event) => { handleTouchMove(event) } , {
-            passive: false
-        });
-        window.addEventListener("touchend", (event) => { handleTouchEnd(event) } , {
-            passive: false
-        });
+        const sections = window.document.querySelectorAll("section")
+        
+        sections.forEach(section => {
+            section.addEventListener("touchstart", (event) => { 
+                scroll.current && handleTouchStart(event)
+            } , {
+                passive: false
+            });
+        })
+
+        sections.forEach(section => {
+            section.addEventListener("touchmove", (event) => { 
+                scroll.current && handleTouchMove(event)
+            } , {
+                passive: false
+            });
+        })
+
+        sections.forEach(section => {
+            section.addEventListener("touchend", (event) => { 
+                scroll.current && handleTouchEnd(event)
+            } , {
+                passive: false
+            });
+        })
 
         // unsubscribing on unmount
         return () => {
@@ -131,9 +148,14 @@ const App = () => {
     
     // desktop smoothscroll
     useEffect(() => {
-        window.addEventListener("wheel", event => smoothScrollWheel(event), {
-            passive: false
-        });
+        const sections = window.document.querySelectorAll("section")
+        
+        sections.forEach(section => {
+            section.addEventListener("wheel", event => smoothScrollWheel(event), {
+                passive: false
+            });
+        })
+
         smoothScroll(currentPage)
 
         // unsubscribing on unmount
@@ -148,11 +170,13 @@ const App = () => {
     useEffect(() => {
         const sections = window.document.querySelectorAll(".test")
         const bars = window.document.querySelectorAll(".bar")
+
         const options = {
             root: null,
             rootMargin: '0px',
             threshold: 0
         }
+
         const observer = new IntersectionObserver((entries,observer) => {
             entries.forEach(entry => {
                 if(entry.isIntersecting){
@@ -184,7 +208,7 @@ const App = () => {
     useEffect(() => {
         const navBar = window.document.querySelectorAll(".link")
         const intersectingSection = '#' + currentPage.split('.')[1]
-        // const page = window.document.querySelector(intersectingSection)
+
         navBar.forEach(link => {
             link.classList.remove('active')
             if(link.getAttribute('href') === intersectingSection){
@@ -195,7 +219,7 @@ const App = () => {
 
     return (
         <ThemeContext.Provider value={{ currentTheme, changeTheme }}>
-            <Navbar changePage={changeCurrentPage}/>
+            <Navbar changePage={changeCurrentPage} scroll={scroll}/>
             <Indicators />
             <Home />
             <About />

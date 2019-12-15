@@ -1,13 +1,24 @@
+$animationDuration: 500ms;
+$animationDelay: 500ms;
+$animationDelayLinks: 50ms;
+
+@mixin links-transition {
+    opacity: 1;
+    transform: translateY(0px);
+    pointer-events: all;
+}
+
 .nav-bar {
     position: fixed;
-    z-index: 3;
+    z-index: 10;
     height: 10vh;
     display: flex;
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    transition: background-color 0.5s ease-in-out;
+    transition: background-color $animationDuration ease-in-out;
     flex-wrap: wrap;
+
     .nav-links {
         display: flex;
         list-style: none;
@@ -17,10 +28,12 @@
         justify-content: space-around;
         align-items: center;
         flex-wrap: wrap;
+
         .link {
             position: relative;
             font-size: 1.25rem;
             text-decoration: none;
+
             .line {
                 position: absolute;
                 bottom: -0.15em;
@@ -29,18 +42,21 @@
                 width: 100%;
                 border-radius: 0.15em;
                 transform: scale(0);
-                transition: transform 500ms ease-in-out;
+                transition: transform $animationDuration ease-in-out;
             }
+
             &.active .line {
-                transition-delay: 500ms;
+                transition-delay: $animationDelay;
                 transform: scale(1) !important;
             }
+
             &:hover .line {
                 transform: scale(1);
             }
         }
     }
     .logo {
+        z-index: 11;
         position: absolute;
         left: 5%;
         font-size: 2rem;
@@ -53,38 +69,133 @@
 
 @media all and (max-width: 768px) {
     .hamburger {
-        height: 40%;
-        width: 9%;
+        z-index: 10;
+        height: 3.5em;
+        width: 4.5em;
         position: absolute;
         top: 50%;
         right: 5%;
         transform: translateY(-50%);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
         cursor: pointer;
+
         .upper-layer,
         .middle-layer,
-        .lower-layer{
+        .lower-layer {
+            position: relative;
             height: 7%;
             width: 100%;
-            background-color: #dadada;
-            transition: transform 500ms ease-in-out
+            transition: all $animationDuration ease-in-out;
+            transform-origin: center;
+            margin: 1em 0 1em 0;
         }
-        &:hover .middle-layer{
+
+        .nav-circle {
+            position: absolute;
+            top: -700px;
+            right: -700px;
+            transform: translateY(-50%);
+            height: 1000px;
+            width: 1000px;
+            border-radius: 50%;
             transform: scale(0);
+            pointer-events: none;
+            transition: all $animationDuration ease-in-out;
+            &.animate-hamburger {
+                transform: scale(3.5);
+            }
         }
-        &:hover .upper-layer{
-            // transform: translateY(1em) rotate(45deg);
-            animation: hamUP 500ms ease-in-out alternate;
+
+        .middle-layer.animate-hamburger {
+            opacity: 0;
+            transform: translateX(100px);
         }
-        &:hover .lower-layer{
-            // transform: translateY(-1em) rotate(-45deg);
-            animation: hamLP 500ms ease-in-out alternate;
+
+        .upper-layer.animate-hamburger {
+            transform: translateY(1.3em) rotate(45deg);
+        }
+
+        .lower-layer.animate-hamburger {
+            transform: translateY(-1.3em) rotate(-45deg);
         }
     }
 
-    @keyframes hamUP {
-        
+    .nav-links {
+        position: fixed;
+        z-index: 10;
+        top: 50%;
+        left: 50%;
+        padding-top: 20%;
+        transform: translate(-50%, -50%);
+        flex-direction: column;
+    }
+
+    ul{
+        &.nav-links{
+            visibility: hidden;
+            &.animate-hamburger{
+                visibility: visible;
+            }
+        }
+    }
+
+    .nav-links li {
+        pointer-events: none;
+        opacity: 0;
+        transform: translateY(-100px);
+        transition: all $animationDuration ease-in-out !important;
+        &:nth-child(6) {
+            transform: translateX(100px);
+        }
+
+        &.animate-hamburger {
+            &:nth-child(1) {
+                @include links-transition;
+            }
+
+            &:nth-child(2) {
+                @include links-transition;
+                transition-delay: $animationDelayLinks !important;
+            }
+
+            &:nth-child(3) {
+                @include links-transition;
+                transition-delay: $animationDelayLinks + 50ms !important;
+            }
+
+            &:nth-child(4) {
+                @include links-transition;
+                transition-delay: $animationDelayLinks + 100ms !important;
+            }
+
+            &:nth-child(5) {
+                @include links-transition;
+                transition-delay: $animationDelayLinks + 150ms !important;
+            }
+
+            &:nth-child(6) {
+                @include links-transition;
+                transition-delay: $animationDelayLinks + 200ms !important;
+            }
+        }
+    }
+
+    .outer {
+        position: absolute;
+        bottom: 0;
+        left: 9em;
+    }
+
+    .link:hover .line {
+        transform: scale(0) !important;
+    }
+
+    .link,
+    .logo {
+        font-size: 2.5em !important;
+    }
+
+    .outer {
+        border-radius: 10px !important;
+        font-size: 1.5em;
     }
 }

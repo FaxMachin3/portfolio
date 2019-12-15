@@ -6,7 +6,8 @@ import ToggleButton from "../button/ToggleButton";
 
 const Navbar = props => {
     const { currentTheme } = useContext(ThemeContext);
-    const { background, primary } = currentTheme;
+    const { background, primary, secondary } = currentTheme;
+
     const textColor = {
         color: primary
     };
@@ -15,20 +16,70 @@ const Navbar = props => {
         background: primary
     };
 
+    const secondaryBG = {
+        background: secondary
+    }
+
+    useEffect(() => {
+        const hamburger = window.document.querySelector(".hamburger");
+        const liS = window.document.querySelectorAll(".nav-links li");
+        const navCircle = window.document.querySelector(".nav-circle");
+        const hams = window.document.querySelectorAll(".ham");
+        const links = window.document.querySelectorAll(".link");
+        const navLink = window.document.querySelector(".nav-links");
+
+        links.forEach(link => {
+            link.addEventListener("click", () => {
+                props.scroll.current = !props.scroll.current
+                navCircle.classList.remove("animate-hamburger")
+                navLink.classList.remove("animate-hamburger")
+                hams.forEach(ham => {
+                    ham.classList.remove("animate-hamburger");
+                });
+                links.forEach(link =>{
+                    link.classList.remove("animate-hamburger")
+                })
+                liS.forEach(li =>{
+                    li.classList.remove("animate-hamburger")
+                })
+            })
+        })
+
+        hamburger.addEventListener("click", e => {
+            props.scroll.current = !props.scroll.current
+            navCircle.classList.toggle("animate-hamburger")
+            navLink.classList.toggle("animate-hamburger")
+            hams.forEach(ham => {
+                ham.classList.toggle("animate-hamburger");
+            });
+            links.forEach(link =>{
+                link.classList.toggle("animate-hamburger")
+            })
+            liS.forEach(li =>{
+                li.classList.toggle("animate-hamburger")
+            })
+        });
+    }, [props.scroll]);
+
     // smooth scroll
     useEffect(() => {
         const links = window.document.querySelectorAll(".link");
-        const logo = window.document.querySelector('.logo')
-        logo.addEventListener("click", e => smoothScrollNav(e, props))
+        const logo = window.document.querySelector(".logo");
+
+        logo.addEventListener("click", e => smoothScrollNav(e, props));
+
         links.forEach(link => {
             link.addEventListener("click", e => smoothScrollNav(e, props));
         });
+
         return () => {
-            logo.removeEventListener("click", e => smoothScrollNav(e, props))
+            logo.removeEventListener("click", e => smoothScrollNav(e, props));
             links.forEach(link => {
-                link.removeEventListener("click", e => smoothScrollNav(e, props));
+                link.removeEventListener("click", e =>
+                    smoothScrollNav(e, props)
+                );
             });
-        }
+        };
     });
 
     return (
@@ -39,9 +90,10 @@ const Navbar = props => {
                 </a>
             </h1>
             <div className="hamburger">
-                <div className="upper-layer"></div>
-                <div className="middle-layer"></div>
-                <div className="lower-layer"></div>
+                <div className="nav-circle" style={secondaryBG}></div>
+                <div className="ham upper-layer" style={bgColor}></div>
+                <div className="ham middle-layer" style={bgColor}></div>
+                <div className="ham lower-layer" style={bgColor}></div>
             </div>
             <ul className="nav-links">
                 <li>
@@ -86,7 +138,7 @@ const Navbar = props => {
                 </li>
             </ul>
         </nav>
-    )
-}
+    );
+};
 
 export default Navbar;
