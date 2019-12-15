@@ -16,9 +16,9 @@ import Indicators from "../Indicators/Indicators";
 const App = () => {
     const animationDuration = useRef(1000)
     let lastTime = useRef(0)
-    let scrolled = useRef(true)
     let position = useRef(0)
-    const scroll = useRef(true);
+    let scrolled = useRef(true)
+    const allowScroll = useRef(true); // stops user to scroll when the menu is open
     const [currentPage, changeCurrentPage] = useState(".home")
     const [theme, changeTheme] = useState(true)
     const pages = {
@@ -76,6 +76,25 @@ const App = () => {
             lastTime.current = currentTime;
         }
     };
+
+    const smoothScrollArrow = (event) => {
+        if(scrolled.current){
+            scrolled.current = !scrolled.current
+            if(event.keyCode  === 40){
+                changeCurrentPage(
+                    prevPage => (prevPage = pages[prevPage].next)
+                );
+            }
+            else if(event.keyCode === 38){
+                changeCurrentPage(
+                    prevPage => (prevPage = pages[prevPage].prev)
+                );
+            }
+            setTimeout(() => {
+                scrolled.current = !scrolled.current
+            },1000)
+        }
+    }
     
     const handleTouchStart = (event) => {
         if(scrolled.current){
@@ -110,7 +129,7 @@ const App = () => {
         
         sections.forEach(section => {
             section.addEventListener("touchstart", (event) => { 
-                scroll.current && handleTouchStart(event)
+                allowScroll.current && handleTouchStart(event)
             } , {
                 passive: false
             });
@@ -118,7 +137,7 @@ const App = () => {
 
         sections.forEach(section => {
             section.addEventListener("touchmove", (event) => { 
-                scroll.current && handleTouchMove(event)
+                allowScroll.current && handleTouchMove(event)
             } , {
                 passive: false
             });
@@ -126,7 +145,7 @@ const App = () => {
 
         sections.forEach(section => {
             section.addEventListener("touchend", (event) => { 
-                scroll.current && handleTouchEnd(event)
+                allowScroll.current && handleTouchEnd(event)
             } , {
                 passive: false
             });
@@ -149,6 +168,8 @@ const App = () => {
     // desktop smoothscroll
     useEffect(() => {
         const sections = window.document.querySelectorAll("section")
+
+        window.document.addEventListener("keydown", event => smoothScrollArrow(event))
         
         sections.forEach(section => {
             section.addEventListener("wheel", event => smoothScrollWheel(event), {
@@ -219,7 +240,7 @@ const App = () => {
 
     return (
         <ThemeContext.Provider value={{ currentTheme, changeTheme }}>
-            <Navbar changePage={changeCurrentPage} scroll={scroll}/>
+            <Navbar changePage={changeCurrentPage} scroll={allowScroll}/>
             <Indicators />
             <Home />
             <About />

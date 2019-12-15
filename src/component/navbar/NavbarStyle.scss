@@ -38,7 +38,7 @@ $animationDelayLinks: 50ms;
                 position: absolute;
                 bottom: -0.15em;
                 left: 0;
-                height: 10%;
+                height: 5%;
                 width: 100%;
                 border-radius: 0.15em;
                 transform: scale(0);
@@ -58,7 +58,9 @@ $animationDelayLinks: 50ms;
     .logo {
         z-index: 11;
         position: absolute;
+        top: 50%;
         left: 5%;
+        transform: translate(-5%,-50%);
         font-size: 2rem;
         font-weight: 900;
         a {
@@ -70,10 +72,10 @@ $animationDelayLinks: 50ms;
 @media all and (max-width: 768px) {
     .hamburger {
         z-index: 10;
-        height: 3.5em;
-        width: 4.5em;
+        height: 3em;
+        width: 4em;
         position: absolute;
-        top: 50%;
+        top: 40%;
         right: 5%;
         transform: translateY(-50%);
         cursor: pointer;
@@ -84,7 +86,7 @@ $animationDelayLinks: 50ms;
             position: relative;
             height: 7%;
             width: 100%;
-            transition: all $animationDuration ease-in-out;
+            transition: transform $animationDuration ease-in-out;
             transform-origin: center;
             margin: 1em 0 1em 0;
         }
@@ -111,11 +113,11 @@ $animationDelayLinks: 50ms;
         }
 
         .upper-layer.animate-hamburger {
-            transform: translateY(1.3em) rotate(45deg);
+            transform: translateY(1.2em) rotate(45deg);
         }
 
         .lower-layer.animate-hamburger {
-            transform: translateY(-1.3em) rotate(-45deg);
+            transform: translateY(-1.2em) rotate(-45deg);
         }
     }
 
@@ -181,7 +183,7 @@ $animationDelayLinks: 50ms;
 
     .outer {
         position: absolute;
-        bottom: 0;
+        bottom: -1em;
         left: 9em;
     }
 
@@ -189,9 +191,13 @@ $animationDelayLinks: 50ms;
         transform: scale(0) !important;
     }
 
+    .line{
+        height: 1% !important;
+    }
+
     .link,
     .logo {
-        font-size: 2.5em !important;
+        font-size: 3em !important;
     }
 
     .outer {

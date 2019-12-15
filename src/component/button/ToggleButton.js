@@ -34,6 +34,7 @@ const ToggleButton = () => {
         borderColor: primary
     };
     const themeInner = {
+        background: primary,
         borderColor: primary
     };
     return (
