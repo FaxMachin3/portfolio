@@ -97,12 +97,12 @@ const App = () => {
     }
     
     const handleTouchStart = (event) => {
-        if(scrolled.current){
+        if(scrolled.current && event.touches.length === 1){
             position.current = event.changedTouches[0].clientY
         }
     }
     const handleTouchMove = (event) => {
-        if(scrolled.current){
+        if(scrolled.current && event.touches.length === 1){
             position.current -= event.changedTouches[0].clientY
             scrolled.current = !scrolled.current
         }

@@ -16,7 +16,8 @@ $animationDelayLinks: 50ms;
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    transition: background-color $animationDuration ease-in-out;
+    transition: background-color $animationDuration - 250ms ease-in-out;
+    will-change: background-color;
     flex-wrap: wrap;
 
     .nav-links {
@@ -53,14 +54,15 @@ $animationDelayLinks: 50ms;
             &:hover .line {
                 transform: scale(1);
             }
+            &:focus .line{
+                transform: scale(1);
+            }
         }
     }
     .logo {
         z-index: 11;
         position: absolute;
-        top: 50%;
         left: 5%;
-        transform: translate(-5%,-50%);
         font-size: 2rem;
         font-weight: 900;
         a {
@@ -70,12 +72,19 @@ $animationDelayLinks: 50ms;
 }
 
 @media all and (max-width: 768px) {
+    * {
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        -webkit-tap-highlight-color: transparent;
+        &:active{
+            background-color: transparent;;
+        }
+    }
     .hamburger {
         z-index: 10;
         height: 3em;
         width: 4em;
         position: absolute;
-        top: 40%;
+        top: 50%;
         right: 5%;
         transform: translateY(-50%);
         cursor: pointer;
@@ -86,24 +95,25 @@ $animationDelayLinks: 50ms;
             position: relative;
             height: 7%;
             width: 100%;
-            transition: transform $animationDuration ease-in-out;
+            transition: transform $animationDuration ease-in-out,
+                        opacity $animationDuration ease-in-out;
             transform-origin: center;
-            margin: 1em 0 1em 0;
+            margin: 0 0 1em 0;
         }
 
         .nav-circle {
             position: absolute;
-            top: -700px;
-            right: -700px;
             transform: translateY(-50%);
-            height: 1000px;
-            width: 1000px;
+            height: 125em;
+            width: 125em;
             border-radius: 50%;
-            transform: scale(0);
+            transform: translate(-15em, -120em);
             pointer-events: none;
-            transition: all $animationDuration ease-in-out;
+            transition: transform $animationDuration ease-in-out,
+                        background-color $animationDuration - 250ms ease-in-out;
+            will-change: transform, background-color;
             &.animate-hamburger {
-                transform: scale(3.5);
+                transform: translate(-80em,-27em);
             }
         }
 
@@ -131,10 +141,10 @@ $animationDelayLinks: 50ms;
         flex-direction: column;
     }
 
-    ul{
-        &.nav-links{
+    ul {
+        &.nav-links {
             visibility: hidden;
-            &.animate-hamburger{
+            &.animate-hamburger {
                 visibility: visible;
             }
         }
@@ -191,8 +201,9 @@ $animationDelayLinks: 50ms;
         transform: scale(0) !important;
     }
 
-    .line{
-        height: 1% !important;
+    .line {
+        height: 2% !important;
+        opacity: 0.5;
     }
 
     .link,

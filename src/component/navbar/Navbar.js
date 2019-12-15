@@ -18,7 +18,28 @@ const Navbar = props => {
 
     const secondaryBG = {
         background: secondary
-    }
+    };
+
+    const removeClass = () => {
+        const liS = window.document.querySelectorAll(".nav-links li");
+        const navCircle = window.document.querySelector(".nav-circle");
+        const hams = window.document.querySelectorAll(".ham");
+        const links = window.document.querySelectorAll(".link");
+        const navLink = window.document.querySelector(".nav-links");
+
+        props.scroll.current = !props.scroll.current;
+        navCircle.classList.remove("animate-hamburger");
+        navLink.classList.remove("animate-hamburger");
+        hams.forEach(ham => {
+            ham.classList.remove("animate-hamburger");
+        });
+        links.forEach(link => {
+            link.classList.remove("animate-hamburger");
+        });
+        liS.forEach(li => {
+            li.classList.remove("animate-hamburger");
+        });
+    };
 
     useEffect(() => {
         const hamburger = window.document.querySelector(".hamburger");
@@ -29,35 +50,24 @@ const Navbar = props => {
         const navLink = window.document.querySelector(".nav-links");
 
         links.forEach(link => {
-            link.addEventListener("click", () => {
-                props.scroll.current = !props.scroll.current
-                navCircle.classList.remove("animate-hamburger")
-                navLink.classList.remove("animate-hamburger")
-                hams.forEach(ham => {
-                    ham.classList.remove("animate-hamburger");
-                });
-                links.forEach(link =>{
-                    link.classList.remove("animate-hamburger")
-                })
-                liS.forEach(li =>{
-                    li.classList.remove("animate-hamburger")
-                })
-            })
-        })
+            link.addEventListener("click", () =>
+                removeClass()
+            );
+        });
 
         hamburger.addEventListener("click", e => {
-            props.scroll.current = !props.scroll.current
-            navCircle.classList.toggle("animate-hamburger")
-            navLink.classList.toggle("animate-hamburger")
+            props.scroll.current = !props.scroll.current;
+            navCircle.classList.toggle("animate-hamburger");
+            navLink.classList.toggle("animate-hamburger");
             hams.forEach(ham => {
                 ham.classList.toggle("animate-hamburger");
             });
-            links.forEach(link =>{
-                link.classList.toggle("animate-hamburger")
-            })
-            liS.forEach(li =>{
-                li.classList.toggle("animate-hamburger")
-            })
+            links.forEach(link => {
+                link.classList.toggle("animate-hamburger");
+            });
+            liS.forEach(li => {
+                li.classList.toggle("animate-hamburger");
+            });
         });
     }, [props.scroll]);
 
@@ -66,7 +76,10 @@ const Navbar = props => {
         const links = window.document.querySelectorAll(".link");
         const logo = window.document.querySelector(".logo");
 
-        logo.addEventListener("click", e => smoothScrollNav(e, props));
+        logo.addEventListener("click", e => {
+            smoothScrollNav(e, props)
+            removeClass()
+        });
 
         links.forEach(link => {
             link.addEventListener("click", e => smoothScrollNav(e, props));
