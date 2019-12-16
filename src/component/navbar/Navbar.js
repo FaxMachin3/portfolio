@@ -148,7 +148,7 @@ const Navbar = props => {
                         Contact<span style={bgColor} className="line"></span>
                     </a>
                 </li>
-                <li>
+                <li className="toggle-button">
                     <ToggleButton />
                 </li>
             </ul>
