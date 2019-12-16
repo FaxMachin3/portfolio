@@ -1,17 +1,19 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react"
+import { gsap } from "gsap"
 
-import ThemeContext from "../../common/ThemeContext";
+import ThemeContext from "../../common/ThemeContext"
 
-import "./App.scss";
+import "./App.scss"
 
-import Home from "../home/Home";
-import About from "../about/About";
-import Skill from "../skill/Skill";
-import Project from "../project/Project";
-import Contact from "../contact/Contact";
-import Navbar from "../navbar/Navbar";
-import { smoothScroll } from "./SmoothScroll";
-import Indicators from "../Indicators/Indicators";
+import Home from "../home/Home"
+import About from "../about/About"
+import Skill from "../skill/Skill"
+import Project from "../project/Project"
+import Contact from "../contact/Contact"
+import Navbar from "../navbar/Navbar"
+import Indicators from "../Indicators/Indicators"
+
+import { smoothScroll } from "./SmoothScroll"
 
 const App = () => {
     const animationDuration = useRef(1000)
@@ -42,7 +44,7 @@ const App = () => {
             prev: ".project",
             next: ".home"
         }
-    };
+    }
     const themeStyle = {
         dark: {
             background: "#121212",
@@ -54,12 +56,12 @@ const App = () => {
             primary: "#333333",
             secondary: "#008F96"
         }
-    };
+    }
 
-    let currentTheme = theme === true ? themeStyle.dark : themeStyle.light;
+    let currentTheme = theme === true ? themeStyle.dark : themeStyle.light
 
     const smoothScrollWheel = event => {
-        const currentTime = new Date().getTime();
+        const currentTime = new Date().getTime()
         if (currentTime - lastTime.current < animationDuration.current) {
             event.preventDefault();
             return;
@@ -67,15 +69,15 @@ const App = () => {
             if (event.deltaY > 0) {
                 changeCurrentPage(
                     prevPage => (prevPage = pages[prevPage].next)
-                );
+                )
             } else {
                 changeCurrentPage(
                     prevPage => (prevPage = pages[prevPage].prev)
-                );
+                )
             }
             lastTime.current = currentTime;
         }
-    };
+    }
 
     const smoothScrollArrow = (event) => {
         if(scrolled.current){
@@ -83,12 +85,12 @@ const App = () => {
             if(event.keyCode  === 40){
                 changeCurrentPage(
                     prevPage => (prevPage = pages[prevPage].next)
-                );
+                )
             }
             else if(event.keyCode === 38){
                 changeCurrentPage(
                     prevPage => (prevPage = pages[prevPage].prev)
-                );
+                )
             }
             setTimeout(() => {
                 scrolled.current = !scrolled.current
@@ -132,7 +134,7 @@ const App = () => {
                 allowScroll.current && handleTouchStart(event)
             } , {
                 passive: false
-            });
+            })
         })
 
         sections.forEach(section => {
@@ -140,7 +142,7 @@ const App = () => {
                 allowScroll.current && handleTouchMove(event)
             } , {
                 passive: false
-            });
+            })
         })
 
         sections.forEach(section => {
@@ -148,20 +150,20 @@ const App = () => {
                 allowScroll.current && handleTouchEnd(event)
             } , {
                 passive: false
-            });
+            })
         })
 
         // unsubscribing on unmount
         return () => {
             window.removeEventListener("touchstart", (event) => { handleTouchStart(event) } , {
                 passive: false
-            });
+            })
             window.removeEventListener("touchmove", (event) => { handleTouchMove(event) } , {
                 passive: false
-            });
+            })
             window.removeEventListener("touchend", (event) => { handleTouchEnd(event) } , {
                 passive: false
-            });
+            })
         }
     })
     
@@ -174,7 +176,7 @@ const App = () => {
         sections.forEach(section => {
             section.addEventListener("wheel", event => smoothScrollWheel(event), {
                 passive: false
-            });
+            })
         })
 
         smoothScroll(currentPage)
@@ -183,9 +185,9 @@ const App = () => {
         return () => {
             window.removeEventListener("wheel", event => smoothScrollWheel(event), {
                 passive: false
-            });
+            })
         }
-    });
+    })
     
     // Intersection Observer
     useEffect(() => {
@@ -202,6 +204,9 @@ const App = () => {
             entries.forEach(entry => {
                 if(entry.isIntersecting){
                     const newHash = entry.target.getAttribute("data-section")
+
+                    gsap.fromTo(entry.target, {x:-50, rotate:-360}, {duration: 1, x: 10, delay: 1, rotate: 90, ease: "back"})
+
                     bars.forEach(bar => {
                         const section = bar.getAttribute("data-section")
                         if(section === newHash){
@@ -248,7 +253,7 @@ const App = () => {
             <Project />
             <Contact />
         </ThemeContext.Provider>
-    );
-};
+    )
+}
 
-export default App;
+export default App

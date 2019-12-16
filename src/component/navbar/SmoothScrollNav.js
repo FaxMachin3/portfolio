@@ -32,5 +32,7 @@ export const smoothScrollNav = (event, { changePage }) => {
     window.requestAnimationFrame(scroll);
 
     // change current page
-    changePage("." + target.split("#")[1]);
+    setTimeout(() => {
+        changePage("." + target.split("#")[1]);
+    },10)
 };

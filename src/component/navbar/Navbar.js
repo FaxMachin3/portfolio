@@ -1,12 +1,14 @@
-import React, { useEffect, useContext } from "react";
-import "./NavbarStyle.scss";
-import { smoothScrollNav } from "./SmoothScrollNav";
-import ThemeContext from "../../common/ThemeContext";
-import ToggleButton from "../button/ToggleButton";
+import React, { useEffect, useContext } from "react"
+
+import "./NavbarStyle.scss"
+
+import { smoothScrollNav } from "./SmoothScrollNav"
+import ThemeContext from "../../common/ThemeContext"
+import ToggleButton from "../button/ToggleButton"
 
 const Navbar = props => {
-    const { currentTheme } = useContext(ThemeContext);
-    const { background, primary, secondary } = currentTheme;
+    const { currentTheme } = useContext(ThemeContext)
+    const { background, primary, secondary } = currentTheme
 
     const textColor = {
         color: primary
@@ -21,39 +23,36 @@ const Navbar = props => {
     };
 
     const removeClass = () => {
-        const liS = window.document.querySelectorAll(".nav-links li");
-        const navCircle = window.document.querySelector(".nav-circle");
-        const hams = window.document.querySelectorAll(".ham");
-        const links = window.document.querySelectorAll(".link");
-        const navLink = window.document.querySelector(".nav-links");
+        const liS = window.document.querySelectorAll(".nav-links li")
+        const navCircle = window.document.querySelector(".nav-circle")
+        const hams = window.document.querySelectorAll(".ham")
+        const links = window.document.querySelectorAll(".link")
+        const navLink = window.document.querySelector(".nav-links")
 
-        props.scroll.current = !props.scroll.current;
-        navCircle.classList.remove("animate-hamburger");
-        navLink.classList.remove("animate-hamburger");
+        if(!props.scroll.current){
+            props.scroll.current = !props.scroll.current
+        }
+
+        navCircle.classList.remove("animate-hamburger")
+        navLink.classList.remove("animate-hamburger")
         hams.forEach(ham => {
-            ham.classList.remove("animate-hamburger");
-        });
+            ham.classList.remove("animate-hamburger")
+        })
         links.forEach(link => {
-            link.classList.remove("animate-hamburger");
-        });
+            link.classList.remove("animate-hamburger")
+        })
         liS.forEach(li => {
-            li.classList.remove("animate-hamburger");
-        });
-    };
+            li.classList.remove("animate-hamburger")
+        })
+    }
 
     useEffect(() => {
-        const hamburger = window.document.querySelector(".hamburger");
-        const liS = window.document.querySelectorAll(".nav-links li");
-        const navCircle = window.document.querySelector(".nav-circle");
-        const hams = window.document.querySelectorAll(".ham");
-        const links = window.document.querySelectorAll(".link");
-        const navLink = window.document.querySelector(".nav-links");
-
-        links.forEach(link => {
-            link.addEventListener("click", () =>
-                removeClass()
-            );
-        });
+        const hamburger = window.document.querySelector(".hamburger")
+        const liS = window.document.querySelectorAll(".nav-links li")
+        const navCircle = window.document.querySelector(".nav-circle")
+        const hams = window.document.querySelectorAll(".ham")
+        const links = window.document.querySelectorAll(".link")
+        const navLink = window.document.querySelector(".nav-links")
 
         hamburger.addEventListener("click", e => {
             props.scroll.current = !props.scroll.current;
@@ -61,39 +60,42 @@ const Navbar = props => {
             navLink.classList.toggle("animate-hamburger");
             hams.forEach(ham => {
                 ham.classList.toggle("animate-hamburger");
-            });
+            })
             links.forEach(link => {
-                link.classList.toggle("animate-hamburger");
-            });
+                link.classList.toggle("animate-hamburger")
+            })
             liS.forEach(li => {
-                li.classList.toggle("animate-hamburger");
-            });
-        });
-    }, [props.scroll]);
+                li.classList.toggle("animate-hamburger")
+            })
+        })
+    },[props.scroll])
 
-    // smooth scroll
+    // smooth scroll        
     useEffect(() => {
-        const links = window.document.querySelectorAll(".link");
-        const logo = window.document.querySelector(".logo");
+        const links = window.document.querySelectorAll(".link")
+        const logo = window.document.querySelector(".logo")
 
         logo.addEventListener("click", e => {
             smoothScrollNav(e, props)
             removeClass()
-        });
+        })
 
         links.forEach(link => {
-            link.addEventListener("click", e => smoothScrollNav(e, props));
-        });
+            link.addEventListener("click", e => {
+                smoothScrollNav(e, props)
+                removeClass()
+            })
+        })
 
         return () => {
-            logo.removeEventListener("click", e => smoothScrollNav(e, props));
+            logo.removeEventListener("click", e => smoothScrollNav(e, props))
             links.forEach(link => {
                 link.removeEventListener("click", e =>
                     smoothScrollNav(e, props)
-                );
-            });
-        };
-    });
+                )
+            })
+        }
+    })
 
     return (
         <nav className="nav-bar" style={{ background: background }}>
@@ -151,7 +153,7 @@ const Navbar = props => {
                 </li>
             </ul>
         </nav>
-    );
-};
+    )
+}
 
-export default Navbar;
+export default Navbar
