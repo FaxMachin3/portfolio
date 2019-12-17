@@ -2,6 +2,8 @@ import React from "react";
 // import Navbar from "../navbar/Navbar"
 import ThemeContext from "../../common/ThemeContext";
 
+import HomeSVG from "./HomeSVG"
+
 const Home = () => {
     const { currentTheme } = React.useContext(ThemeContext);
     const { background, primary } = currentTheme;
@@ -11,9 +13,11 @@ const Home = () => {
     };
     return (
         <section id="home" style={theme}>
-            <div className="test" data-section="home">Home</div>
+            <div className="test" data-section="home">
+                Home
+            </div>
 
-            <div className="left-container-home">
+            {/* <div className="left-container-home">
                 <div>
                     <p>Hi!</p>
                     <p>My name is Subham Raj.</p>
@@ -26,14 +30,10 @@ const Home = () => {
             </div>
 
             <div className="right-container-home">
-                <svg>
-                </svg>
+                <HomeSVG />
             </div>
 
-            <div className="arrow-down">
-                
-            </div>
-
+            <div className="arrow-down"></div> */}
         </section>
     );
 };

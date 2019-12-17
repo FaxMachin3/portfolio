@@ -94,6 +94,7 @@ $animationDelayLinks: 50ms;
             position: relative;
             height: 7%;
             width: 100%;
+            border-radius: 1px;
             transition: transform $animationDuration ease-in-out,
                 opacity $animationDuration ease-in-out;
             transform-origin: center;
@@ -133,15 +134,15 @@ $animationDelayLinks: 50ms;
     .nav-links {
         position: fixed;
         z-index: 10;
-        top: 50%;
-        left: 50%;
-        height: 80vh !important;
+        top: 13%;
+        height: 90% !important;
         width: 100% !important;
-        transform: translate(-50%,-50%);
         flex-direction: column;
+        justify-content: space-between !important;
         & .toggle-button{
-            position: absolute !important;
-            bottom: -5vh;
+            align-self: flex-end;
+            position: relative;
+            bottom: 5%;
             right: 5%;
         }
     }

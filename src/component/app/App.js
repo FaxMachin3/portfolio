@@ -204,8 +204,8 @@ const App = () => {
             entries.forEach(entry => {
                 if(entry.isIntersecting){
                     const newHash = entry.target.getAttribute("data-section")
-                    const tl = gsap.timeline({defaults: {delay: 1}})
-                    tl.fromTo(entry.target, {x:-50, rotate:-360, yoyoEase: "Power1.easeIn"}, {duration: 1, x: 10, rotate: 90, repeat: -1, yoyoEase: "Power1.easeOut", yoyo: true})
+                    // const tl = gsap.timeline({defaults: {delay: 1}})
+                    // tl.fromTo(entry.target, {x:-50, rotate:-360, yoyoEase: "Power1.easeIn"}, {duration: 1, x: 10, rotate: 90, repeat: -1, yoyoEase: "Power1.easeOut", yoyo: true})
 
                     bars.forEach(bar => {
                         const section = bar.getAttribute("data-section")
