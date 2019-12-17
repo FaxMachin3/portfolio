@@ -25,7 +25,7 @@ const App = () => {
     const [theme, changeTheme] = useState(true)
     const pages = {
         ".home": {
-            prev: ".contact",
+            prev: ".home",
             next: ".about"
         },
         ".about": {
@@ -42,7 +42,7 @@ const App = () => {
         },
         ".contact": {
             prev: ".project",
-            next: ".home"
+            next: ".contact"
         }
     }
     const themeStyle = {
@@ -203,17 +203,24 @@ const App = () => {
         const observer = new IntersectionObserver((entries,observer) => {
             entries.forEach(entry => {
                 if(entry.isIntersecting){
+                    let scale = ""
                     const newHash = entry.target.getAttribute("data-section")
                     // const tl = gsap.timeline({defaults: {delay: 1}})
                     // tl.fromTo(entry.target, {x:-50, rotate:-360, yoyoEase: "Power1.easeIn"}, {duration: 1, x: 10, rotate: 90, repeat: -1, yoyoEase: "Power1.easeOut", yoyo: true})
-
-                    bars.forEach(bar => {
+                    
+                    if(window.matchMedia("(max-width: 768px)").matches){
+                        scale = "scaleY"
+                    }
+                    else{
+                        scale = "scaleX"
+                    }
+                    bars.forEach(bar => {   
                         const section = bar.getAttribute("data-section")
                         if(section === newHash){
-                            bar.style.transform = "scaleX(1)"
+                            bar.style.transform = `${scale}(1)`
                         }
                         else{
-                            bar.style.transform = "scaleX(0.5)"
+                            bar.style.transform = `${scale}(0.5)`
                         }
                         window.location.hash = newHash
                     })

@@ -17,7 +17,7 @@ const Home = () => {
                 Home
             </div>
 
-            {/* <div className="left-container-home">
+            <div className="left-container-home">
                 <div>
                     <p>Hi!</p>
                     <p>My name is Subham Raj.</p>
@@ -33,7 +33,8 @@ const Home = () => {
                 <HomeSVG />
             </div>
 
-            <div className="arrow-down"></div> */}
+            <div className="arrow-down"></div>
+            
         </section>
     );
 };
