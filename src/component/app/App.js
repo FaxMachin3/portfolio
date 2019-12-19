@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react"
-import { gsap } from "gsap"
+// import { gsap } from "gsap"
 
 import ThemeContext from "../../common/ThemeContext"
 

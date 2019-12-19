@@ -9,9 +9,17 @@ const ToggleButton = () => {
     const { currentTheme, changeTheme } = useContext(ThemeContext);
     const { background, primary } = currentTheme;
 
+    const themeOuter = {
+        borderColor: primary
+    };
+    const themeInner = {
+        background: primary,
+        borderColor: primary
+    };
+
     // change background
     useEffect(() => {
-        toggleButton.addEventListener("click", () => {
+        toggleButton.current.addEventListener("click", () => {
             changeTheme(prevState => (prevState = !prevState));
         });
         return () => {
@@ -26,26 +34,20 @@ const ToggleButton = () => {
         if (!initial) {
             setInitial(prevState => (prevState = !prevState));
         } else {
-            toggleButtonCircle.classList.toggle("circle");
+            toggleButtonCircle.current.classList.toggle("circle");
         }
         // eslint-disable-next-line
     }, [background]);
-    const themeOuter = {
-        borderColor: primary
-    };
-    const themeInner = {
-        background: primary,
-        borderColor: primary
-    };
+    
     return (
         <div
             className="outer"
-            ref={btn => (toggleButton = btn)}
+            ref={toggleButton}
             style={themeOuter}
         >
             <div
                 className="inner"
-                ref={inr => (toggleButtonCircle = inr)}
+                ref={toggleButtonCircle}
                 style={themeInner}
             ></div>
         </div>

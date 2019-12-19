@@ -3,9 +3,10 @@ import React from "react"
 const HomeSVG = () => {
     return (
         <svg
+            className="svg-home"
             width="600"
             height="400"
-            viewBox="0 0 600 400"
+            viewBox="0 100 600 300"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
         >

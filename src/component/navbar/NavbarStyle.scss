@@ -135,12 +135,15 @@ $animationDelayLinks: 50ms;
         position: fixed;
         z-index: 10;
         top: 13%;
-        height: 90% !important;
+        height: calc(var(--actual-height) - 10%) !important;
         width: 100% !important;
         flex-direction: column;
         justify-content: space-between !important;
         list-style: none;
-        & .toggle-button{
+        transition: height 400ms ease-in-out;
+        will-change: height;
+
+        & .toggle-button {
             align-self: flex-end;
             position: relative;
             bottom: 5%;
@@ -216,5 +219,3 @@ $animationDelayLinks: 50ms;
         font-size: 3em !important;
     }
 }
-
-

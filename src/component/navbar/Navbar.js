@@ -8,7 +8,7 @@ import ToggleButton from "../button/ToggleButton"
 
 const Navbar = props => {
     const { currentTheme } = useContext(ThemeContext)
-    const { background, primary, secondary } = currentTheme
+    const { primary, secondary } = currentTheme
 
     const textColor = {
         color: primary
@@ -98,7 +98,7 @@ const Navbar = props => {
     })
 
     return (
-        <nav className="nav-bar" style={{ background: background }}>
+        <nav className="nav-bar" >
             <h1 className="logo">
                 <a style={textColor} href="#home">
                     SR
