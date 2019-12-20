@@ -1,6 +1,6 @@
 export const smoothScroll = (currentPage) => {
     const page = window.document.querySelector(currentPage);
-    const target = page.getAttribute('href')
+    const target = page.getAttribute('href');
     const targetPostion = window.document.querySelector(target).offsetTop;
     const startPosition = window.pageYOffset;
     const distance = targetPostion - startPosition;

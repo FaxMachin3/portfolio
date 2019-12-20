@@ -1,28 +1,29 @@
-import React, { useEffect, useRef } from "react"
-import { gsap } from "gsap"
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 
-import ThemeContext from "../../common/ThemeContext"
-import "./HomeStyle.scss"
+import ThemeContext from "../../common/ThemeContext";
+import "./HomeStyle.scss";
 
-import HomeSVG from "./HomeSVG"
+import HomeSVGDark from "./HomeSVGDark";
+import HomeSVGLight from "./HomeSVGLight"
 
 const Home = () => {
-    const { currentTheme } = React.useContext(ThemeContext)
-    const arrow = useRef(null)
-    const { background, primary, secondary } = currentTheme
+    const { currentTheme } = React.useContext(ThemeContext);
+    const arrow = useRef(null);
+    const { background, primary, secondary } = currentTheme;
 
     const theme = {
         background: background,
         color: primary
-    }
+    };
 
     const primaryColor = {
         backgroundColor: primary
-    }
+    };
 
     const secondaryColor = {
         color: secondary
-    }
+    };
 
     useEffect(() => {
         gsap.to(arrow.current, {
@@ -31,25 +32,19 @@ const Home = () => {
             yoyo: true,
             repeat: -1,
             ease: "slow(0.7, 0.7, true)"
-        })
+        });
 
         // setting actual height onLoad
-        window.matchMedia("(max-width: 768px)").matches
-                && window.document.documentElement.style.setProperty(
+        window.document.documentElement.style.setProperty(
                       "--actual-height",
                       `${window.innerHeight}px`
-                  )
+        );
         
         // setting actual height onResize
         window.addEventListener("resize", () => {
-            window.matchMedia("(max-width: 768px)").matches
-                ? window.document.documentElement.style.setProperty(
+            window.document.documentElement.style.setProperty(
                       "--actual-height",
                       `${window.innerHeight}px`
-                  )
-                : window.document.documentElement.style.setProperty(
-                      "--actual-height",
-                      `100vh`
                   )
             })
     }, [])
@@ -62,7 +57,11 @@ const Home = () => {
                 </div>
 
                 <div className="right-container-home">
-                    <HomeSVG />
+                    {
+                        primary === "#DADADA" ?
+                        <HomeSVGDark /> :
+                        <HomeSVGLight />
+                    }
                 </div>
 
                 <div className="left-container-home">
@@ -78,8 +77,9 @@ const Home = () => {
                         <p>
                             I am a{" "}
                             <span className="profession-home">
-                                Web Developers
+                                Web Developer
                             </span>
+                            .
                         </p>
                     </div>
                     <div className="button-home">

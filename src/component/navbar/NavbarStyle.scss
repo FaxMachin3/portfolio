@@ -39,23 +39,23 @@ $animationDelayLinks: 50ms;
                 position: absolute;
                 bottom: -0.15em;
                 left: 0;
-                height: 5%;
+                height: 1px;
                 width: 100%;
                 border-radius: 0.15em;
-                transform: scale(0);
+                transform: scaleX(0);
                 transition: transform $animationDuration ease-in-out;
             }
 
             &.active .line {
                 transition-delay: $animationDelay;
-                transform: scale(1) !important;
+                transform: scaleX(1) !important;
             }
 
             &:hover .line {
-                transform: scale(1);
+                transform: scaleX(1) !important;
             }
             &:focus .line {
-                transform: scale(1);
+                transform: scaleX(1) !important;
             }
         }
     }
@@ -206,12 +206,12 @@ $animationDelayLinks: 50ms;
     }
 
     .link:hover .line {
-        transform: scale(0) !important;
+        transform: scaleX(0) !important;
     }
 
     .line {
         height: 2% !important;
-        opacity: 0.5;
+        opacity: 1;
     }
 
     .link,

@@ -1,6 +1,6 @@
-import React from "react"
+import React from "react";
 
-const HomeSVG = () => {
+const HomeSVGDark = () => {
     return (
         <svg
             className="svg-home"
@@ -146,6 +146,6 @@ const HomeSVG = () => {
             </defs>
         </svg>
     )
-}
+};
 
-export default HomeSVG
+export default HomeSVGDark;
