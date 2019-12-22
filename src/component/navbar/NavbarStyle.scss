@@ -16,8 +16,6 @@ $animationDelayLinks: 50ms;
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    transition: background-color $animationDuration - 250ms ease-in-out;
-    will-change: background-color;
     flex-wrap: wrap;
 
     .nav-links {
@@ -37,13 +35,13 @@ $animationDelayLinks: 50ms;
 
             .line {
                 position: absolute;
-                bottom: -0.15em;
-                left: 0;
+                bottom: -0.25em;
+                left: -12.5%;
                 height: 1px;
-                width: 100%;
+                width: 125%;
                 border-radius: 0.15em;
                 transform: scaleX(0);
-                transition: transform $animationDuration ease-in-out;
+                transition: transform $animationDuration - 250ms ease-in-out;
             }
 
             &.active .line {

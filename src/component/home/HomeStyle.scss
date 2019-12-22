@@ -58,46 +58,24 @@
 
             .resume-button{
                 color: #dadada;
-                
             }
 
             .work-button {
                 background-color: transparent;
-                border: 1px solid;
-                
+                border: 1.5px solid;
             }
         }
     }
 
     .arrow {
-        height: 2em;
-        width: 2em;
+        cursor: pointer;
+        height: 1.5em;
+        width: 1.5em;
         position: relative;
-        margin: 0 1em 0 0;
-
-        .arrow-left,
-        .arrow-right {
-            position: absolute;
-            height: 75%;
-            width: 0.1em;
-            border-radius: 1px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            margin: 1em;
-        }
-
-        .arrow-left {
-            top: 50%;
-            right: 0;
-            transform: translate(-50%, -50%) rotate(45deg);
-        }
-
-        .arrow-right {
-            top: 50%;
-            left: 0;
-            transform: translate(-50%, -50%) rotate(-45deg);
-        }
+        border-left: 1.5px solid;
+        border-bottom: 1.5px solid;
+        border-radius: 1px;
+        // margin-left: 1em;
     }
 }
 
@@ -108,7 +86,7 @@
         flex-wrap: wrap;
 
         .svg-home{
-            width: 40vw;
+            width: 35vw;
             justify-self: flex-end !important;
         }
 
@@ -126,15 +104,25 @@
         }
 
         .button-home{
-            justify-content: space-between !important;
+            justify-content: space-around !important;
 
             .resume-button,
             .work-button{
-                border-radius: 25px !important;
+                border-radius: 100px !important;
+                font-family: inherit;
+                transition: opacity 500ms ease-in-out;
+
+                &:hover{
+                    opacity: 0.8;
+                }
+            }
+
+            .resume-button{
+                color: white !important;
             }
 
             .work-button{
-                margin-right: 4em;
+                margin-right: 3em;
             }
         }
 
@@ -143,6 +131,7 @@
             top: 100%;
             left: 50%;
             transform: translate(-50%,-100%);
+            margin-left: initial;
         }
     }
 }

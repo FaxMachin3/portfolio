@@ -11,7 +11,7 @@ import Skill from "../skill/Skill";
 import Project from "../project/Project";
 import Contact from "../contact/Contact";
 import Navbar from "../navbar/Navbar";
-import Indicators from "../Indicators/Indicators";
+// import Indicators from "../Indicators/Indicators";
 
 import { smoothScroll } from "./SmoothScroll";;
 
@@ -193,7 +193,21 @@ const App = () => {
     // Intersection Observer
     useEffect(() => {
         const sections = window.document.querySelectorAll(".test");
-        const bars = window.document.querySelectorAll(".bar");
+        // const bars = window.document.querySelectorAll(".bar");
+
+        // setting actual height onLoad
+        window.document.documentElement.style.setProperty(
+            "--actual-height",
+            `${window.innerHeight}px`
+        );
+
+        // setting actual height onResize
+        window.addEventListener("resize", () => {
+            window.document.documentElement.style.setProperty(
+                "--actual-height",
+                `${window.innerHeight}px`
+            );
+        });
 
         const options = {
             root: null,
@@ -204,27 +218,27 @@ const App = () => {
         const observer = new IntersectionObserver((entries,observer) => {
             entries.forEach(entry => {
                 if(entry.isIntersecting){
-                    let scale = "";
+                    // let scale = "";
                     const newHash = entry.target.getAttribute("data-section");
-                    // const tl = gsap.timeline({defaults: {delay: 1}})
-                    // tl.fromTo(entry.target, {x:-50, rotate:-360, yoyoEase: "Power1.easeIn"}, {duration: 1, x: 10, rotate: 90, repeat: -1, yoyoEase: "Power1.easeOut", yoyo: true})
+
+                    window.location.hash = newHash;
                     
-                    if(window.matchMedia("(max-width: 768px)").matches){
-                        scale = "scaleY";
-                    }
-                    else{
-                        scale = "scaleX";
-                    }
-                    bars.forEach(bar => {   
-                        const section = bar.getAttribute("data-section");
-                        if(section === newHash){
-                            bar.style.transform = `${scale}(1)`;
-                        }
-                        else{
-                            bar.style.transform = `${scale}(0.5)`;
-                        }
-                        window.location.hash = newHash;
-                    });
+                    // if(window.matchMedia("(max-width: 768px)").matches){
+                    //     scale = "scaleY";
+                    // }
+                    // else{
+                    //     scale = "scaleX";
+                    // }
+
+                    // bars.forEach(bar => {   
+                    //     const section = bar.getAttribute("data-section");
+                    //     if(section === newHash){
+                    //         bar.style.transform = `${scale}(1)`;
+                    //     }
+                    //     else{
+                    //         bar.style.transform = `${scale}(0.5)`;
+                    //     }
+                    // });
                     // observer.unobserve(entry.target)
                 }
             }, options)
@@ -239,22 +253,10 @@ const App = () => {
         }
     },[]);
 
-    useEffect(() => {
-        const navBar = window.document.querySelectorAll(".link");
-        const intersectingSection = '#' + currentPage.split('.')[1];
-
-        navBar.forEach(link => {
-            link.classList.remove('active')
-            if(link.getAttribute('href') === intersectingSection){
-                link.classList.add('active')
-            }   
-        });
-    },[currentPage]);
-
     return (
         <ThemeContext.Provider value={{ currentTheme, changeTheme }}>
-            <Navbar changePage={changeCurrentPage} scroll={allowScroll}/>
-            <Indicators />
+            <Navbar currentPage={currentPage} changePage={changeCurrentPage} scroll={allowScroll}/>
+            {/* <Indicators /> */}
             <Home />
             <About />
             <Skill />

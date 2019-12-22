@@ -99,7 +99,22 @@ const Navbar = props => {
                 )
             });
         }
-    });;
+    });
+
+    useEffect(() => {
+        const navBar = window.document.querySelectorAll(".link");
+        const intersectingSection = '#' + props.currentPage.split('.')[1];
+
+        navBar.forEach(link => {
+            link.classList.remove('active')
+            link.style.fontWeight = "normal"
+            if(link.getAttribute('href') === intersectingSection){
+                link.classList.add('active')
+                link.style.transform = "translateX(-10px) !important"
+            }   
+        });
+        // eslint-disable-next-line
+    },[props.currentPage]);
 
     return (
         <nav className="nav-bar" >

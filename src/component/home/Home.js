@@ -4,21 +4,23 @@ import { gsap } from "gsap";
 import ThemeContext from "../../common/ThemeContext";
 import "./HomeStyle.scss";
 
+import animateHome from "./AnimateHome"
 import HomeSVGDark from "./HomeSVGDark";
-import HomeSVGLight from "./HomeSVGLight"
+import HomeSVGLight from "./HomeSVGLight";
 
 const Home = () => {
     const { currentTheme } = React.useContext(ThemeContext);
-    const arrow = useRef(null);
     const { background, primary, secondary } = currentTheme;
+    const containerHome = useRef(null)
+    const arrow = useRef(null);
+    const workButton = useRef(null);
+    const textHome = useRef([])
+    const buttonHome = useRef(null)
+    const rightContainerHome = useRef(null)
 
     const theme = {
         background: background,
         color: primary
-    };
-
-    const primaryColor = {
-        backgroundColor: primary
     };
 
     const secondaryColor = {
@@ -26,55 +28,41 @@ const Home = () => {
     };
 
     useEffect(() => {
-        gsap.to(arrow.current, {
-            duration: 0.5,
-            y: 5,
-            yoyo: true,
-            repeat: -1,
-            ease: "slow(0.7, 0.7, true)"
+
+        animateHome([arrow, buttonHome, rightContainerHome, textHome, containerHome])
+
+        arrow.current.addEventListener("click", () => {
+            window.document.querySelector("li .about").click();
         });
 
-        // setting actual height onLoad
-        window.document.documentElement.style.setProperty(
-                      "--actual-height",
-                      `${window.innerHeight}px`
-        );
+        workButton.current.addEventListener("click", () => {
+            window.document.querySelector("li .project").click();
+        });
         
-        // setting actual height onResize
-        window.addEventListener("resize", () => {
-            window.document.documentElement.style.setProperty(
-                      "--actual-height",
-                      `${window.innerHeight}px`
-                  )
-            })
-    }, [])
+    }, []);
 
     return (
         <section id="home" style={theme}>
-            <div className="container-home">
+            <div ref={containerHome} className="container-home">
                 <div className="test" data-section="home">
                     Home
                 </div>
 
-                <div className="right-container-home">
-                    {
-                        primary === "#DADADA" ?
-                        <HomeSVGDark /> :
-                        <HomeSVGLight />
-                    }
+                <div ref={rightContainerHome} className="right-container-home">
+                    {primary === "#DADADA" ? <HomeSVGDark /> : <HomeSVGLight />}
                 </div>
 
                 <div className="left-container-home">
                     <div className="text-home">
-                        <p>Hi!</p>
-                        <p>
+                        <p ref={el => {textHome.current.push(el)}}>Hi!</p>
+                        <p ref={el => {textHome.current.push(el)}}>
                             My name is{" "}
                             <span style={secondaryColor} className="name-home">
                                 Subham Raj
                             </span>
                             .
                         </p>
-                        <p>
+                        <p ref={el => {textHome.current.push(el)}}>
                             I am a{" "}
                             <span className="profession-home">
                                 Web Developer
@@ -82,23 +70,20 @@ const Home = () => {
                             .
                         </p>
                     </div>
-                    <div className="button-home">
+                    <div ref={buttonHome} className="button-home">
                         <button
                             className="resume-button"
                             style={{ backgroundColor: secondary }}
                         >
                             <span>Resume</span>
                         </button>
-                        <button className="work-button">
+                        <button ref={workButton} className="work-button">
                             <span>My Work</span>
                         </button>
                     </div>
                 </div>
 
-                <div ref={arrow} className="arrow">
-                    <div style={primaryColor} className="arrow-left"></div>
-                    <div style={primaryColor} className="arrow-right"></div>
-                </div>
+                <div ref={arrow} className="arrow"></div>
             </div>
         </section>
     );
