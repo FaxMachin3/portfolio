@@ -1,0 +1,103 @@
+// mobile first
+.container-about {
+    z-index: 5;
+    position: relative;
+    height: calc(var(--actual-height) - 20vh);
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: justify;
+    padding: 0 10vw;
+
+    .heading-about {
+        position: relative;
+        font-size: 2rem;
+
+        .line-about {
+            position: absolute;
+            width: 75%;
+            height: 2px;
+            border-radius: 10px;
+            bottom: 0;
+            left: 12.5%;
+        }
+    }
+
+    .left-container-about {
+        position: relative;
+
+        .img-about {
+            height: 15em;
+            width: 15em;
+            border: 3px solid;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: 100% 0;
+        }
+    }
+
+    .right-container-about {
+        line-height: 5vh;
+        position: relative;
+
+        & p:nth-child(1) {
+            font-size: 1.5rem;
+            padding-bottom: 3vh;
+        }
+
+        & p:nth-child(2) {
+            font-size: 1rem;
+        }
+
+        .block-about {
+            position: absolute;
+            top: -5%;
+            right: -3%;
+            z-index: -1;
+            height: 110%;
+            width: 20%;
+            border-radius: 5px;
+        }
+    }
+}
+
+@media all and (min-width: 769px) {
+    .container-about {
+        flex-direction: row;
+
+        .heading-about {
+            display: none;
+        }
+
+        .left-container-about {
+            width: 30%;
+
+            .img-about {
+                height: 16vw;
+                width: 16vw;
+            }
+        }
+
+        .right-container-about {
+            width: 40%;
+
+            & p:nth-child(1) {
+                font-size: 1.6vw;
+            }
+
+            & p:nth-child(2) {
+                font-size: 1.1vw;
+            }
+
+            .block-about {
+                width: 25%;
+                height: 150%;
+                top: -25%;
+                right: -7.5%;
+                border-radius: 15px;
+            }
+        }
+    }
+}

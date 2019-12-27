@@ -30,23 +30,37 @@ const Navbar = props => {
         const navLink = window.document.querySelector(".nav-links");
         const logo = window.document.querySelector(".logo");
 
-        if(!props.scroll.current){
+        if (!props.scroll.current) {
             props.scroll.current = !props.scroll.current;
         }
-        
+
         logo.classList.remove("animate-hamburger");
         navCircle.classList.remove("animate-hamburger");
         navLink.classList.remove("animate-hamburger");
         hams.forEach(ham => {
-            ham.classList.remove("animate-hamburger")
+            ham.classList.remove("animate-hamburger");
         });
         links.forEach(link => {
-            link.classList.remove("animate-hamburger")
-        })
-        liS.forEach(li => {
-            li.classList.remove("animate-hamburger")
+            link.classList.remove("animate-hamburger");
         });
-    }
+        liS.forEach(li => {
+            li.classList.remove("animate-hamburger");
+        });
+    };
+
+    useEffect(() => {
+        const links = window.document.querySelectorAll(".link");
+
+        links.forEach(link => {
+            const activeLink = link.getAttribute("class").split(' ')[2]
+            link.style.color = primary
+            if(activeLink === "active"){
+                window.matchMedia("(min-width: 769px)").matches ?
+                    link.style.color = secondary :
+                    link.style.color = primary
+            }
+        })
+    })
 
     useEffect(() => {
         const hamburger = window.document.querySelector(".hamburger");
@@ -63,61 +77,64 @@ const Navbar = props => {
             navCircle.classList.toggle("animate-hamburger");
             navLink.classList.toggle("animate-hamburger");
             hams.forEach(ham => {
-                ham.classList.toggle("animate-hamburger");;
+                ham.classList.toggle("animate-hamburger");
             });
             links.forEach(link => {
-                link.classList.toggle("animate-hamburger");;
+                link.classList.toggle("animate-hamburger");
             });
             liS.forEach(li => {
-                li.classList.toggle("animate-hamburger");;
+                li.classList.toggle("animate-hamburger");
             });
         });
-    },[props.scroll]);
+    }, [props.scroll]);
 
-    // smooth scroll        
+    // smooth scroll
     useEffect(() => {
         const links = window.document.querySelectorAll(".link");
         const logo = window.document.querySelector(".logo");
 
         logo.addEventListener("click", e => {
-            smoothScrollNav(e, props)
-            removeClass()
+            smoothScrollNav(e, props);
+            removeClass();
         });
 
         links.forEach(link => {
             link.addEventListener("click", e => {
-                smoothScrollNav(e, props)
-                removeClass()
-            });;
-        });;
+                smoothScrollNav(e, props);
+                removeClass();
+            });
+        });
 
         return () => {
-            logo.removeEventListener("click", e => smoothScrollNav(e, props))
+            logo.removeEventListener("click", e => smoothScrollNav(e, props));
             links.forEach(link => {
                 link.removeEventListener("click", e =>
                     smoothScrollNav(e, props)
-                )
+                );
             });
-        }
-    });
+        };
+        // eslint-disable-next-line
+    }, []);
 
     useEffect(() => {
         const navBar = window.document.querySelectorAll(".link");
-        const intersectingSection = '#' + props.currentPage.split('.')[1];
+        const intersectingSection = "#" + props.currentPage.split(".")[1];
 
         navBar.forEach(link => {
-            link.classList.remove('active')
-            link.style.fontWeight = "normal"
-            if(link.getAttribute('href') === intersectingSection){
-                link.classList.add('active')
-                link.style.transform = "translateX(-10px) !important"
-            }   
+            link.classList.remove("active");
+            link.style.color = primary;
+            if (link.getAttribute("href") === intersectingSection) {
+                link.classList.add("active");
+                window.matchMedia("(min-width: 769px)").matches ?
+                    link.style.color = secondary :
+                    link.style.color = primary
+            }
         });
         // eslint-disable-next-line
-    },[props.currentPage]);
+    }, [props.currentPage]);
 
     return (
-        <nav className="nav-bar" >
+        <nav className="nav-bar">
             <h1 className="logo">
                 <a style={textColor} href="#home">
                     SR
@@ -136,17 +153,17 @@ const Navbar = props => {
                         style={textColor}
                         href="#home"
                     >
-                        Home<span style={bgColor} className="line"></span>
+                        Home
                     </a>
                 </li>
                 <li>
                     <a className="about link" style={textColor} href="#about">
-                        About<span style={bgColor} className="line"></span>
+                        About
                     </a>
                 </li>
                 <li>
                     <a className="skill link" style={textColor} href="#skill">
-                        Skill<span style={bgColor} className="line"></span>
+                        Skill
                     </a>
                 </li>
                 <li>
@@ -155,7 +172,7 @@ const Navbar = props => {
                         style={textColor}
                         href="#project"
                     >
-                        Project<span style={bgColor} className="line"></span>
+                        Project
                     </a>
                 </li>
                 <li>
@@ -164,7 +181,7 @@ const Navbar = props => {
                         style={textColor}
                         href="#contact"
                     >
-                        Contact<span style={bgColor} className="line"></span>
+                        Contact
                     </a>
                 </li>
                 <li className="toggle-button">

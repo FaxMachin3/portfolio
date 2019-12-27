@@ -10,7 +10,25 @@ const Skill = () => {
     }
     return(
         <section id="skill" style={theme}>
+
             <div className="test"  data-section="skill">Skill</div>
+
+            <div className="container-skill">
+
+                <div className="heading-skill">
+
+                </div>
+
+                <div className="left-container-skill">
+                    
+                </div>
+
+                <div className="right-container-skill">
+                    
+                </div>
+
+            </div>
+
         </section>
     )
 }
