@@ -30,13 +30,16 @@ $animationDelayLinks: 50ms;
 
         .link {
             position: relative;
-            font-size: 1.25rem;
+            font-size: 1.3vw;
             text-decoration: none;
             display: inline-block;
-            transition: transform $animationDuration - 250ms ease-in-out;
+            transition: transform $animationDuration - 250ms ease-in-out,
+                        color $animationDuration - 250ms ease-in-out;
+            will-change: transform, color;
 
             &.active{
                 transform: scale(1.5);
+                transition-delay: 500ms;
 
                 &:hover{
                     opacity: 1;
@@ -52,7 +55,7 @@ $animationDelayLinks: 50ms;
         z-index: 11;
         position: absolute;
         left: 5%;
-        font-size: 2rem;
+        font-size: 2.1vw;
         font-weight: 900;
         a {
             text-decoration: none;
@@ -202,5 +205,20 @@ $animationDelayLinks: 50ms;
     .link,
     .logo {
         font-size: 3em !important;
+    }
+
+    .link{
+
+        &.active{
+            transition-delay: 0ms !important;
+
+            &:hover{
+                opacity: 1;
+            }
+        }
+
+        &:hover{
+            opacity: 1;
+        }
     }
 }

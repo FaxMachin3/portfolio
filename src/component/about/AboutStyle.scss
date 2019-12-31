@@ -72,7 +72,8 @@
         }
 
         .left-container-about {
-            width: 30%;
+            padding-left: 3vw;
+            width: 50;
 
             .img-about {
                 height: 16vw;
@@ -81,7 +82,8 @@
         }
 
         .right-container-about {
-            width: 40%;
+            padding-left: 4vw;
+            width: 50%;
 
             & p:nth-child(1) {
                 font-size: 1.6vw;
@@ -92,10 +94,10 @@
             }
 
             .block-about {
-                width: 25%;
-                height: 150%;
-                top: -25%;
-                right: -7.5%;
+                width: 18%;
+                height: 200%;
+                top: -50%;
+                right: -2.5;
                 border-radius: 15px;
             }
         }

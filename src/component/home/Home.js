@@ -3,20 +3,21 @@ import React, { useEffect, useRef } from "react";
 import ThemeContext from "../../common/ThemeContext";
 import "./HomeStyle.scss";
 
-import animateHome from "./AnimateHome";
+import Arrow from "../../common/Arrow"
+import homeAnimate from "./HomeAnimate";
 import HomeSVGDark from "./HomeSVGDark";
 import HomeSVGLight from "./HomeSVGLight";
 
 const Home = () => {
-    const { currentTheme } = React.useContext(ThemeContext);
-    const { background, primary, secondary } = currentTheme;
-
     const containerHome = useRef(null);
     const arrow = useRef(null);
     const workButton = useRef(null);
     const textHome = useRef([]);
     const buttonHome = useRef(null);
     const rightContainerHome = useRef(null);
+
+    const { currentTheme } = React.useContext(ThemeContext);
+    const { background, primary, secondary } = currentTheme;
 
     const theme = {
         background: background,
@@ -28,7 +29,7 @@ const Home = () => {
     };
 
     useEffect(() => {
-        animateHome([
+        homeAnimate([
             arrow,
             buttonHome,
             rightContainerHome,
@@ -102,8 +103,9 @@ const Home = () => {
                         </button>
                     </div>
                 </div>
-
-                <div ref={arrow} className="arrow"></div>
+                <div ref = {arrow} className="arrow-container-home">
+                    <Arrow className = "arrow-home" />
+                </div>
             </div>
         </section>
     );

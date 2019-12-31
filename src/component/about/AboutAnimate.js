@@ -1,6 +1,6 @@
 import { gsap } from "gsap";
 
-const animateAbout = args => {
+const aboutAnimate = args => {
     const [
         containerAbout,
         headingAbout,
@@ -16,7 +16,7 @@ const animateAbout = args => {
 
     window.matchMedia("(min-width: 769px)").matches
         ? timelineAbout
-              .from(imgAbout.current, { delay: 0.5, scale: 0 })
+              .from(imgAbout.current, { scale: 0 })
               .from(
                   textAbout.current,
                   { y: 100, stagger: { each: 0.2 } },
@@ -24,7 +24,7 @@ const animateAbout = args => {
               )
               .from(blockAbout.current, { x: 300 }, "-=1")
         : timelineAbout
-              .from(lineAbout.current, { x: 100, delay: 0.5 })
+              .from(lineAbout.current, { x: 100 })
               .from(headingAbout.current, {}, "-=1")
               .from(imgAbout.current, { scale: 0 }, "-=1")
               .from(
@@ -49,4 +49,4 @@ const animateAbout = args => {
     observerAbout.observe(containerAbout.current);
 };
 
-export default animateAbout;
+export default aboutAnimate;

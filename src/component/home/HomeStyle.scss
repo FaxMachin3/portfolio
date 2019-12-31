@@ -46,16 +46,16 @@
                 position: relative;
                 font-size: 0.6em;
 
-                span{
+                span {
                     position: absolute;
                     font-size: 70%;
                     top: 50%;
                     left: 50%;
-                    transform: translate(-50%,-50%);
+                    transform: translate(-50%, -50%);
                 }
             }
 
-            .resume-button{
+            .resume-button {
                 color: #dadada;
             }
 
@@ -65,31 +65,35 @@
             }
         }
     }
-
-    .arrow {
-        cursor: pointer;
-        height: 1.5em;
-        width: 1.5em;
+    .arrow-container-home{
         position: relative;
-        border-left: 1.5px solid;
-        border-bottom: 1.5px solid;
-        border-radius: 1px;
-        // margin-left: 1em;
+        cursor: pointer;
+        height: 4em;
+        width: 4em;
+        
+        .arrow-home {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 2em;
+            width: 2em;
+        }
     }
 }
 
-@media all and (min-width: 769px){
-    .container-home{
+@media all and (min-width: 769px) {
+    .container-home {
         flex-direction: row-reverse;
         justify-content: space-evenly;
         flex-wrap: wrap;
 
-        .svg-home{
+        .svg-home {
             width: 35vw;
             justify-self: flex-end !important;
         }
 
-        .left-container-home{
+        .left-container-home {
             padding-top: 1.5em;
             display: flex;
             flex-direction: column;
@@ -102,35 +106,42 @@
             width: 35vw;
         }
 
-        .button-home{
+        .button-home {
             justify-content: space-around !important;
 
             .resume-button,
-            .work-button{
+            .work-button {
                 border-radius: 100px !important;
                 font-family: inherit;
                 transition: opacity 500ms ease-in-out;
 
-                &:hover{
+                &:hover {
                     opacity: 0.8;
                 }
             }
 
-            .resume-button{
+            .resume-button {
                 color: white !important;
             }
 
-            .work-button{
+            .work-button {
                 margin-right: 3em;
             }
         }
-
-        .arrow{
+        
+        .arrow-container-home{
+            height: 4.2vw;
+            width: 4.2vw;
             position: absolute;
             top: 100%;
             left: 50%;
-            transform: translate(-50%,-100%);
-            margin-left: initial;
+            transform: translate(-50%, -100%);
+
+            .arrow-home{
+                height: 2vw;
+                width: 2vw;
+            }
         }
+        
     }
 }

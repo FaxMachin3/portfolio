@@ -1,6 +1,6 @@
 import { gsap } from "gsap";
 
-const animateHome = args => {
+const homeAnimate = args => {
     const [
         arrow,
         buttonHome,
@@ -9,14 +9,12 @@ const animateHome = args => {
         containerHome
     ] = args;
 
-    gsap.set(arrow.current, { rotate: -45 });
-
     const timelineHome = gsap.timeline({
         defaults: { duration: 1, opacity: 0, ease: "Power2.easeInOut" }
     });
 
     timelineHome
-        .from(textHome.current, {delay:0.5, y: 100, stagger: { each: 1 } })
+        .from(textHome.current, {y: 100, stagger: { each: 1 } })
         .from(rightContainerHome.current, { y: -100 })
         .from(arrow.current, { y: -100 }, "-=1")
         .from(buttonHome.current, { y: 100 }, "-=1");
@@ -45,4 +43,4 @@ const animateHome = args => {
     observerHome.observe(containerHome.current);
 };
 
-export default animateHome;
+export default homeAnimate;

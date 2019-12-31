@@ -1,18 +1,18 @@
 .outer {
     position: relative;
-    height: 1.5em;
-    width: 4em;
+    height: 1.4vw;
+    width: 3.9vw;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 20px;
     border: 0.1em solid;
 
     .inner {
         position: absolute;
         top: 50%;
-        left: 0.3em;
+        left: 0.3vw;
         transform: translateY(-50%);
-        height: 0.75em;
-        width: 0.75em;
+        height: 0.7vw;
+        width: 0.7vw;
         border-radius: 50%;
         border: 0.1em solid;
         transition: transform 500ms ease-in-out !important;
@@ -20,5 +20,5 @@
     }
 }
 .circle {
-    transform: translate(2.5em,-50%) !important
+    transform: translate(2.45vw,-50%) !important
 }
