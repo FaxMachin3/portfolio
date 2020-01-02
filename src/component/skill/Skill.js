@@ -15,7 +15,10 @@ const Skill = () => {
     const leftArrowSkill = useRef(null);
     const rightArrowSkill = useRef(null);
     const silderSkill = useRef(null);
-    const allowClick = useRef(true)
+    const allowClick = useRef(true);
+
+    const rightContainerSkill = useRef(null);
+    const slidesSkill = useRef([]);
 
     const { currentTheme } = useContext(ThemeContext);
     const { background, primary, secondary } = currentTheme;
@@ -33,12 +36,16 @@ const Skill = () => {
         backgroundColor: primary
     };
 
+    const secondaryBG = {
+        backgroundColor: secondary
+    };
+
     const slider = args => {
         const [leftArrow, rightArrow] = args;
 
-        leftArrow.current.addEventListener("click", (event) => {
-            if(allowClick.current){
-                allowClick.current = !allowClick.current
+        leftArrow.current.addEventListener("click", event => {
+            if (allowClick.current) {
+                allowClick.current = !allowClick.current;
 
                 slideCount.current--;
 
@@ -46,19 +53,18 @@ const Skill = () => {
                     slideCount.current = 3;
                 }
 
-                silderSkill.current.style.transform = `translateX(-${80 *
-                    slideCount.current}vw)`;
+                silderSkill.current.style.transform = `translateX(-${315 *
+                    slideCount.current}px)`;
 
                 setTimeout(() => {
-                    allowClick.current = !allowClick.current
-                }, 500)
+                    allowClick.current = !allowClick.current;
+                }, 500);
             }
         });
 
         rightArrow.current.addEventListener("click", () => {
-            if(allowClick.current){
-
-                allowClick.current = !allowClick.current
+            if (allowClick.current) {
+                allowClick.current = !allowClick.current;
 
                 slideCount.current++;
 
@@ -66,18 +72,41 @@ const Skill = () => {
                     slideCount.current = 0;
                 }
 
-                silderSkill.current.style.transform = `translateX(-${80 *
-                    slideCount.current}vw)`;
+                silderSkill.current.style.transform = `translateX(-${315 *
+                    slideCount.current}px)`;
 
                 setTimeout(() => {
-                    allowClick.current = !allowClick.current
-                }, 500)
+                    allowClick.current = !allowClick.current;
+                }, 500);
             }
         });
     };
 
     useEffect(() => {
         skillAnimate([]);
+
+        const option = {
+            root: rightContainerSkill.current,
+            rootMargin: "200px",
+            threshold: 1
+        };
+
+        const observerSkill = new IntersectionObserver(
+            (entries, observerSkill) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active-slide-skill");
+                    } else {
+                        entry.target.classList.remove("active-slide-skill");
+                    }
+                });
+            },
+            option
+        );
+
+        slidesSkill.current.forEach(slide => {
+            observerSkill.observe(slide);
+        });
 
         slider([leftArrowSkill, rightArrowSkill]);
     }, []);
@@ -109,7 +138,10 @@ const Skill = () => {
                     )}
                 </div>
 
-                <div className="right-container-skill">
+                <div
+                    ref={rightContainerSkill}
+                    className="right-container-skill"
+                >
                     <div
                         ref={leftArrowSkill}
                         className="left-arrow-container-skill"
@@ -124,7 +156,10 @@ const Skill = () => {
                     </div>
 
                     <div ref={silderSkill} className="slider-skill">
-                        <div className="slide-skill">
+                        <div
+                            ref={el => slidesSkill.current.push(el)}
+                            className="slide-skill active-slide-skill"
+                        >
                             <h2>Programming Languages:</h2>
                             <p>
                                 <span>C#</span>
@@ -133,7 +168,10 @@ const Skill = () => {
                             </p>
                         </div>
 
-                        <div className="slide-skill">
+                        <div
+                            ref={el => slidesSkill.current.push(el)}
+                            className="slide-skill"
+                        >
                             <h2>Backend:</h2>
                             <p>
                                 <span>Microsoft DotNet</span>
@@ -144,7 +182,10 @@ const Skill = () => {
                             </p>
                         </div>
 
-                        <div className="slide-skill">
+                        <div
+                            ref={el => slidesSkill.current.push(el)}
+                            className="slide-skill"
+                        >
                             <h2>Frontend:</h2>
                             <p>
                                 <span>HTML5 + CSS3</span>
@@ -155,16 +196,18 @@ const Skill = () => {
                             </p>
                         </div>
 
-                        <div className="slide-skill">
+                        <div
+                            ref={el => slidesSkill.current.push(el)}
+                            className="slide-skill"
+                        >
                             <h2>Dev Tools & Other Skills:</h2>
                             <p>
                                 <span>Git/Github (Version Control)</span>
                                 <span>Figma/Adobe XD (Design)</span>
                             </p>
                         </div>
-
-                        <div className="block-skill"></div>
                     </div>
+                    <div style={secondaryBG} className="block-skill"></div>
                 </div>
             </div>
         </section>

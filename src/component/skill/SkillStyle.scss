@@ -35,11 +35,11 @@
     .right-container-skill {
         position: relative;
         height: 40%;
-        width: 80vw;
-        overflow: hidden;
+        width: 315px;
 
         .left-arrow-container-skill,
         .right-arrow-container-skill {
+            cursor: pointer;
             z-index: 1;
             position: absolute;
             height: 100%;
@@ -77,18 +77,26 @@
 
         .slider-skill {
             z-index: -1;
-            width: 80 * 4vw;
+            width: 315 * 4px;
             height: 100%;
             display: flex;
             transition: transform 500ms ease-out;
 
             .slide-skill {
-                width: 80vw;
+                width: 315px;
                 height: 100%;
                 display: flex;
                 border-radius: 5px;
                 flex-direction: column;
                 justify-content: space-evenly;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 500ms ease-out;
+
+                &.active-slide-skill{
+                    pointer-events: all;
+                    opacity: 1;
+                }
 
                 h2 {
                     display: flex;
@@ -110,6 +118,16 @@
                     }
                 }
             }
+        }
+
+        .block-skill{
+            z-index: -1;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 20%;
+            border-radius: 5px;
         }
     }
 }

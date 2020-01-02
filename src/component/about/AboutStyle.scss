@@ -39,8 +39,9 @@
     }
 
     .right-container-about {
-        line-height: 5vh;
         position: relative;
+        line-height: 5vh;
+        width: 315px;
 
         & p:nth-child(1) {
             font-size: 1.5rem;

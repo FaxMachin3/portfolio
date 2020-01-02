@@ -35,8 +35,8 @@ const aboutAnimate = args => {
               .from(blockAbout.current, { x: 300 }, "-=1.3");
 
     const observerAbout = new IntersectionObserver((entries, observerAbout) => {
-        entries.forEach(enrty => {
-            if (enrty.isIntersecting) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
                 timelineAbout.play();
                 // observerHome.unobserve(entry.target)
             } else {
