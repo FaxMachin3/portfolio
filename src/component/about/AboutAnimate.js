@@ -19,7 +19,7 @@ const aboutAnimate = args => {
               .from(imgAbout.current, { scale: 0 })
               .from(
                   textAbout.current,
-                  { y: 100, stagger: { each: 0.2 } },
+                  { y: 100, stagger: { each: 0.1 } },
                   "-=1"
               )
               .from(blockAbout.current, { x: 300 }, "-=1")
@@ -29,7 +29,7 @@ const aboutAnimate = args => {
               .from(imgAbout.current, { scale: 0 }, "-=1")
               .from(
                   textAbout.current,
-                  { y: 100, stagger: { each: 0.2 } },
+                  { y: 100, stagger: { each: 0.1 } },
                   "-=1"
               )
               .from(blockAbout.current, { x: 300 }, "-=1.3");

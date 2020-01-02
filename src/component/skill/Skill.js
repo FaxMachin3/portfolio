@@ -15,10 +15,15 @@ const Skill = () => {
     const leftArrowSkill = useRef(null);
     const rightArrowSkill = useRef(null);
     const silderSkill = useRef(null);
-    const allowClick = useRef(true);
-
-    const rightContainerSkill = useRef(null);
     const slidesSkill = useRef([]);
+    const slidesSkillH2 = useRef([])
+    const slidesSkillPara = useRef([])
+    const rightContainerSkill = useRef(null);
+    const blockSkill = useRef(null);
+    const imgSkill = useRef(null);
+    const containerSkill = useRef(null);
+
+    const allowClick = useRef(true);
 
     const { currentTheme } = useContext(ThemeContext);
     const { background, primary, secondary } = currentTheme;
@@ -83,30 +88,42 @@ const Skill = () => {
     };
 
     useEffect(() => {
-        skillAnimate([]);
+        skillAnimate([
+            slidesSkillH2,
+            slidesSkillPara,
+            blockSkill,
+            imgSkill,
+            headingSkill,
+            lineSkill,
+            containerSkill,
+            leftArrowSkill,
+            rightArrowSkill
+        ]);
 
-        const option = {
-            root: rightContainerSkill.current,
-            rootMargin: "200px",
-            threshold: 1
-        };
-
-        const observerSkill = new IntersectionObserver(
-            (entries, observerSkill) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("active-slide-skill");
-                    } else {
-                        entry.target.classList.remove("active-slide-skill");
-                    }
-                });
-            },
-            option
-        );
-
-        slidesSkill.current.forEach(slide => {
-            observerSkill.observe(slide);
-        });
+        if(window.matchMedia("(max-width: 768px)").matches){
+            const option = {
+                root: rightContainerSkill.current,
+                rootMargin: "200px",
+                threshold: 1
+            };
+    
+            const observerSkill = new IntersectionObserver(
+                (entries, observerSkill) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("active-slide-skill");
+                        } else {
+                            entry.target.classList.remove("active-slide-skill");
+                        }
+                    });
+                },
+                option
+            );
+    
+            slidesSkill.current.forEach(slide => {
+                observerSkill.observe(slide);
+            });
+        }
 
         slider([leftArrowSkill, rightArrowSkill]);
     }, []);
@@ -117,7 +134,7 @@ const Skill = () => {
                 Skill
             </div>
 
-            <div className="container-skill">
+            <div ref={containerSkill} className="container-skill">
                 <div className="heading-skill">
                     <h1 ref={headingSkill} style={secondaryColor}>
                         Skill
@@ -130,7 +147,7 @@ const Skill = () => {
                     ></span>
                 </div>
 
-                <div className="left-container-skill">
+                <div ref={imgSkill} className="left-container-skill">
                     {primary === "#DADADA" ? (
                         <SkillSVGDark />
                     ) : (
@@ -160,8 +177,8 @@ const Skill = () => {
                             ref={el => slidesSkill.current.push(el)}
                             className="slide-skill active-slide-skill"
                         >
-                            <h2>Programming Languages:</h2>
-                            <p>
+                            <h2 ref={el => slidesSkillH2.current.push(el)}>Programming Languages:</h2>
+                            <p ref={el => slidesSkillPara.current.push(el)}>
                                 <span>C#</span>
                                 <span>Python</span>
                                 <span>Javascript</span>
@@ -172,8 +189,8 @@ const Skill = () => {
                             ref={el => slidesSkill.current.push(el)}
                             className="slide-skill"
                         >
-                            <h2>Backend:</h2>
-                            <p>
+                            <h2 ref={el => slidesSkillH2.current.push(el)}>Backend:</h2>
+                            <p ref={el => slidesSkillPara.current.push(el)}>
                                 <span>Microsoft DotNet</span>
                                 <span>MySQL</span>
                                 <span>MongoDB</span>
@@ -186,8 +203,8 @@ const Skill = () => {
                             ref={el => slidesSkill.current.push(el)}
                             className="slide-skill"
                         >
-                            <h2>Frontend:</h2>
-                            <p>
+                            <h2 ref={el => slidesSkillH2.current.push(el)}>Frontend:</h2>
+                            <p ref={el => slidesSkillPara.current.push(el)}>
                                 <span>HTML5 + CSS3</span>
                                 <span>SASS</span>
                                 <span>React + Redux</span>
@@ -200,14 +217,18 @@ const Skill = () => {
                             ref={el => slidesSkill.current.push(el)}
                             className="slide-skill"
                         >
-                            <h2>Dev Tools & Other Skills:</h2>
-                            <p>
+                            <h2 ref={el => slidesSkillH2.current.push(el)}>Dev Tools & Other Skills:</h2>
+                            <p ref={el => slidesSkillPara.current.push(el)}>
                                 <span>Git/Github (Version Control)</span>
                                 <span>Figma/Adobe XD (Design)</span>
                             </p>
                         </div>
                     </div>
-                    <div style={secondaryBG} className="block-skill"></div>
+                    <div
+                        ref={blockSkill}
+                        style={secondaryBG}
+                        className="block-skill"
+                    ></div>
                 </div>
             </div>
         </section>

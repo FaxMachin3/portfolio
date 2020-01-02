@@ -33,8 +33,8 @@ const homeAnimate = args => {
 
     gsap.to(arrow.current, {
         delay: timelineHome.duration(),
-        duration: 0.5,
-        yPercent: 25,
+        duration: 1,
+        yPercent: 20,
         yoyo: true,
         repeat: -1,
         ease: "slow(0.5, 0.4, false)"
