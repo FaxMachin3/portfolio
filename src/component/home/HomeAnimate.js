@@ -1,4 +1,4 @@
-import { gsap } from "gsap";
+import { gsap, Power2 } from "gsap";
 
 const homeAnimate = args => {
     const [
@@ -10,7 +10,7 @@ const homeAnimate = args => {
     ] = args;
 
     const timelineHome = gsap.timeline({
-        defaults: { duration: 1, opacity: 0, ease: "Power2.easeInOut" }
+        defaults: { duration: 1, opacity: 0, ease: Power2.easeInOut }
     });
 
     timelineHome
@@ -39,7 +39,7 @@ const homeAnimate = args => {
         repeat: -1,
         ease: "slow(0.5, 0.4, false)"
     });
-
+    
     observerHome.observe(containerHome.current);
 };
 

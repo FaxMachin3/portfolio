@@ -1,4 +1,4 @@
-import { gsap } from "gsap";
+import { gsap, Power2 } from "gsap";
 
 const aboutAnimate = args => {
     const [
@@ -11,7 +11,7 @@ const aboutAnimate = args => {
     ] = args;
 
     const timelineAbout = gsap.timeline({
-        defaults: { duration: 1, opacity: 0, ease: "Power2.easeInOut" }
+        defaults: { duration: 1, opacity: 0, ease: Power2.easeInOut }
     });
 
     window.matchMedia("(min-width: 769px)").matches
@@ -38,7 +38,7 @@ const aboutAnimate = args => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 timelineAbout.play();
-                // observerHome.unobserve(entry.target)
+                // observerAbout.unobserve(entry.target)
             } else {
                 timelineAbout.restart();
                 timelineAbout.pause();

@@ -3,10 +3,9 @@ import React, { useEffect, useRef } from "react";
 import ThemeContext from "../../common/ThemeContext";
 import "./HomeStyle.scss";
 
-import Arrow from "../../common/Arrow"
+import Arrow from "../../common/Arrow";
 import homeAnimate from "./HomeAnimate";
-import HomeSVGDark from "./HomeSVGDark";
-import HomeSVGLight from "./HomeSVGLight";
+import HomeSVG from "./HomeSVG";
 
 const Home = () => {
     const containerHome = useRef(null);
@@ -55,7 +54,7 @@ const Home = () => {
             </div>
             <div ref={containerHome} className="container-home">
                 <div ref={rightContainerHome} className="right-container-home">
-                    {primary === "#DADADA" ? <HomeSVGDark /> : <HomeSVGLight />}
+                    <HomeSVG />
                 </div>
 
                 <div className="left-container-home">
@@ -103,8 +102,8 @@ const Home = () => {
                         </button>
                     </div>
                 </div>
-                <div ref = {arrow} className="arrow-container-home">
-                    <Arrow className = "arrow-home" />
+                <div ref={arrow} className="arrow-container-home">
+                    <Arrow className="arrow-home" />
                 </div>
             </div>
         </section>

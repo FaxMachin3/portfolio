@@ -4,8 +4,7 @@ import ThemeContext from "../../common/ThemeContext";
 import "./SkillStyle.scss";
 
 import skillAnimate from "./SkillAnimate";
-import SkillSVGDark from "./SkillSVGDark";
-import SkillSVGLight from "./SkillSVGLight";
+import SkillSVG from "./SkillSVG";
 import Arrow from "../../common/Arrow";
 
 const Skill = () => {
@@ -148,11 +147,7 @@ const Skill = () => {
                 </div>
 
                 <div ref={imgSkill} className="left-container-skill">
-                    {primary === "#DADADA" ? (
-                        <SkillSVGDark />
-                    ) : (
-                        <SkillSVGLight />
-                    )}
+                    <SkillSVG />
                 </div>
 
                 <div

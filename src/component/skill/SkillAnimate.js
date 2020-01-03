@@ -1,4 +1,4 @@
-import { gsap } from "gsap";
+import { gsap, Power2 } from "gsap";
 
 const skillAnimate = args => {
     const [
@@ -17,7 +17,7 @@ const skillAnimate = args => {
         defaults: {
             duration: 1,
             autoAlpha: 0,
-            ease: "Power2.easeInOut"
+            ease: Power2.easeInOut
         }
     });
 
@@ -60,6 +60,7 @@ const skillAnimate = args => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 timelineSkill.play();
+                // observerSkill.unobserve(entry.target)
             } else {
                 timelineSkill.restart();
                 timelineSkill.pause();
