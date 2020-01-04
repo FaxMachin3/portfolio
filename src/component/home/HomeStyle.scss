@@ -8,9 +8,11 @@
     justify-content: space-between;
     align-items: center;
 
-    .svg-home {
-        height: 100%;
-        width: 400px;
+    .right-container-home {
+        .svg-home {
+            height: 100%;
+            width: 400px;
+        }
     }
 
     .left-container-home {
@@ -65,12 +67,12 @@
             }
         }
     }
-    .arrow-container-home{
+    .arrow-container-home {
         position: relative;
         cursor: pointer;
         height: 4em;
         width: 4em;
-        
+
         .arrow-home {
             position: absolute;
             top: 50%;
@@ -88,9 +90,11 @@
         justify-content: space-evenly;
         flex-wrap: wrap;
 
-        .svg-home {
-            width: 35vw;
-            justify-self: flex-end !important;
+        .right-container-home {
+            .svg-home {
+                width: 35vw;
+                justify-self: flex-end !important;
+            }
         }
 
         .left-container-home {
@@ -128,8 +132,8 @@
                 margin-right: 3em;
             }
         }
-        
-        .arrow-container-home{
+
+        .arrow-container-home {
             height: 4.2vw;
             width: 4.2vw;
             position: absolute;
@@ -137,11 +141,10 @@
             left: 50%;
             transform: translate(-50%, -100%);
 
-            .arrow-home{
+            .arrow-home {
                 height: 2vw;
                 width: 2vw;
             }
         }
-        
     }
 }

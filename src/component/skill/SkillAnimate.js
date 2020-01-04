@@ -17,7 +17,8 @@ const skillAnimate = args => {
         defaults: {
             duration: 1,
             autoAlpha: 0,
-            ease: Power2.easeInOut
+            ease: Power2.easeInOut,
+            pointerEvents: "none"
         }
     });
 
@@ -26,12 +27,12 @@ const skillAnimate = args => {
               .from(imgSkill.current, { scale: 0 })
               .from(
                   slidesSkillH2.current,
-                  { y: 200, stagger: { each: 0.1 } },
+                  { y: 100, stagger: { each: 0.1 } },
                   "-=1"
               )
               .from(
                   slidesSkillPara.current,
-                  { y: 200, stagger: { each: 0.1 } },
+                  { y: 100, stagger: { each: 0.1 } },
                   "-=1.3"
               )
               .from(blockSkill.current, { x: -315 }, "-=1")
@@ -41,12 +42,12 @@ const skillAnimate = args => {
               .from(imgSkill.current, { scale: 0 }, "-=1")
               .from(
                   slidesSkillH2.current,
-                  { y: 200, stagger: { each: 0.1 } },
+                  { y: 100, stagger: { each: 0.1 } },
                   "-=1"
               )
               .from(
                   slidesSkillPara.current,
-                  { y: 200, stagger: { each: 0.1 } },
+                  { y: 100, stagger: { each: 0.1 } },
                   "-=1.3"
               )
               .from(blockSkill.current, { x: -315 }, "-=1.3")

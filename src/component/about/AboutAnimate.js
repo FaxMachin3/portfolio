@@ -11,7 +11,12 @@ const aboutAnimate = args => {
     ] = args;
 
     const timelineAbout = gsap.timeline({
-        defaults: { duration: 1, opacity: 0, ease: Power2.easeInOut }
+        defaults: {
+            duration: 1,
+            opacity: 0,
+            ease: Power2.easeInOut,
+            pointerEvents: "none"
+        }
     });
 
     window.matchMedia("(min-width: 769px)").matches
