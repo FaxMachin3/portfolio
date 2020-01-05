@@ -1,28 +1,30 @@
 import React, { useContext, useRef, useEffect } from "react";
+import { gsap, Power2 } from "gsap";
 import ThemeContext from "../../common/ThemeContext";
 
 import "./SkillStyle.scss";
 
+// import intersecting from "../../common/Intersecting";
 import skillAnimate from "./SkillAnimate";
 import SkillSVG from "./SkillSVG";
 import Arrow from "../../common/Arrow";
 
 const Skill = () => {
-    const slideCount = useRef(0);
+    const slideCountSkill = useRef(0);
+    const allowClick = useRef(true);
+
     const lineSkill = useRef(null);
     const headingSkill = useRef(null);
     const leftArrowSkill = useRef(null);
     const rightArrowSkill = useRef(null);
-    const silderSkill = useRef(null);
+    const sliderSkill = useRef(null);
     const slidesSkill = useRef([]);
-    const slidesSkillH2 = useRef([])
-    const slidesSkillPara = useRef([])
+    const slidesSkillH1 = useRef([]);
+    const slidesSkillPara = useRef([]);
     const rightContainerSkill = useRef(null);
     const blockSkill = useRef(null);
     const imgSkill = useRef(null);
     const containerSkill = useRef(null);
-
-    const allowClick = useRef(true);
 
     const { currentTheme } = useContext(ThemeContext);
     const { background, primary, secondary } = currentTheme;
@@ -44,21 +46,70 @@ const Skill = () => {
         backgroundColor: secondary
     };
 
-    const slider = args => {
+    const animateTextSkill = (heading, para, arrow) => {
+        const timelineText = gsap.timeline({
+            defaults: {opacity: 0, duration: 0.5, ease: Power2.easeOut }
+        });
+
+        const xTrans = arrow === "left" ? -100 : 100
+
+        timelineText.from(heading, { delay:0.3, x: xTrans }).from(
+            para,
+            {
+                x: xTrans,
+                stagger: {
+                    each: 0.05
+                }
+            },
+            "-=0.5"
+        );
+    };
+
+    const selectTextSkill = (count, arrow) => {
+        if (count === 0 || count === 4) {
+            animateTextSkill(
+                slidesSkillH1.current[0],
+                Array.from(slidesSkillPara.current[0].childNodes),
+                arrow
+            );
+        } else if (count === 1) {
+            animateTextSkill(
+                slidesSkillH1.current[1],
+                Array.from(slidesSkillPara.current[1].childNodes),
+                arrow
+            );
+        } else if (count === 2) {
+            animateTextSkill(
+                slidesSkillH1.current[2],
+                Array.from(slidesSkillPara.current[2].childNodes),
+                arrow
+            );
+        } else if (count === 3 || count === -1) {
+            animateTextSkill(
+                slidesSkillH1.current[3],
+                Array.from(slidesSkillPara.current[3].childNodes),
+                arrow
+            );
+        }
+    };
+
+    const changeSlideSkill = args => {
         const [leftArrow, rightArrow] = args;
 
         leftArrow.current.addEventListener("click", event => {
             if (allowClick.current) {
                 allowClick.current = !allowClick.current;
 
-                slideCount.current--;
+                slideCountSkill.current--;
 
-                if (slideCount.current <= -1) {
-                    slideCount.current = 3;
+                selectTextSkill(slideCountSkill.current, "left");
+
+                if (slideCountSkill.current <= -1) {
+                    slideCountSkill.current = 3;
                 }
 
-                silderSkill.current.style.transform = `translateX(-${315 *
-                    slideCount.current}px)`;
+                sliderSkill.current.style.transform = `translateX(-${315 *
+                    slideCountSkill.current}px)`;
 
                 setTimeout(() => {
                     allowClick.current = !allowClick.current;
@@ -70,14 +121,16 @@ const Skill = () => {
             if (allowClick.current) {
                 allowClick.current = !allowClick.current;
 
-                slideCount.current++;
+                slideCountSkill.current++;
 
-                if (slideCount.current >= 4) {
-                    slideCount.current = 0;
+                selectTextSkill(slideCountSkill.current, "right");
+
+                if (slideCountSkill.current >= 4) {
+                    slideCountSkill.current = 0;
                 }
 
-                silderSkill.current.style.transform = `translateX(-${315 *
-                    slideCount.current}px)`;
+                sliderSkill.current.style.transform = `translateX(-${315 *
+                    slideCountSkill.current}px)`;
 
                 setTimeout(() => {
                     allowClick.current = !allowClick.current;
@@ -87,8 +140,17 @@ const Skill = () => {
     };
 
     useEffect(() => {
+        // intersecting(
+        //     rightContainerSkill.current,
+        //     slidesSkill,
+        //     "active-slide-skill",
+        //     "200px"
+        // );
+
+        changeSlideSkill([leftArrowSkill, rightArrowSkill]);
+
         skillAnimate([
-            slidesSkillH2,
+            slidesSkillH1,
             slidesSkillPara,
             blockSkill,
             imgSkill,
@@ -98,33 +160,7 @@ const Skill = () => {
             leftArrowSkill,
             rightArrowSkill
         ]);
-
-        if(window.matchMedia("(max-width: 768px)").matches){
-            const option = {
-                root: rightContainerSkill.current,
-                rootMargin: "200px",
-                threshold: 1
-            };
-    
-            const observerSkill = new IntersectionObserver(
-                (entries, observerSkill) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add("active-slide-skill");
-                        } else {
-                            entry.target.classList.remove("active-slide-skill");
-                        }
-                    });
-                },
-                option
-            );
-    
-            slidesSkill.current.forEach(slide => {
-                observerSkill.observe(slide);
-            });
-        }
-
-        slider([leftArrowSkill, rightArrowSkill]);
+        // eslint-disable-next-line
     }, []);
 
     return (
@@ -167,12 +203,14 @@ const Skill = () => {
                         <Arrow className="right-arrow-skill" />
                     </div>
 
-                    <div ref={silderSkill} className="slider-skill">
+                    <div ref={sliderSkill} className="slider-skill">
                         <div
                             ref={el => slidesSkill.current.push(el)}
                             className="slide-skill active-slide-skill"
                         >
-                            <h2 ref={el => slidesSkillH2.current.push(el)}>Programming Languages:</h2>
+                            <h1 ref={el => slidesSkillH1.current.push(el)}>
+                                Programming Languages:
+                            </h1>
                             <p ref={el => slidesSkillPara.current.push(el)}>
                                 <span>C#</span>
                                 <span>Python</span>
@@ -184,7 +222,9 @@ const Skill = () => {
                             ref={el => slidesSkill.current.push(el)}
                             className="slide-skill"
                         >
-                            <h2 ref={el => slidesSkillH2.current.push(el)}>Backend:</h2>
+                            <h1 ref={el => slidesSkillH1.current.push(el)}>
+                                Backend:
+                            </h1>
                             <p ref={el => slidesSkillPara.current.push(el)}>
                                 <span>Microsoft DotNet</span>
                                 <span>MySQL</span>
@@ -198,7 +238,9 @@ const Skill = () => {
                             ref={el => slidesSkill.current.push(el)}
                             className="slide-skill"
                         >
-                            <h2 ref={el => slidesSkillH2.current.push(el)}>Frontend:</h2>
+                            <h1 ref={el => slidesSkillH1.current.push(el)}>
+                                Frontend:
+                            </h1>
                             <p ref={el => slidesSkillPara.current.push(el)}>
                                 <span>HTML5 + CSS3</span>
                                 <span>SASS</span>
@@ -212,7 +254,9 @@ const Skill = () => {
                             ref={el => slidesSkill.current.push(el)}
                             className="slide-skill"
                         >
-                            <h2 ref={el => slidesSkillH2.current.push(el)}>Dev Tools & Other Skills:</h2>
+                            <h1 ref={el => slidesSkillH1.current.push(el)}>
+                                Dev Tools & Other Skills:
+                            </h1>
                             <p ref={el => slidesSkillPara.current.push(el)}>
                                 <span>Git/Github (Version Control)</span>
                                 <span>Figma/Adobe XD (Design)</span>

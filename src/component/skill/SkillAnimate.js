@@ -2,7 +2,7 @@ import { gsap, Power2 } from "gsap";
 
 const skillAnimate = args => {
     const [
-        slidesSkillH2,
+        slidesSkillH1,
         slidesSkillPara,
         blockSkill,
         imgSkill,
@@ -26,7 +26,7 @@ const skillAnimate = args => {
         ? timelineSkill
               .from(imgSkill.current, { scale: 0 })
               .from(
-                  slidesSkillH2.current,
+                  slidesSkillH1.current,
                   { y: 100, stagger: { each: 0.1 } },
                   "-=1"
               )
@@ -41,20 +41,20 @@ const skillAnimate = args => {
               .from(headingSkill.current, {}, "-=1")
               .from(imgSkill.current, { scale: 0 }, "-=1")
               .from(
-                  slidesSkillH2.current,
+                  slidesSkillH1.current[0],
                   { y: 100, stagger: { each: 0.1 } },
                   "-=1"
               )
               .from(
-                  slidesSkillPara.current,
+                  Array.from(slidesSkillPara.current[0].childNodes),
                   { y: 100, stagger: { each: 0.1 } },
-                  "-=1.3"
+                  "-=1"
               )
-              .from(blockSkill.current, { x: -315 }, "-=1.3")
+              .from(blockSkill.current, { x: 315, scaleX: 0 }, "-=1")
               .from(
                   [leftArrowSkill.current, rightArrowSkill.current],
                   {},
-                  "-=1.3"
+                  "-=1"
               );
 
     const observerSkill = new IntersectionObserver((entries, observerSkill) => {

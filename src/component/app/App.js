@@ -11,7 +11,7 @@ import Skill from "../skill/Skill";
 import Project from "../project/Project";
 import Contact from "../contact/Contact";
 import Navbar from "../navbar/Navbar";
-import Indicators from "../Indicators/Indicators";
+import Indicators from "../indicators/Indicators";
 
 import { smoothScroll } from "./SmoothScroll";
 
