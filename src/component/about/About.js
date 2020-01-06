@@ -11,6 +11,7 @@ const About = () => {
     const lineAbout = useRef(null);
     const imgAbout = useRef(null);
     const blockAbout = useRef(null);
+    const rightContainerAbout = useRef(null)
     const textAbout = useRef([]);
 
 
@@ -45,7 +46,8 @@ const About = () => {
             lineAbout,
             imgAbout,
             textAbout,
-            blockAbout
+            blockAbout,
+            rightContainerAbout
         ]);
     }, []);
 
@@ -78,7 +80,7 @@ const About = () => {
                     ></img>
                 </div>
 
-                <div className="right-container-about">
+                <div ref={rightContainerAbout} className="right-container-about">
                     <p ref={el => textAbout.current.push(el)}>
                         I'm twenty two, a software developer with good problem
                         solving ablity, currently working in Infosys on MERN

@@ -7,8 +7,11 @@ const aboutAnimate = args => {
         lineAbout,
         imgAbout,
         textAbout,
-        blockAbout
+        blockAbout,
+        rightContainerAbout
     ] = args;
+
+    const xTrans = rightContainerAbout.current.getBoundingClientRect().width
 
     const timelineAbout = gsap.timeline({
         defaults: {
@@ -27,7 +30,7 @@ const aboutAnimate = args => {
                   { y: 100, stagger: { each: 0.1 } },
                   "-=1"
               )
-              .from(blockAbout.current, { x: 300 }, "-=1")
+              .from(blockAbout.current, { x: -xTrans, scaleX: 0 }, "-=0.7")
         : timelineAbout
               .from(lineAbout.current, { x: 100 })
               .from(headingAbout.current, {}, "-=1")
@@ -37,7 +40,7 @@ const aboutAnimate = args => {
                   { y: 100, stagger: { each: 0.1 } },
                   "-=1"
               )
-              .from(blockAbout.current, { x: 300 }, "-=1.3");
+              .from(blockAbout.current, { x: -xTrans, scaleX: 0 }, "-=0.7");
 
     const observerAbout = new IntersectionObserver((entries, observerAbout) => {
         entries.forEach(entry => {

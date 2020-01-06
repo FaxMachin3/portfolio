@@ -4,7 +4,6 @@ import ThemeContext from "../../common/ThemeContext";
 
 import "./SkillStyle.scss";
 
-// import intersecting from "../../common/Intersecting";
 import skillAnimate from "./SkillAnimate";
 import SkillSVG from "./SkillSVG";
 import Arrow from "../../common/Arrow";
@@ -19,7 +18,7 @@ const Skill = () => {
     const rightArrowSkill = useRef(null);
     const sliderSkill = useRef(null);
     const slidesSkill = useRef([]);
-    const slidesSkillH1 = useRef([]);
+    const slidesSkillH2 = useRef([]);
     const slidesSkillPara = useRef([]);
     const rightContainerSkill = useRef(null);
     const blockSkill = useRef(null);
@@ -48,12 +47,12 @@ const Skill = () => {
 
     const animateTextSkill = (heading, para, arrow) => {
         const timelineText = gsap.timeline({
-            defaults: {opacity: 0, duration: 0.5, ease: Power2.easeOut }
+            defaults: { opacity: 0, duration: 0.5, ease: Power2.easeInOut }
         });
 
-        const xTrans = arrow === "left" ? -100 : 100
+        const xTrans = arrow === "left" ? -100 : 100;
 
-        timelineText.from(heading, { delay:0.3, x: xTrans }).from(
+        timelineText.from(heading, { delay: 0.3, x: xTrans }).from(
             para,
             {
                 x: xTrans,
@@ -61,33 +60,27 @@ const Skill = () => {
                     each: 0.05
                 }
             },
-            "-=0.5"
+            "-=0.4"
         );
     };
 
     const selectTextSkill = (count, arrow) => {
-        if (count === 0 || count === 4) {
+        if (count === 4) {
             animateTextSkill(
-                slidesSkillH1.current[0],
+                slidesSkillH2.current[0],
                 Array.from(slidesSkillPara.current[0].childNodes),
-                arrow
+                "left"
             );
-        } else if (count === 1) {
+        } else if (count === -1) {
             animateTextSkill(
-                slidesSkillH1.current[1],
-                Array.from(slidesSkillPara.current[1].childNodes),
-                arrow
-            );
-        } else if (count === 2) {
-            animateTextSkill(
-                slidesSkillH1.current[2],
-                Array.from(slidesSkillPara.current[2].childNodes),
-                arrow
-            );
-        } else if (count === 3 || count === -1) {
-            animateTextSkill(
-                slidesSkillH1.current[3],
+                slidesSkillH2.current[3],
                 Array.from(slidesSkillPara.current[3].childNodes),
+                "right"
+            );
+        } else {
+            animateTextSkill(
+                slidesSkillH2.current[count],
+                Array.from(slidesSkillPara.current[count].childNodes),
                 arrow
             );
         }
@@ -140,17 +133,10 @@ const Skill = () => {
     };
 
     useEffect(() => {
-        // intersecting(
-        //     rightContainerSkill.current,
-        //     slidesSkill,
-        //     "active-slide-skill",
-        //     "200px"
-        // );
-
         changeSlideSkill([leftArrowSkill, rightArrowSkill]);
 
         skillAnimate([
-            slidesSkillH1,
+            slidesSkillH2,
             slidesSkillPara,
             blockSkill,
             imgSkill,
@@ -158,7 +144,8 @@ const Skill = () => {
             lineSkill,
             containerSkill,
             leftArrowSkill,
-            rightArrowSkill
+            rightArrowSkill,
+            rightContainerSkill
         ]);
         // eslint-disable-next-line
     }, []);
@@ -208,9 +195,9 @@ const Skill = () => {
                             ref={el => slidesSkill.current.push(el)}
                             className="slide-skill active-slide-skill"
                         >
-                            <h1 ref={el => slidesSkillH1.current.push(el)}>
+                            <h2 ref={el => slidesSkillH2.current.push(el)}>
                                 Programming Languages:
-                            </h1>
+                            </h2>
                             <p ref={el => slidesSkillPara.current.push(el)}>
                                 <span>C#</span>
                                 <span>Python</span>
@@ -222,9 +209,9 @@ const Skill = () => {
                             ref={el => slidesSkill.current.push(el)}
                             className="slide-skill"
                         >
-                            <h1 ref={el => slidesSkillH1.current.push(el)}>
+                            <h2 ref={el => slidesSkillH2.current.push(el)}>
                                 Backend:
-                            </h1>
+                            </h2>
                             <p ref={el => slidesSkillPara.current.push(el)}>
                                 <span>Microsoft DotNet</span>
                                 <span>MySQL</span>
@@ -238,9 +225,9 @@ const Skill = () => {
                             ref={el => slidesSkill.current.push(el)}
                             className="slide-skill"
                         >
-                            <h1 ref={el => slidesSkillH1.current.push(el)}>
+                            <h2 ref={el => slidesSkillH2.current.push(el)}>
                                 Frontend:
-                            </h1>
+                            </h2>
                             <p ref={el => slidesSkillPara.current.push(el)}>
                                 <span>HTML5 + CSS3</span>
                                 <span>SASS</span>
@@ -254,9 +241,9 @@ const Skill = () => {
                             ref={el => slidesSkill.current.push(el)}
                             className="slide-skill"
                         >
-                            <h1 ref={el => slidesSkillH1.current.push(el)}>
+                            <h2 ref={el => slidesSkillH2.current.push(el)}>
                                 Dev Tools & Other Skills:
-                            </h1>
+                            </h2>
                             <p ref={el => slidesSkillPara.current.push(el)}>
                                 <span>Git/Github (Version Control)</span>
                                 <span>Figma/Adobe XD (Design)</span>

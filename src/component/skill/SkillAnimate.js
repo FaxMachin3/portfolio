@@ -10,8 +10,11 @@ const skillAnimate = args => {
         lineSkill,
         containerSkill,
         leftArrowSkill,
-        rightArrowSkill
+        rightArrowSkill,
+        rightContainerSkill
     ] = args;
+
+    const xTrans = rightContainerSkill.current.getBoundingClientRect().width - 50
 
     const timelineSkill = gsap.timeline({
         defaults: {
@@ -35,22 +38,22 @@ const skillAnimate = args => {
                   { y: 100, stagger: { each: 0.1 } },
                   "-=1.3"
               )
-              .from(blockSkill.current, { x: -315 }, "-=1")
+              .from(blockSkill.current, { x: xTrans, scaleX: 0 }, "-=0.8")
         : timelineSkill
               .from(lineSkill.current, { x: 100 })
               .from(headingSkill.current, {}, "-=1")
               .from(imgSkill.current, { scale: 0 }, "-=1")
               .from(
-                  slidesSkillH1.current[0],
+                  slidesSkillH1.current,
                   { y: 100, stagger: { each: 0.1 } },
                   "-=1"
               )
               .from(
-                  Array.from(slidesSkillPara.current[0].childNodes),
+                  slidesSkillPara.current,
                   { y: 100, stagger: { each: 0.1 } },
-                  "-=1"
+                  "-=1.3"
               )
-              .from(blockSkill.current, { x: 315, scaleX: 0 }, "-=1")
+              .from(blockSkill.current, { x: xTrans, scaleX: 0 }, "-=0.8")
               .from(
                   [leftArrowSkill.current, rightArrowSkill.current],
                   {},
