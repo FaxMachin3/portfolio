@@ -45,22 +45,22 @@ const Skill = () => {
         backgroundColor: secondary
     };
 
-    const animateTextSkill = (heading, para, arrow) => {
+    const animateTextSkill = (heading, para) => {
         const timelineText = gsap.timeline({
             defaults: { opacity: 0, duration: 0.5, ease: Power2.easeInOut }
         });
+        
+        gsap.from(blockSkill.current, {x:-15})
 
-        const xTrans = arrow === "left" ? -100 : 100;
-
-        timelineText.from(heading, { delay: 0.3, x: xTrans }).from(
+        timelineText.from(heading, { delay: 0.3 }).from(
             para,
             {
-                x: xTrans,
+                y: 100,
                 stagger: {
                     each: 0.05
                 }
             },
-            "-=0.4"
+            "-=0.5"
         );
     };
 
@@ -68,20 +68,17 @@ const Skill = () => {
         if (count === 4) {
             animateTextSkill(
                 slidesSkillH2.current[0],
-                Array.from(slidesSkillPara.current[0].childNodes),
-                "left"
+                Array.from(slidesSkillPara.current[0].childNodes)
             );
         } else if (count === -1) {
             animateTextSkill(
                 slidesSkillH2.current[3],
-                Array.from(slidesSkillPara.current[3].childNodes),
-                "right"
+                Array.from(slidesSkillPara.current[3].childNodes)
             );
         } else {
             animateTextSkill(
                 slidesSkillH2.current[count],
-                Array.from(slidesSkillPara.current[count].childNodes),
-                arrow
+                Array.from(slidesSkillPara.current[count].childNodes)
             );
         }
     };
@@ -116,7 +113,7 @@ const Skill = () => {
 
                 slideCountSkill.current++;
 
-                selectTextSkill(slideCountSkill.current, "right");
+                selectTextSkill(slideCountSkill.current);
 
                 if (slideCountSkill.current >= 4) {
                     slideCountSkill.current = 0;

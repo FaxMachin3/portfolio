@@ -27,9 +27,10 @@ const Project = () => {
     const rightArrowProject = useRef(null);
     const textSliderProject = useRef(null);
     const imageSliderProject = useRef(null);
+    const linksProject = useRef([]);
     const textSlidesProject = useRef([]);
-    const TextSlidesProjectH2 = useRef([]);
-    const TextSlidesProjectPara = useRef([]);
+    const textSlidesProjectH2 = useRef([]);
+    const textSlidesProjectPara = useRef([]);
     const imageSlidesProject = useRef([]);
 
     const theme = {
@@ -49,43 +50,56 @@ const Project = () => {
         backgroundColor: secondary
     };
 
-    const animateTextProject = (heading, para, arrow) => {
+    const animateTextProject = (heading, para, links) => {
         const timelineText = gsap.timeline({
             defaults: { opacity: 0, duration: 0.5, ease: Power2.easeInOut }
         });
 
-        const xTrans = arrow === "left" ? -100 : 100;
+        gsap.from(blockProject.current, {x:15, duration: .5, ease: Power2.easeInOut})
 
-        timelineText.from(heading, { delay: 0.3, x: xTrans }).from(
-            para,
-            {
-                x: xTrans,
-                stagger: {
-                    each: 0.05
-                }
-            },
-            "-=0.5"
-        );
+        timelineText
+            .from(heading, { delay: 0.4 })
+            .from(
+                para,
+                {
+                    y: 100,
+                    stagger: {
+                        each: 0.05
+                    }
+                },
+                "-=0.5"
+            )
+            .from(
+                links,
+                {
+                    y: 100,
+                    // ease: "back",
+                    stagger: {
+                        each: 0.1
+                    }
+                },
+                "-=0.4"
+            );
     };
 
-    const selectTextProject = (count, arrow) => {
+    const selectTextProject = count => {
         if (count === 5) {
             animateTextProject(
-                TextSlidesProjectH2.current[0],
-                TextSlidesProjectPara.current[0],
-                "left"
+                textSlidesProjectH2.current[0],
+                textSlidesProjectPara.current[0],
+                Array.from(linksProject.current[0].childNodes)
             );
         } else if (count === -1) {
             animateTextProject(
-                TextSlidesProjectH2.current[4],
-                TextSlidesProjectPara.current[4],
-                "right"
+                textSlidesProjectH2.current[4],
+                textSlidesProjectPara.current[4],
+                Array.from(linksProject.current[4].childNodes)
             );
-        } else{
+        } else {
             animateTextProject(
-                TextSlidesProjectH2.current[count],
-                TextSlidesProjectPara.current[count],
-                arrow
+                textSlidesProjectH2.current[count],
+                textSlidesProjectPara.current[count],
+                Array.from(linksProject.current[count].childNodes)
             );
         }
     };
@@ -99,7 +113,7 @@ const Project = () => {
 
                 slideCountProject.current--;
 
-                selectTextProject(slideCountProject.current, "left");
+                selectTextProject(slideCountProject.current);
 
                 if (slideCountProject.current <= -1) {
                     slideCountProject.current = 4;
@@ -122,7 +136,7 @@ const Project = () => {
 
                 slideCountProject.current++;
 
-                selectTextProject(slideCountProject.current, "right");
+                selectTextProject(slideCountProject.current);
 
                 if (slideCountProject.current >= 5) {
                     slideCountProject.current = 0;
@@ -143,7 +157,20 @@ const Project = () => {
     useEffect(() => {
         changeSlideProject([leftArrowProject, rightArrowProject]);
 
-        projectAnimate([]);
+        console.log(imageSlidesProject.current[0])
+        projectAnimate([
+            textSlidesProjectH2,
+            textSlidesProjectPara,
+            blockProject,
+            imageSlidesProject,
+            headingProject,
+            lineProject,
+            containerProject,
+            leftArrowProject,
+            rightArrowProject,
+            linksProject,
+            rightContainerProject
+        ]);
         // eslint-disable-next-line
     }, []);
 
@@ -258,17 +285,24 @@ const Project = () => {
                             className="text-slide-project active-text-slide-project"
                         >
                             <h2
-                                ref={el => TextSlidesProjectH2.current.push(el)}
+                                ref={el => textSlidesProjectH2.current.push(el)}
                             >
                                 Dark Weather:
                             </h2>
 
-                            <p ref={el => TextSlidesProjectPara.current.push(el)}>
+                            <p
+                                ref={el =>
+                                    textSlidesProjectPara.current.push(el)
+                                }
+                            >
                                 A small dark themed weather app. Just enter your
                                 city or country name to get the weather report.
                             </p>
 
-                            <div className="links-project">
+                            <div
+                                ref={el => linksProject.current.push(el)}
+                                className="links-project"
+                            >
                                 <div>
                                     <ProjectSVGCode />
                                 </div>
@@ -283,17 +317,24 @@ const Project = () => {
                             className="text-slide-project active-slide-project"
                         >
                             <h2
-                                ref={el => TextSlidesProjectH2.current.push(el)}
+                                ref={el => textSlidesProjectH2.current.push(el)}
                             >
                                 Dark Weather:
                             </h2>
 
-                            <p ref={el => TextSlidesProjectPara.current.push(el)}>
+                            <p
+                                ref={el =>
+                                    textSlidesProjectPara.current.push(el)
+                                }
+                            >
                                 A small dark themed weather app. Just enter your
                                 city or country name to get the weather report.
                             </p>
 
-                            <div className="links-project">
+                            <div
+                                ref={el => linksProject.current.push(el)}
+                                className="links-project"
+                            >
                                 <div>
                                     <ProjectSVGCode />
                                 </div>
@@ -308,17 +349,24 @@ const Project = () => {
                             className="text-slide-project active-slide-project"
                         >
                             <h2
-                                ref={el => TextSlidesProjectH2.current.push(el)}
+                                ref={el => textSlidesProjectH2.current.push(el)}
                             >
                                 Dark Weather:
                             </h2>
 
-                            <p ref={el => TextSlidesProjectPara.current.push(el)}>
+                            <p
+                                ref={el =>
+                                    textSlidesProjectPara.current.push(el)
+                                }
+                            >
                                 A small dark themed weather app. Just enter your
                                 city or country name to get the weather report.
                             </p>
 
-                            <div className="links-project">
+                            <div
+                                ref={el => linksProject.current.push(el)}
+                                className="links-project"
+                            >
                                 <div>
                                     <ProjectSVGCode />
                                 </div>
@@ -333,17 +381,24 @@ const Project = () => {
                             className="text-slide-project active-slide-project"
                         >
                             <h2
-                                ref={el => TextSlidesProjectH2.current.push(el)}
+                                ref={el => textSlidesProjectH2.current.push(el)}
                             >
                                 Dark Weather:
                             </h2>
 
-                            <p ref={el => TextSlidesProjectPara.current.push(el)}>
+                            <p
+                                ref={el =>
+                                    textSlidesProjectPara.current.push(el)
+                                }
+                            >
                                 A small dark themed weather app. Just enter your
                                 city or country name to get the weather report.
                             </p>
 
-                            <div className="links-project">
+                            <div
+                                ref={el => linksProject.current.push(el)}
+                                className="links-project"
+                            >
                                 <div>
                                     <ProjectSVGCode />
                                 </div>
@@ -358,17 +413,24 @@ const Project = () => {
                             className="text-slide-project active-slide-project"
                         >
                             <h2
-                                ref={el => TextSlidesProjectH2.current.push(el)}
+                                ref={el => textSlidesProjectH2.current.push(el)}
                             >
                                 Dark Weather:
                             </h2>
 
-                            <p ref={el => TextSlidesProjectPara.current.push(el)}>
+                            <p
+                                ref={el =>
+                                    textSlidesProjectPara.current.push(el)
+                                }
+                            >
                                 A small dark themed weather app. Just enter your
                                 city or country name to get the weather report.
                             </p>
 
-                            <div className="links-project">
+                            <div
+                                ref={el => linksProject.current.push(el)}
+                                className="links-project"
+                            >
                                 <div>
                                     <ProjectSVGCode />
                                 </div>

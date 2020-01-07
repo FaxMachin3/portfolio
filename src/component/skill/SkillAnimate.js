@@ -2,7 +2,7 @@ import { gsap, Power2 } from "gsap";
 
 const skillAnimate = args => {
     const [
-        slidesSkillH1,
+        slidesSkillH2,
         slidesSkillPara,
         blockSkill,
         imgSkill,
@@ -29,7 +29,7 @@ const skillAnimate = args => {
         ? timelineSkill
               .from(imgSkill.current, { scale: 0 })
               .from(
-                  slidesSkillH1.current,
+                  slidesSkillH2.current,
                   { y: 100, stagger: { each: 0.1 } },
                   "-=1"
               )
@@ -44,7 +44,7 @@ const skillAnimate = args => {
               .from(headingSkill.current, {}, "-=1")
               .from(imgSkill.current, { scale: 0 }, "-=1")
               .from(
-                  slidesSkillH1.current,
+                  slidesSkillH2.current,
                   { y: 100, stagger: { each: 0.1 } },
                   "-=1"
               )
