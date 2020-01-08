@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef } from "react";
-
-import "./AboutStyle.scss";
 import ThemeContext from "../../common/ThemeContext";
+import "./AboutStyle.scss";
+
 import aboutAnimate from "./AboutAnimate";
 import avatar from "../../assests/images/avatar.jpg";
 
@@ -11,13 +11,12 @@ const About = () => {
     const lineAbout = useRef(null);
     const imgAbout = useRef(null);
     const blockAbout = useRef(null);
-    const rightContainerAbout = useRef(null)
+    const rightContainerAbout = useRef(null);
     const textAbout = useRef([]);
-
 
     const { currentTheme } = useContext(ThemeContext);
     const { background, primary, secondary } = currentTheme;
-    
+
     const theme = {
         background: background,
         color: primary
@@ -80,7 +79,10 @@ const About = () => {
                     ></img>
                 </div>
 
-                <div ref={rightContainerAbout} className="right-container-about">
+                <div
+                    ref={rightContainerAbout}
+                    className="right-container-about"
+                >
                     <p ref={el => textAbout.current.push(el)}>
                         I'm twenty two, a software developer with good problem
                         solving ablity, currently working in Infosys on MERN

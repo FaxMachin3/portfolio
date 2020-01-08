@@ -47,10 +47,11 @@ const Skill = () => {
 
     const animateTextSkill = (heading, para) => {
         const timelineText = gsap.timeline({
-            defaults: { opacity: 0, duration: 0.5, ease: Power2.easeInOut }
+            defaults: { opacity: 0, duration: 0.75, ease: Power2.easeInOut }
         });
-        
-        gsap.from(blockSkill.current, {x:-15})
+            
+        gsap.to(blockSkill.current, {duration: 0.15, x:-5, ease: Power2.easeOut})
+        gsap.to(blockSkill.current, {duration: 0.15, x:0 , delay: 0.15, ease: Power2.easeOut})
 
         timelineText.from(heading, { delay: 0.3 }).from(
             para,
@@ -60,7 +61,7 @@ const Skill = () => {
                     each: 0.05
                 }
             },
-            "-=0.5"
+            "-=0.65"
         );
     };
 
@@ -103,7 +104,7 @@ const Skill = () => {
 
                 setTimeout(() => {
                     allowClick.current = !allowClick.current;
-                }, 500);
+                }, 1100);
             }
         });
 
@@ -124,7 +125,7 @@ const Skill = () => {
 
                 setTimeout(() => {
                     allowClick.current = !allowClick.current;
-                }, 500);
+                }, 1100);
             }
         });
     };

@@ -85,29 +85,16 @@
                 height: 100%;
                 width: 315px;
                 transition: opacity 500ms ease-out;
-                opacity: 1;
-
-                &.active-image-container-project{
-                    opacity: 1;
-                }
 
                 .image-project {
                     position: absolute;
                     top: 50%;
                     left: 50%;
                     transform: translate(-50%, -50%);
-                    height: 80%;
-                    width: 70%;
+                    height: 15em;
+                    width: 23em;
                 }
             }
-        }
-
-        .left-arrow-project {
-            position: absolute;
-        }
-
-        .right-arrow-project {
-            position: absolute;
         }
     }
 
@@ -130,12 +117,6 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
-                transition: opacity 250ms ease-out;
-                opacity: 1;
-
-                &.active-text-slide-project{
-                    opacity: 1;
-                }
 
                 h2{
                     font-size: 1.3rem;
@@ -175,6 +156,77 @@
             height: 100%;
             width: 18%;
             border-radius: 5px;
+        }
+    }
+}
+
+@media all and (min-width: 769px) {
+    .container-project {
+        flex-direction: row;
+
+        .heading-project {
+            display: none;
+        }
+
+        .left-container-project{
+            height: 60%;
+            width: 40%;
+
+            .image-slider-project{
+                width: 100 * 5%;
+
+                .image-container-project{
+                    width: 100%;
+
+                    .image-project{
+                        width: 25vw;
+                        height: 15vw;
+                    }
+                }
+            }
+        }
+
+        .right-container-project{
+            height: 60%;
+            width: 50%;
+
+            .text-slider-project{
+                height: 100 * 5%;
+                width: 100%;
+                flex-direction: column;
+                transform: translateY(-20*0%);
+                transition-duration: 0s;
+                transition-delay: 1s;
+
+                .text-slide-project{
+                    height: 100%;
+                    width: 100%;
+                    justify-content: space-around;
+
+                    h2{
+                        font-size: 1.5vw;
+                    }
+
+                    p{
+                        width: 90%;
+                        font-size: 1vw;
+                        letter-spacing: 0.2vw;
+                        word-spacing: 0.2vw;
+                    }
+
+                    .links-project{
+
+                        .svg-website-project,
+                        .svg-code-project{
+                            height: 3vw;
+                            width: 3vw;
+                        }
+                    }
+                }
+            }
+            .block-project{
+                border-radius: 10px;
+            }
         }
     }
 }

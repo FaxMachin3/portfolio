@@ -11,7 +11,7 @@ const aboutAnimate = args => {
         rightContainerAbout
     ] = args;
 
-    const xTrans = rightContainerAbout.current.getBoundingClientRect().width
+    const xTrans = rightContainerAbout.current.getBoundingClientRect().width;
 
     const timelineAbout = gsap.timeline({
         defaults: {
@@ -24,7 +24,7 @@ const aboutAnimate = args => {
 
     window.matchMedia("(min-width: 769px)").matches
         ? timelineAbout
-              .from(imgAbout.current, { scale: 0 })
+              .from(imgAbout.current, { delay: 0.3, scale: 0 })
               .from(
                   textAbout.current,
                   { y: 100, stagger: { each: 0.1 } },
@@ -32,7 +32,7 @@ const aboutAnimate = args => {
               )
               .from(blockAbout.current, { x: -xTrans, scaleX: 0 }, "-=0.7")
         : timelineAbout
-              .from(lineAbout.current, { x: 100 })
+              .from(lineAbout.current, { delay: 0.3, x: 100 })
               .from(headingAbout.current, {}, "-=1")
               .from(imgAbout.current, { scale: 0 }, "-=1")
               .from(

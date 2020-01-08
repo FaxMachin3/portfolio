@@ -1,7 +1,6 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useContext } from "react";
 import { gsap, Power2 } from "gsap";
 import ThemeContext from "../../common/ThemeContext";
-
 import "./ProjectStyle.scss";
 
 import ProjectSVGCode from "./ProjectSVGCode";
@@ -11,11 +10,15 @@ import projectAnimate from "./ProjectAnimate";
 import Arrow from "../../common/Arrow";
 
 const Project = () => {
-    const { currentTheme } = React.useContext(ThemeContext);
+    const { currentTheme } = useContext(ThemeContext);
     const { background, primary, secondary } = currentTheme;
 
+    const large = useRef(window.matchMedia("(min-width: 769px)").matches);
     const slideCountProject = useRef(0);
     const allowClick = useRef(true);
+    const imageSliderWidth = useRef(0);
+    const textSliderWidth = useRef(0);
+    const textSliderHeight = useRef(0);
 
     const containerProject = useRef(null);
     const headingProject = useRef(null);
@@ -50,56 +53,116 @@ const Project = () => {
         backgroundColor: secondary
     };
 
-    const animateTextProject = (heading, para, links) => {
+    const animateTextProject = (heading, para, links, prevCount) => {
         const timelineText = gsap.timeline({
-            defaults: { opacity: 0, duration: 0.5, ease: Power2.easeInOut }
+            defaults: { opacity: 0, duration: 0.75, ease: Power2.easeInOut }
         });
 
-        gsap.from(blockProject.current, {x:15, duration: .5, ease: Power2.easeInOut})
+        const prevH2 = textSlidesProjectH2.current[prevCount];
+        const prevPara = textSlidesProjectPara.current[prevCount];
+        const prevLink = Array.from(linksProject.current[prevCount].childNodes);
 
-        timelineText
-            .from(heading, { delay: 0.4 })
-            .from(
-                para,
-                {
-                    y: 100,
-                    stagger: {
-                        each: 0.05
-                    }
-                },
-                "-=0.5"
-            )
-            .from(
-                links,
-                {
-                    y: 100,
-                    // ease: "back",
-                    stagger: {
-                        each: 0.1
-                    }
-                },
-                "-=0.4"
-            );
+        const xTrans = large.current ? 10 : 0;
+
+        gsap.to(blockProject.current, {
+            duration: 0.15,
+            x: xTrans,
+            ease: Power2.easeOut
+        });
+        gsap.to(blockProject.current, {
+            duration: 0.15,
+            x: 0,
+            delay: 0.15,
+            ease: Power2.easeOut
+        });
+
+        large.current
+            ? timelineText
+                  .to(prevH2, { duration: .5, y: -100, opacity: 0 })
+                  .to(prevPara, { duration: .5, y: -100, opacity: 0 }, "-=0.4")
+                  .to(
+                      prevLink,
+                      {
+                          duration: .5,
+                          y: -100,
+                          opacity: 0,
+                          stagger: {
+                              each: 0.1
+                          }
+                      },
+                      "-=0.3"
+                  )
+                  .from(heading, { duration: 0.75, y: 100 }, "-=0.1")
+                  .from(
+                      para,
+                      {
+                          duration: 0.75,
+                          y: 100,
+                          stagger: {
+                              each: 0.05
+                          }
+                      },
+                      "-=0.65"
+                  )
+                  .from(
+                      links,
+                      {
+                          duration: 0.75,
+                          y: 100,
+                          stagger: {
+                              each: 0.05
+                          }
+                      },
+                      "-=0.55"
+                  )
+                  .set(prevH2, { y: 0, opacity: 1 })
+                  .set(prevPara, { y: 0, opacity: 1 })
+                  .set(prevLink, { y: 0, opacity: 1 })
+            : timelineText
+                  .from(heading, { delay: 0.4 })
+                  .from(
+                      para,
+                      {
+                          y: 100,
+                          stagger: {
+                              each: 0.05
+                          }
+                      },
+                      "-=0.65"
+                  )
+                  .from(
+                      links,
+                      {
+                          y: 100,
+                          stagger: {
+                              each: 0.05
+                          }
+                      },
+                      "-=0.55"
+                  );
     };
 
-    const selectTextProject = count => {
+    const selectTextProject = (count, prevCount) => {
         if (count === 5) {
             animateTextProject(
                 textSlidesProjectH2.current[0],
                 textSlidesProjectPara.current[0],
-                Array.from(linksProject.current[0].childNodes)
+                Array.from(linksProject.current[0].childNodes),
+                prevCount
             );
         } else if (count === -1) {
             animateTextProject(
                 textSlidesProjectH2.current[4],
                 textSlidesProjectPara.current[4],
-                Array.from(linksProject.current[4].childNodes)
+                Array.from(linksProject.current[4].childNodes),
+                prevCount
             );
         } else {
             animateTextProject(
                 textSlidesProjectH2.current[count],
                 textSlidesProjectPara.current[count],
-                Array.from(linksProject.current[count].childNodes)
+                Array.from(linksProject.current[count].childNodes),
+                prevCount
             );
         }
     };
@@ -113,20 +176,27 @@ const Project = () => {
 
                 slideCountProject.current--;
 
-                selectTextProject(slideCountProject.current);
+                selectTextProject(
+                    slideCountProject.current,
+                    slideCountProject.current + 1
+                );
 
                 if (slideCountProject.current <= -1) {
                     slideCountProject.current = 4;
                 }
 
-                imageSliderProject.current.style.transform = `translateX(-${315 *
+                imageSliderProject.current.style.transform = `translateX(-${imageSliderWidth.current *
                     slideCountProject.current}px)`;
-                textSliderProject.current.style.transform = `translateX(-${315 *
-                    slideCountProject.current}px)`;
+
+                window.matchMedia("(min-width: 769px)").matches
+                    ? (textSliderProject.current.style.transform = `translateY(-${textSliderHeight.current *
+                          slideCountProject.current}px)`)
+                    : (textSliderProject.current.style.transform = `translateX(-${textSliderWidth.current *
+                          slideCountProject.current}px)`);
 
                 setTimeout(() => {
                     allowClick.current = !allowClick.current;
-                }, 500);
+                }, 1100);
             }
         });
 
@@ -136,20 +206,27 @@ const Project = () => {
 
                 slideCountProject.current++;
 
-                selectTextProject(slideCountProject.current);
+                selectTextProject(
+                    slideCountProject.current,
+                    slideCountProject.current - 1
+                );
 
                 if (slideCountProject.current >= 5) {
                     slideCountProject.current = 0;
                 }
 
-                imageSliderProject.current.style.transform = `translateX(-${315 *
+                imageSliderProject.current.style.transform = `translateX(-${imageSliderWidth.current *
                     slideCountProject.current}px)`;
-                textSliderProject.current.style.transform = `translateX(-${315 *
-                    slideCountProject.current}px)`;
+
+                window.matchMedia("(min-width: 769px)").matches
+                    ? (textSliderProject.current.style.transform = `translateY(-${textSliderHeight.current *
+                          slideCountProject.current}px)`)
+                    : (textSliderProject.current.style.transform = `translateX(-${textSliderWidth.current *
+                          slideCountProject.current}px)`);
 
                 setTimeout(() => {
                     allowClick.current = !allowClick.current;
-                }, 500);
+                }, 1100);
             }
         });
     };
@@ -157,7 +234,10 @@ const Project = () => {
     useEffect(() => {
         changeSlideProject([leftArrowProject, rightArrowProject]);
 
-        console.log(imageSlidesProject.current[0])
+        imageSliderWidth.current = leftContainerProject.current.getBoundingClientRect().width;
+        textSliderWidth.current = rightContainerProject.current.getBoundingClientRect().width;
+        textSliderHeight.current = rightContainerProject.current.getBoundingClientRect().height;
+
         projectAnimate([
             textSlidesProjectH2,
             textSlidesProjectPara,
@@ -217,7 +297,7 @@ const Project = () => {
                     >
                         <div
                             ref={el => imageSlidesProject.current.push(el)}
-                            className="image-container-project active-image-container-project"
+                            className="image-container-project"
                         >
                             <img
                                 className="image-project"
@@ -282,7 +362,7 @@ const Project = () => {
                     >
                         <div
                             ref={el => textSlidesProject.current.push(el)}
-                            className="text-slide-project active-text-slide-project"
+                            className="text-slide-project"
                         >
                             <h2
                                 ref={el => textSlidesProjectH2.current.push(el)}
@@ -295,8 +375,9 @@ const Project = () => {
                                     textSlidesProjectPara.current.push(el)
                                 }
                             >
-                                A small dark themed weather app. Just enter your
-                                city or country name to get the weather report.
+                                A small dark themed weather app built using
+                                Python's tkinter Library. Just enter a city or a
+                                country name to get the weather report.
                             </p>
 
                             <div
@@ -314,7 +395,7 @@ const Project = () => {
 
                         <div
                             ref={el => textSlidesProject.current.push(el)}
-                            className="text-slide-project active-slide-project"
+                            className="text-slide-project"
                         >
                             <h2
                                 ref={el => textSlidesProjectH2.current.push(el)}
@@ -327,8 +408,9 @@ const Project = () => {
                                     textSlidesProjectPara.current.push(el)
                                 }
                             >
-                                A small dark themed weather app. Just enter your
-                                city or country name to get the weather report.
+                                A small dark themed weather app built using
+                                Python's tkinter Library. Just enter a city or a
+                                country name to get the weather report.
                             </p>
 
                             <div
@@ -346,7 +428,7 @@ const Project = () => {
 
                         <div
                             ref={el => textSlidesProject.current.push(el)}
-                            className="text-slide-project active-slide-project"
+                            className="text-slide-project"
                         >
                             <h2
                                 ref={el => textSlidesProjectH2.current.push(el)}
@@ -359,8 +441,9 @@ const Project = () => {
                                     textSlidesProjectPara.current.push(el)
                                 }
                             >
-                                A small dark themed weather app. Just enter your
-                                city or country name to get the weather report.
+                                A small dark themed weather app built using
+                                Python's tkinter Library. Just enter a city or a
+                                country name to get the weather report.
                             </p>
 
                             <div
@@ -378,7 +461,7 @@ const Project = () => {
 
                         <div
                             ref={el => textSlidesProject.current.push(el)}
-                            className="text-slide-project active-slide-project"
+                            className="text-slide-project"
                         >
                             <h2
                                 ref={el => textSlidesProjectH2.current.push(el)}
@@ -391,8 +474,9 @@ const Project = () => {
                                     textSlidesProjectPara.current.push(el)
                                 }
                             >
-                                A small dark themed weather app. Just enter your
-                                city or country name to get the weather report.
+                                A small dark themed weather app built using
+                                Python's tkinter Library. Just enter a city or a
+                                country name to get the weather report.
                             </p>
 
                             <div
@@ -410,7 +494,7 @@ const Project = () => {
 
                         <div
                             ref={el => textSlidesProject.current.push(el)}
-                            className="text-slide-project active-slide-project"
+                            className="text-slide-project"
                         >
                             <h2
                                 ref={el => textSlidesProjectH2.current.push(el)}
@@ -423,8 +507,9 @@ const Project = () => {
                                     textSlidesProjectPara.current.push(el)
                                 }
                             >
-                                A small dark themed weather app. Just enter your
-                                city or country name to get the weather report.
+                                A small dark themed weather app built using
+                                Python's tkinter Library. Just enter a city or a
+                                country name to get the weather report.
                             </p>
 
                             <div
