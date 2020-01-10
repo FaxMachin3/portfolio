@@ -6,14 +6,7 @@ const ProjectSVGWebsite = () => {
     const { secondary } = currentTheme;
 
     return (
-        <svg
-            className="svg-website-project"
-            width="50"
-            height="50"
-            viewBox="0 0 50 50"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg className="svg-website-project" viewBox="0 0 50 50">
             <path
                 d="M25.8633 24.1464H36.193C36.0869 20.3948 35.3017 16.7545 33.8945 13.3809C31.2974 14.135 28.6045 14.55 25.8633 14.6233V24.1464Z"
                 fill={secondary}

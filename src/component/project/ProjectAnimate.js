@@ -29,7 +29,7 @@ const projectAnimate = args => {
 
     window.matchMedia("(min-width: 769px)").matches
         ? timelineProject
-              .from(imageSlidesProject.current, { delay: 0.3, scale: 0 })
+              .from(imageSlidesProject.current, { scale: 0 })
               .from(
                   textSlidesProjectH2.current,
                   { y: 100, stagger: { each: 0.1 } },
@@ -48,7 +48,7 @@ const projectAnimate = args => {
                   "-=1.3"
               )
         : timelineProject
-              .from(lineProject.current, { delay: 0.3, x: 100 })
+              .from(lineProject.current, { x: 100 })
               .from(headingProject.current, {}, "-=1")
               .from(imageSlidesProject.current, { scale: 0 }, "-=1")
               .from(

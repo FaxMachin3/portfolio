@@ -217,6 +217,8 @@ const App = () => {
 
         smoothScroll(currentPage);
 
+        window.document.body.style.backgroundColor = currentTheme.background
+
         // unsubscribing on unmount
         return () => {
             window.removeEventListener(
