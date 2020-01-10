@@ -76,10 +76,17 @@ const Contact = () => {
 
                     <div className="right-container-contact">
                         <p ref={el => textContact.current.push(el)}>
-                            <span>Email:</span> subhamraj4114@gmail.com
+                            <span>Email:</span>{" "}
+                            <a
+                                href="mailto:subhamraj4114@gmail.com?Subject=Hello!"
+                                target="__blank"
+                            >
+                                subhamraj4114@gmail.com
+                            </a>
                         </p>
                         <p ref={el => textContact.current.push(el)}>
-                            <span>Phone:</span> +91 826-060-2263
+                            <span>Phone:</span>{" "}
+                            <a href="tel:8260602263">+91 826-060-2263</a>
                         </p>
                     </div>
                 </div>
@@ -96,10 +103,20 @@ const Contact = () => {
                             }}
                         >
                             <div>
-                                <ContactSVGGithub />
+                                <a
+                                    href="https://github.com/FaxMachin3"
+                                    target="__blank"
+                                >
+                                    <ContactSVGGithub />
+                                </a>
                             </div>
                             <div>
-                                <p>GitHub</p>
+                                <a
+                                    href="https://github.com/FaxMachin3"
+                                    target="__blank"
+                                >
+                                    <p>GitHub</p>
+                                </a>
                             </div>
                         </div>
 
@@ -109,10 +126,20 @@ const Contact = () => {
                             }}
                         >
                             <div>
-                                <ContactSVGInstagram />
+                                <a
+                                    href="https://www.instagram.com/_subhamraj/"
+                                    target="__blank"
+                                >
+                                    <ContactSVGInstagram />
+                                </a>
                             </div>
                             <div>
-                                <p>Instagram</p>
+                                <a
+                                    href="https://www.instagram.com/_subhamraj/"
+                                    target="__blank"
+                                >
+                                    <p>Instagram</p>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -124,10 +151,20 @@ const Contact = () => {
                             }}
                         >
                             <div>
-                                <ContactSVGLinkedin />
+                                <a
+                                    href="https://www.linkedin.com/in/subhamraj"
+                                    target="__blank"
+                                >
+                                    <ContactSVGLinkedin />
+                                </a>
                             </div>
                             <div>
-                                <p>LinkedIn</p>
+                                <a
+                                    href="https://www.linkedin.com/in/subhamraj"
+                                    target="__blank"
+                                >
+                                    <p>LinkedIn</p>
+                                </a>
                             </div>
                         </div>
 
@@ -137,10 +174,20 @@ const Contact = () => {
                             }}
                         >
                             <div>
-                                <ContactSVGFacebook />
+                                <a
+                                    href="https://www.facebook.com/F4xMachin3"
+                                    target="__blank"
+                                >
+                                    <ContactSVGFacebook />
+                                </a>
                             </div>
                             <div>
-                                <p>Facebook</p>
+                                <a
+                                    href="https://www.facebook.com/F4xMachin3"
+                                    target="__blank"
+                                >
+                                    <p>Facebook</p>
+                                </a>
                             </div>
                         </div>
                     </div>

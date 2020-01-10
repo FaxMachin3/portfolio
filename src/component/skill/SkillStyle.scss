@@ -65,6 +65,10 @@
             top: 0;
             left: -1em;
 
+            &:hover .left-arrow-skill{
+                opacity: 0.8;
+            }
+
             .left-arrow-skill {
                 left: 25%;
                 transform: rotate(90deg) translateX(-30%);
@@ -74,6 +78,10 @@
         .right-arrow-container-skill {
             top: 0;
             right: -1em;
+
+            &:hover .right-arrow-skill{
+                opacity: 0.8;
+            }
 
             .right-arrow-skill {
                 right: 25%;

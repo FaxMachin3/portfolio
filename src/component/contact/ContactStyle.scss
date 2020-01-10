@@ -52,7 +52,14 @@
                 font-size: 1rem;
                 letter-spacing: 0.1em;
                 word-spacing: 0.5em;
+                a{
+                    text-decoration: none;
+                    color: inherit;
 
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
                 span {
                     font-weight: 600;
                     font-size: 1.5rem;
@@ -88,9 +95,17 @@
                     transform: translateY(-50%);
                     cursor: pointer;
 
-                    .svg-icon-contact {
-                        height: 2.3em;
-                        width: 2.3em;
+                    a {
+                        text-decoration: none;
+
+                        &:hover{
+                            opacity: 0.8;
+                        }
+
+                        .svg-icon-contact {
+                            height: 2.3em;
+                            width: 2.3em;
+                        }
                     }
                 }
 
@@ -101,8 +116,17 @@
                     transform: translateY(-50%);
                     cursor: pointer;
 
-                    p {
-                        font-size: 1rem;
+                    a {
+                        text-decoration: none;
+                        color: inherit;
+
+                        &:hover{
+                            opacity: 0.8;
+                        }
+
+                        p {
+                            font-size: 1rem;
+                        }
                     }
                 }
             }
@@ -150,29 +174,29 @@
             bottom: 0;
             width: 85%;
             flex-direction: row;
-            & > div:nth-child(1){
+            & > div:nth-child(1) {
                 width: 40%;
             }
-            & > div:nth-child(2){
+            & > div:nth-child(2) {
                 width: 40%;
             }
 
             .top-half-bottom-container-contact,
             .bottom-half-bottom-container-contact {
-                div{
-                    div:nth-child(1){
+                div {
+                    div:nth-child(1) {
                         left: 22%;
 
-                        .svg-icon-contact{
+                        .svg-icon-contact {
                             height: 2.5vw;
                             width: 2.5vw;
                         }
                     }
 
-                    div:nth-child(2){
-                        p{
+                    div:nth-child(2) {
+                        p {
                             font-size: 1.1vw;
-                        }   
+                        }
                     }
                 }
             }

@@ -51,12 +51,20 @@
                 height: 2em;
                 top: 50%;
                 transform: translateY(-50%);
+
+                &:hover{
+                    opacity: 0.8;
+                }
             }
         }
 
         .left-arrow-container-project {
             top: 0;
             left: -1.5em;
+
+            &:hover .left-arrow-project{
+                opacity: 0.8;
+            }
 
             .left-arrow-project {
                 left: 25%;
@@ -67,6 +75,10 @@
         .right-arrow-container-project {
             top: 0;
             right: -1.5em;
+
+            &:hover .right-arrow-project{
+                opacity: 0.8;
+            }
 
             .right-arrow-project {
                 right: 25%;

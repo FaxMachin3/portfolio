@@ -75,6 +75,10 @@
         height: 4em;
         width: 4em;
 
+        &:hover .arrow-home{
+            opacity: 0.8;
+        }
+
         .arrow-home {
             position: absolute;
             top: 50%;
@@ -119,10 +123,9 @@
             .work-button {
                 border-radius: 100px !important;
                 font-family: inherit;
-                transition: opacity 500ms ease-in-out;
 
                 &:hover {
-                    opacity: 0.8;
+                    opacity: 0.9;
                 }
             }
 
