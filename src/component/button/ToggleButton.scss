@@ -8,9 +8,8 @@
 
     .inner {
         position: absolute;
-        top: 50%;
+        top: 20%;
         left: 0.3vw;
-        transform: translateY(-50%);
         height: 0.7vw;
         width: 0.7vw;
         border-radius: 50%;
@@ -20,7 +19,7 @@
     }
 }
 .circle {
-    transform: translate(2.45vw,-50%) !important
+    transform: translate(2.45vw, 0%) !important
 }
 
 

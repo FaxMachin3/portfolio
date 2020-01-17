@@ -16,13 +16,16 @@ import Indicators from "../indicators/Indicators";
 import { smoothScroll } from "./SmoothScroll";
 
 const App = () => {
-    const animationDuration = useRef(1000);
+    const animationDuration = useRef(500);
     let lastTime = useRef(0);
     let position = useRef(0);
     let scrolled = useRef(true);
+    const disableScroll = useRef(true);
     const allowScroll = useRef(true); // stops user to scroll when the menu is open
     const [currentPage, changeCurrentPage] = useState(".home");
     const [theme, changeTheme] = useState(true);
+    const prevDelta = useRef(0);
+    let timer;
     const pages = {
         ".home": {
             prev: ".home",
@@ -62,20 +65,29 @@ const App = () => {
     let currentTheme = theme === true ? themeStyle.dark : themeStyle.light;
 
     const smoothScrollWheel = event => {
+        // console.log(event.deltaY)
         const currentTime = new Date().getTime();
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            prevDelta.current = 0;
+            console.log("end")
+        }, 100);
         if (currentTime - lastTime.current < animationDuration.current) {
-            event.preventDefault();
-            return;
+            return false;
         } else {
-            if (event.deltaY > 0) {
+            // console.log("prev: "+prevDelta.current);
+            if (event.deltaY > 0 && event.deltaY > prevDelta.current) {
                 changeCurrentPage(
                     prevPage => (prevPage = pages[prevPage].next)
                 );
-            } else {
+            } else if (event.deltaY < 0 && event.deltaY < prevDelta.current) {
                 changeCurrentPage(
                     prevPage => (prevPage = pages[prevPage].prev)
                 );
             }
+            prevDelta.current = event.deltaY;
+
+            console.log("next: "+prevDelta.current);
             lastTime.current = currentTime;
         }
     };
@@ -132,7 +144,9 @@ const App = () => {
             section.addEventListener(
                 "touchstart",
                 event => {
-                    allowScroll.current && handleTouchStart(event);
+                    if (disableScroll.current) {
+                        allowScroll.current && handleTouchStart(event);
+                    }
                 },
                 {
                     passive: false
@@ -144,7 +158,9 @@ const App = () => {
             section.addEventListener(
                 "touchmove",
                 event => {
-                    allowScroll.current && handleTouchMove(event);
+                    if (disableScroll.current) {
+                        allowScroll.current && handleTouchMove(event);
+                    }
                 },
                 {
                     passive: false
@@ -156,7 +172,13 @@ const App = () => {
             section.addEventListener(
                 "touchend",
                 event => {
-                    allowScroll.current && handleTouchEnd(event);
+                    if (disableScroll.current) {
+                        allowScroll.current && handleTouchEnd(event);
+                        disableScroll.current = !disableScroll.current;
+                        setTimeout(() => {
+                            disableScroll.current = !disableScroll.current;
+                        }, 1000);
+                    }
                 },
                 {
                     passive: false
@@ -195,7 +217,7 @@ const App = () => {
             );
         };
         // eslint-disable-next-line
-    }, []);
+    },[]);
 
     // desktop smoothscroll
     useEffect(() => {
@@ -215,21 +237,24 @@ const App = () => {
             );
         });
 
-        smoothScroll(currentPage);
-
-        window.document.body.style.backgroundColor = currentTheme.background
-
         // unsubscribing on unmount
         return () => {
-            window.removeEventListener(
-                "wheel",
-                event => smoothScrollWheel(event),
-                {
-                    passive: false
-                }
-            );
+            sections.forEach(section => {
+                section.removeEventListener(
+                    "wheel",
+                    event => smoothScrollWheel(event),
+                    {
+                        passive: false
+                    }
+                );
+            });
         };
         // eslint-disable-next-line
+    },[]);
+
+    // smooth scroll
+    useEffect(() => {
+        smoothScroll(currentPage);
     }, [currentPage]);
 
     // Intersection Observer
@@ -287,6 +312,8 @@ const App = () => {
         sections.forEach(section => {
             observer.observe(section);
         });
+
+        window.document.body.style.backgroundColor = currentTheme.background;
 
         return () => {
             observer.disconnect();
