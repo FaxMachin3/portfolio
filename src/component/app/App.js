@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-// import { gsap } from "gsap";
 
 import ThemeContext from "../../common/ThemeContext";
 
@@ -20,7 +19,7 @@ const App = () => {
     let lastTime = useRef(0);
     let position = useRef(0);
     let scrolled = useRef(true);
-    const disableScroll = useRef(true);
+    const disableScroll = useRef(true); // scroll interval of 1000ms
     const allowScroll = useRef(true); // stops user to scroll when the menu is open
     const [currentPage, changeCurrentPage] = useState(".home");
     const [theme, changeTheme] = useState(true);
@@ -65,17 +64,14 @@ const App = () => {
     let currentTheme = theme === true ? themeStyle.dark : themeStyle.light;
 
     const smoothScrollWheel = event => {
-        // console.log(event.deltaY)
         const currentTime = new Date().getTime();
         clearTimeout(timer);
         timer = setTimeout(() => {
             prevDelta.current = 0;
-            console.log("end")
         }, 100);
         if (currentTime - lastTime.current < animationDuration.current) {
             return false;
         } else {
-            // console.log("prev: "+prevDelta.current);
             if (event.deltaY > 0 && event.deltaY > prevDelta.current) {
                 changeCurrentPage(
                     prevPage => (prevPage = pages[prevPage].next)
@@ -86,8 +82,6 @@ const App = () => {
                 );
             }
             prevDelta.current = event.deltaY;
-
-            console.log("next: "+prevDelta.current);
             lastTime.current = currentTime;
         }
     };
@@ -106,7 +100,7 @@ const App = () => {
             }
             setTimeout(() => {
                 scrolled.current = !scrolled.current;
-            }, 500);
+            }, 750);
         }
     };
 
@@ -135,6 +129,17 @@ const App = () => {
             }
         }
     };
+
+    useEffect(() => {
+        const locData = localStorage.getItem("current-theme")
+        if(locData){
+            changeTheme(JSON.parse(locData))
+        }
+    },[])
+
+    useEffect(() => {
+        localStorage.setItem("current-theme", JSON.stringify(theme))
+    });
 
     // mobile smoothscroll
     useEffect(() => {
@@ -217,7 +222,7 @@ const App = () => {
             );
         };
         // eslint-disable-next-line
-    },[]);
+    }, []);
 
     // desktop smoothscroll
     useEffect(() => {
@@ -250,7 +255,7 @@ const App = () => {
             });
         };
         // eslint-disable-next-line
-    },[]);
+    }, []);
 
     // smooth scroll
     useEffect(() => {
@@ -304,7 +309,6 @@ const App = () => {
                             bar.style.transform = `${scale}(0.5)`;
                         }
                     });
-                    // observer.unobserve(entry.target)
                 }
             }, options);
         });
