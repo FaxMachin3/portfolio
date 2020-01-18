@@ -130,6 +130,7 @@ const App = () => {
         }
     };
 
+    // preloader and local storage thingy
     useEffect(() => {
         const locData = JSON.parse(localStorage.getItem("current-theme"));
         if (!locData) {
@@ -145,9 +146,10 @@ const App = () => {
         // eslint-disable-next-line
     }, []);
 
+    // setting local storage
     useEffect(() => {
         localStorage.setItem("current-theme", JSON.stringify(theme));
-    });
+    },[theme]);
 
     // mobile smoothscroll
     useEffect(() => {
@@ -270,6 +272,7 @@ const App = () => {
         smoothScroll(currentPage);
     }, [currentPage]);
 
+    // body bg change on theme change
     useEffect(() => {
         window.document.body.style.backgroundColor = currentTheme.background;
     },[currentTheme])
