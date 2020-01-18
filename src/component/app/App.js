@@ -131,14 +131,22 @@ const App = () => {
     };
 
     useEffect(() => {
-        const locData = localStorage.getItem("current-theme")
-        if(locData){
-            changeTheme(JSON.parse(locData))
+        const locData = JSON.parse(localStorage.getItem("current-theme"));
+        if (!locData) {
+            changeTheme(locData);
         }
-    },[])
+        const loaderContainer = window.document.querySelector(".loader-container");
+        loaderContainer.classList.add("fade-loader")
+        const circleLoaders = window.document.querySelectorAll(".circle-loader");
+        const colorBG = locData ? "#A13251" : "#008F96"
+        circleLoaders.forEach( circle => {
+            circle.style.backgroundColor = colorBG
+        })
+        // eslint-disable-next-line
+    }, []);
 
     useEffect(() => {
-        localStorage.setItem("current-theme", JSON.stringify(theme))
+        localStorage.setItem("current-theme", JSON.stringify(theme));
     });
 
     // mobile smoothscroll
@@ -261,6 +269,10 @@ const App = () => {
     useEffect(() => {
         smoothScroll(currentPage);
     }, [currentPage]);
+
+    useEffect(() => {
+        window.document.body.style.backgroundColor = currentTheme.background;
+    },[currentTheme])
 
     // Intersection Observer
     useEffect(() => {

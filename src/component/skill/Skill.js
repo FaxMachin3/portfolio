@@ -88,7 +88,7 @@ const Skill = () => {
         const [leftArrow, rightArrow] = args;
 
         leftArrow.current.addEventListener("click", event => {
-            if (allowClick.current) {
+            if (allowClick.current && slideCountSkill.current > 0) {
                 allowClick.current = !allowClick.current;
 
                 slideCountSkill.current--;
@@ -109,7 +109,7 @@ const Skill = () => {
         });
 
         rightArrow.current.addEventListener("click", () => {
-            if (allowClick.current) {
+            if (allowClick.current && slideCountSkill.current < 3) {
                 allowClick.current = !allowClick.current;
 
                 slideCountSkill.current++;

@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
   <meta name="description" content="Web site created using create-react-app" />
+  <link rel="stylesheet" href="styles.css" />
   <link rel="apple-touch-icon" href="logo192.png" />
   <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -27,7 +28,16 @@
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div class="loader-container">
+    <div class="loader">
+      <div class="circle-loader circle1"></div>
+      <div class="circle-loader circle2"></div>
+      <div class="circle-loader circle3"></div>
+    </div>
+  </div>
   <div id="root"></div>
+
+  <script src="loader.js"></script>
 </body>
 
 </html>

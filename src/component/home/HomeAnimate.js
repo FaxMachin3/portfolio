@@ -19,7 +19,7 @@ const homeAnimate = args => {
     });
 
     timelineHome
-        .from(textHome.current, { y: 100, stagger: { each: 1 } })
+        .from(textHome.current, {delay:0.3, y: 100, stagger: { each: 1 } })
         .from(rightContainerHome.current, { y: -100 })
         .from(arrow.current, { y: -100 }, "-=1")
         .from(buttonHome.current, { y: 100 }, "-=1");

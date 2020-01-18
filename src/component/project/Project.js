@@ -62,7 +62,7 @@ const Project = () => {
         const prevPara = textSlidesProjectPara.current[prevCount];
         const prevLink = Array.from(linksProject.current[prevCount].childNodes);
 
-        const xTrans = large.current ? 10 : 0;
+        const xTrans = large.current ? 10 : 5;
 
         gsap.to(blockProject.current, {
             duration: 0.15,
@@ -171,7 +171,7 @@ const Project = () => {
         const [leftArrow, rightArrow] = args;
 
         leftArrow.current.addEventListener("click", () => {
-            if (allowClick.current) {
+            if (allowClick.current && slideCountProject.current > 0) {
                 allowClick.current = !allowClick.current;
 
                 slideCountProject.current--;
@@ -201,7 +201,7 @@ const Project = () => {
         });
 
         rightArrow.current.addEventListener("click", () => {
-            if (allowClick.current) {
+            if (allowClick.current && slideCountProject.current < 4) {
                 allowClick.current = !allowClick.current;
 
                 slideCountProject.current++;
