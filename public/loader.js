@@ -1,6 +1,12 @@
+// loader
 const loaderContainer = window.document.querySelector(".loader-container");
 const circleLoaders = window.document.querySelectorAll(".circle-loader");
+
+// favicon
+const favicon = window.document.querySelector("link[rel='icon']")
+
 let theme = JSON.parse(localStorage.getItem("current-theme"));
+
 
 if(theme === null){
     localStorage.setItem("current-theme", JSON.stringify(true))
@@ -19,4 +25,6 @@ if (theme) {
     circleLoaders.forEach( circle => {
         circle.style.borderColor = "#008F96"
     })
+    // setting favicon for light theme
+    favicon.href = "faviconLight.ico"
 }

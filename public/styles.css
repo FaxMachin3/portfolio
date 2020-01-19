@@ -27,6 +27,8 @@
     margin: 1em;
     border-radius: 50%;
     border: 2px solid;
+    transition: background-color 300ms ease-in-out;
+    will-change: background-color;
 }
 
 .circle1{

@@ -136,22 +136,32 @@ const App = () => {
         if (!locData) {
             changeTheme(locData);
         }
-        const loaderContainer = window.document.querySelector(".loader-container");
-        loaderContainer.classList.add("fade-loader")
-        const circleLoaders = window.document.querySelectorAll(".circle-loader");
-        const colorBG = locData ? "#A13251" : "#008F96"
-        setTimeout(() => {
-            circleLoaders.forEach( circle => {
-                circle.style.backgroundColor = colorBG
-            })
-        }, 300);
+        const loaderContainer = window.document.querySelector(
+            ".loader-container"
+        );
+        loaderContainer.classList.add("fade-loader");
+        const circleLoaders = window.document.querySelectorAll(
+            ".circle-loader"
+        );
+        const colorBG = locData ? "#A13251" : "#008F96";
+        circleLoaders.forEach(circle => {
+            setTimeout(() => {
+                circle.style.backgroundColor = colorBG;
+            }, 100);
+        });
         // eslint-disable-next-line
     }, []);
 
     // setting local storage
     useEffect(() => {
         localStorage.setItem("current-theme", JSON.stringify(theme));
-    },[theme]);
+
+        // change favicon on theme change
+        const favicon = window.document.querySelector("link[rel='icon']");
+        theme
+            ? (favicon.href = "faviconDark.ico")
+            : (favicon.href = "faviconLight.ico");
+    }, [theme]);
 
     // mobile smoothscroll
     useEffect(() => {
@@ -277,7 +287,7 @@ const App = () => {
     // body bg change on theme change
     useEffect(() => {
         window.document.body.style.backgroundColor = currentTheme.background;
-    },[currentTheme])
+    }, [currentTheme]);
 
     // Intersection Observer
     useEffect(() => {
