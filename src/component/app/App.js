@@ -140,9 +140,11 @@ const App = () => {
         loaderContainer.classList.add("fade-loader")
         const circleLoaders = window.document.querySelectorAll(".circle-loader");
         const colorBG = locData ? "#A13251" : "#008F96"
-        circleLoaders.forEach( circle => {
-            circle.style.backgroundColor = colorBG
-        })
+        setTimeout(() => {
+            circleLoaders.forEach( circle => {
+                circle.style.backgroundColor = colorBG
+            })
+        }, 300);
         // eslint-disable-next-line
     }, []);
 
