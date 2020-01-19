@@ -158,9 +158,16 @@ const App = () => {
 
         // change favicon on theme change
         const favicon = window.document.querySelector("link[rel='icon']");
-        theme
-            ? (favicon.href = "faviconDark.ico")
-            : (favicon.href = "faviconLight.ico");
+        const faviconApple = window.document.querySelector(
+            "link[rel='apple-touch-icon']"
+        );
+        if (theme) {
+            favicon.href = "faviconDark.ico";
+            faviconApple.href = "apple-touch-icon-dark.png";
+        } else {
+            favicon.href = "faviconLight.ico";
+            faviconApple.href = "apple-touch-icon-light.png";
+        }
     }, [theme]);
 
     // mobile smoothscroll

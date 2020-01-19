@@ -4,6 +4,7 @@ const circleLoaders = window.document.querySelectorAll(".circle-loader");
 
 // favicon
 const favicon = window.document.querySelector("link[rel='icon']")
+const faviconApple = window.document.querySelector("link[rel='apple-touch-icon']")
 
 let theme = JSON.parse(localStorage.getItem("current-theme"));
 
@@ -27,4 +28,5 @@ if (theme) {
     })
     // setting favicon for light theme
     favicon.href = "faviconLight.ico"
+    faviconApple.href = "apple-touch-icon-light.png"
 }
