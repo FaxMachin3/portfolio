@@ -28,5 +28,5 @@ if (theme) {
     })
     // setting favicon for light theme
     favicon.href = "faviconLight.ico"
-    faviconApple.href = "apple-touch-icon-light.png"
+    faviconApple.href = "appleTouchIconLight.png"
 }

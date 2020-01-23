@@ -189,10 +189,10 @@ const App = () => {
         );
         if (theme) {
             favicon.href = "faviconDark.ico";
-            faviconApple.href = "apple-touch-icon-dark.png";
+            faviconApple.href = "appleTouchIconDark.png";
         } else {
             favicon.href = "faviconLight.ico";
-            faviconApple.href = "apple-touch-icon-light.png";
+            faviconApple.href = "appleTouchIconLight.png";
         }
     }, [theme]);
 

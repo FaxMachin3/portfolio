@@ -5,7 +5,7 @@ import "./ProjectStyle.scss";
 
 import ProjectSVGCode from "./ProjectSVGCode";
 import ProjectSVGWebsite from "./ProjectSVGWebsite";
-import DarkWeather from "../../assests/images/ProjectDarkWeather.png";
+import DarkWeather from "../../assests/images/projectDarkWeather.png";
 import projectAnimate from "./ProjectAnimate";
 import Arrow from "../../common/Arrow";
 
