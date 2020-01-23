@@ -19,12 +19,14 @@ const App = () => {
     let lastTime = useRef(0);
     let position = useRef(0);
     let scrolled = useRef(true);
+    let hashTimer = useRef(null);
+    let hashCheck = useRef(true);
     const disableScroll = useRef(true); // scroll interval of 1000ms
-    const allowScroll = useRef(true); // stops user to scroll when the menu is open
+    const allowScroll = useRef(true); // stops user to scroll when the ham-menu is open
     const [currentPage, changeCurrentPage] = useState(".home");
     const [theme, changeTheme] = useState(true);
     const prevDelta = useRef(0);
-    let timer;
+    let timer; // on scroll (wheel)
     const pages = {
         ".home": {
             prev: ".home",
@@ -152,7 +154,31 @@ const App = () => {
         // eslint-disable-next-line
     }, []);
 
-    // setting local storage
+    // hashchange
+    useEffect(() => {
+        window.addEventListener("hashchange", () => {
+            const getHash = window.location.hash.split("#")[1];
+            Object.keys(pages).forEach(page => {
+                if (`.${getHash}` === page && hashCheck.current) {
+                    changeCurrentPage(`.${getHash}`);
+                }
+            });
+        });
+        // eslint-disable-next-line
+    }, []);
+
+    // setting local storage for currentPage
+    useEffect(() => {
+        const getCurrentPage = JSON.parse(localStorage.getItem("current-page"));
+        if (getCurrentPage !== null) {
+            changeCurrentPage(getCurrentPage);
+        }
+
+        localStorage.setItem("current-page", JSON.stringify(currentPage));
+        // eslint-disable-next-line
+    }, []);
+
+    // setting local storage for currentTheme
     useEffect(() => {
         localStorage.setItem("current-theme", JSON.stringify(theme));
 
@@ -207,8 +233,13 @@ const App = () => {
                 "touchend",
                 event => {
                     if (disableScroll.current) {
+                        hashCheck.current = false;
+                        clearTimeout(hashTimer.current);
                         allowScroll.current && handleTouchEnd(event);
                         disableScroll.current = !disableScroll.current;
+                        hashTimer.current = setTimeout(() => {
+                            hashTimer.current = true;
+                        }, 1000);
                         setTimeout(() => {
                             disableScroll.current = !disableScroll.current;
                         }, 1000);
@@ -257,14 +288,26 @@ const App = () => {
     useEffect(() => {
         const sections = window.document.querySelectorAll("section");
 
-        window.document.addEventListener("keydown", event =>
-            smoothScrollArrow(event)
-        );
+        window.document.addEventListener("keydown", event => {
+            hashCheck.current = false;
+            clearTimeout(hashTimer.current);
+            smoothScrollArrow(event);
+            hashTimer.current = setTimeout(() => {
+                hashCheck.current = true;
+            }, 1000);
+        });
 
         sections.forEach(section => {
             section.addEventListener(
                 "wheel",
-                event => smoothScrollWheel(event),
+                event => {
+                    hashCheck.current = false;
+                    clearTimeout(hashTimer.current);
+                    smoothScrollWheel(event);
+                    hashTimer.current = setTimeout(() => {
+                        hashCheck.current = true;
+                    }, 1000);
+                },
                 {
                     passive: false
                 }
@@ -289,6 +332,9 @@ const App = () => {
     // smooth scroll
     useEffect(() => {
         smoothScroll(currentPage);
+
+        // setting current-page on local storage
+        localStorage.setItem("current-page", JSON.stringify(currentPage));
     }, [currentPage]);
 
     // body bg change on theme change
@@ -365,13 +411,14 @@ const App = () => {
                 currentPage={currentPage}
                 changePage={changeCurrentPage}
                 scroll={allowScroll}
+                hashCheck={hashCheck}
             />
             <Indicators />
-            <Home />
-            <About />
-            <Skill />
-            <Project />
-            <Contact />
+            <Home changePage={changeCurrentPage} />
+            <About changePage={changeCurrentPage} />
+            <Skill changePage={changeCurrentPage} />
+            <Project changePage={changeCurrentPage} />
+            <Contact changePage={changeCurrentPage} />
         </ThemeContext.Provider>
     );
 };

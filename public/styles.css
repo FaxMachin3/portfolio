@@ -32,15 +32,15 @@
 }
 
 .circle1{
-    animation: animateCircle1 500ms ease-in infinite alternate;
+    animation: animateCircle 500ms ease-in-out infinite alternate;
 }
 
 .circle2{
-    animation: animateCircle2 500ms ease-in 100ms infinite alternate;
+    animation: animateCircle 500ms ease-in-out 100ms infinite alternate;
 }
 
 .circle3{
-    animation: animateCircle2 500ms ease-in 200ms infinite alternate;
+    animation: animateCircle 500ms ease-in-out 200ms infinite alternate;
 }
 
 .fade-loader{
@@ -49,29 +49,7 @@
     transform: translateY(-100%);
 }
 
-@keyframes animateCircle1{
-    from{
-        transform: translateY(0);
-        opacity: 0;
-    }
-    to{
-        transform: translateY(-1em);
-        opacity: 1;
-    }
-}
-
-@keyframes animateCircle2{
-    from{
-        transform: translateY(0);
-        opacity: 0;
-    }
-    to{
-        transform: translateY(-1em);
-        opacity: 1;
-    }
-}
-
-@keyframes animateCircle3{
+@keyframes animateCircle{
     from{
         transform: translateY(0);
         opacity: 0;

@@ -15,9 +15,9 @@
         position: relative;
         font-size: 2rem;
 
-        h1{
+        h1 {
             font-weight: 500;
-            letter-spacing: .03rem;
+            letter-spacing: 0.03rem;
         }
 
         .line-about {
@@ -32,12 +32,49 @@
 
     .left-container-about {
         position: relative;
+        height: 13em;
+        width: 13em;
+        border: 3px solid;
+        border-radius: 50%;
+
+        .placeholder-about {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+            top: 0;
+            right: 0;
+
+            .loader-about {
+                height: 1em;
+                width: 1em;
+                margin: 0.25em;
+                border: 1px solid;
+                border-radius: 50%;
+                animation: animateCircle1 500ms ease-in infinite alternate;
+            }
+
+            .circle2{
+                animation-delay: 200ms;
+            }
+
+            .circle3{
+                animation-delay: 400ms;
+            }
+        }
 
         .img-about {
-            height: 15em;
-            width: 15em;
-            border: 3px solid;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            right: 0;
             border-radius: 50%;
+            opacity: 0;
+            transition: opacity 500ms ease-in-out 300ms;
         }
     }
 
@@ -50,13 +87,13 @@
             font-size: 1.3rem;
             padding-bottom: 3vh;
             word-spacing: 0.25rem;
-            letter-spacing: .1rem;
+            letter-spacing: 0.1rem;
         }
 
         & p:nth-child(2) {
             font-size: 1rem;
             word-spacing: 0.25rem;
-            letter-spacing: .025rem;
+            letter-spacing: 0.025rem;
         }
 
         .block-about {
@@ -71,6 +108,17 @@
     }
 }
 
+@keyframes animateCircle1{
+    from{
+        transform: translateY(0);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(-0.1em);
+        opacity: 1;
+    }
+}
+
 @media all and (min-width: 769px) {
     .container-about {
         flex-direction: row;
@@ -81,11 +129,12 @@
 
         .left-container-about {
             padding-left: 3vw;
-            width: 50;
+            height: 15vw;
+            width: 15vw;
 
             .img-about {
-                height: 16vw;
-                width: 16vw;
+                height: 100%;
+                width: 100%;
             }
         }
 

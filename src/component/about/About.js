@@ -9,10 +9,12 @@ const About = () => {
     const containerAbout = useRef(null);
     const headingAbout = useRef(null);
     const lineAbout = useRef(null);
+    const imgAboutContainer = useRef(null);
     const imgAbout = useRef(null);
     const blockAbout = useRef(null);
     const rightContainerAbout = useRef(null);
     const textAbout = useRef([]);
+    const circleAbout = useRef([]);
 
     const { currentTheme } = useContext(ThemeContext);
     const { background, primary, secondary } = currentTheme;
@@ -39,15 +41,32 @@ const About = () => {
     };
 
     useEffect(() => {
+        const currentTheme = JSON.parse(localStorage.getItem("current-theme"));
+        const circles = window.document.querySelectorAll(".loader-about");
+
         aboutAnimate([
             containerAbout,
             headingAbout,
             lineAbout,
+            imgAboutContainer,
             imgAbout,
             textAbout,
             blockAbout,
             rightContainerAbout
         ]);
+
+        // lazy loading
+        imgAbout.current.addEventListener("load", () => {
+            currentTheme
+                ? circles.forEach(circle => {
+                      circle.style.backgroundColor = "#A13251";
+                  })
+                : circles.forEach(circle => {
+                      circle.style.backgroundColor = "#008F96";
+                  });
+            imgAbout.current.style.opacity = "1";
+        });
+        // eslint-disable-next-line
     }, []);
 
     return (
@@ -68,14 +87,34 @@ const About = () => {
                     ></span>
                 </div>
 
-                <div className="left-container-about">
-                    <div className="placeholder-about"></div>
+                <div
+                    ref={imgAboutContainer}
+                    style={borderColor}
+                    className="left-container-about"
+                >
+                    <div className="placeholder-about">
+                        <div
+                            ref={el => circleAbout.current.push(el)}
+                            style={borderColor}
+                            className="circle1 loader-about"
+                        ></div>
+                        <div
+                            ref={el => circleAbout.current.push(el)}
+                            style={borderColor}
+                            className="circle2 loader-about"
+                        ></div>
+                        <div
+                            ref={el => circleAbout.current.push(el)}
+                            style={borderColor}
+                            className="circle3 loader-about"
+                        ></div>
+                    </div>
                     <img
                         ref={imgAbout}
                         className="img-about"
-                        src={avatar}
+                        src=""
                         alt="avatar"
-                        style={borderColor}
+                        data-src={avatar}
                     ></img>
                 </div>
 

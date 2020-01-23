@@ -52,15 +52,15 @@ const Navbar = props => {
         const links = window.document.querySelectorAll(".link");
 
         links.forEach(link => {
-            const activeLink = link.getAttribute("class").split(' ')[2]
-            link.style.color = primary
-            if(activeLink === "active"){
-                window.matchMedia("(min-width: 769px)").matches ?
-                    link.style.color = secondary :
-                    link.style.color = primary
+            const activeLink = link.getAttribute("class").split(" ")[2];
+            link.style.color = primary;
+            if (activeLink === "active") {
+                window.matchMedia("(min-width: 769px)").matches
+                    ? (link.style.color = secondary)
+                    : (link.style.color = primary);
             }
-        })
-    })
+        });
+    });
 
     useEffect(() => {
         const hamburger = window.document.querySelector(".hamburger");
@@ -86,7 +86,8 @@ const Navbar = props => {
                 li.classList.toggle("animate-hamburger");
             });
         });
-    }, [props.scroll]);
+        // eslint-disable-next-line
+    }, []);
 
     // smooth scroll
     useEffect(() => {
@@ -100,8 +101,12 @@ const Navbar = props => {
 
         links.forEach(link => {
             link.addEventListener("click", e => {
+                props.hashCheck.current = false;
                 smoothScrollNav(e, props);
                 removeClass();
+                setTimeout(() => {
+                    props.hashCheck.current = true;
+                }, 1000);
             });
         });
 
@@ -125,9 +130,9 @@ const Navbar = props => {
             link.style.color = primary;
             if (link.getAttribute("href") === intersectingSection) {
                 link.classList.add("active");
-                window.matchMedia("(min-width: 769px)").matches ?
-                    link.style.color = secondary :
-                    link.style.color = primary
+                window.matchMedia("(min-width: 769px)").matches
+                    ? (link.style.color = secondary)
+                    : (link.style.color = primary);
             }
         });
         // eslint-disable-next-line

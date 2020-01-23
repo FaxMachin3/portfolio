@@ -5,11 +5,14 @@ const aboutAnimate = args => {
         containerAbout,
         headingAbout,
         lineAbout,
+        imgAboutContainer,
         imgAbout,
         textAbout,
         blockAbout,
         rightContainerAbout
     ] = args;
+
+    let lazyLoaded = false;
 
     const xTrans = rightContainerAbout.current.getBoundingClientRect().width;
 
@@ -24,7 +27,7 @@ const aboutAnimate = args => {
 
     window.matchMedia("(min-width: 769px)").matches
         ? timelineAbout
-              .from(imgAbout.current, { scale: 0 })
+              .from(imgAboutContainer.current, { scale: 0 })
               .from(
                   textAbout.current,
                   { y: 100, stagger: { each: 0.1 } },
@@ -34,7 +37,7 @@ const aboutAnimate = args => {
         : timelineAbout
               .from(lineAbout.current, { x: 100 })
               .from(headingAbout.current, {}, "-=1")
-              .from(imgAbout.current, { scale: 0 }, "-=1")
+              .from(imgAboutContainer.current, { scale: 0 }, "-=1")
               .from(
                   textAbout.current,
                   { y: 100, stagger: { each: 0.1 } },
@@ -46,6 +49,10 @@ const aboutAnimate = args => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 timelineAbout.play();
+                if (!lazyLoaded) {
+                    imgAbout.current.src = imgAbout.current.dataset.src;
+                    lazyLoaded = !lazyLoaded;
+                }
                 // observerAbout.unobserve(entry.target)
             } else {
                 timelineAbout.restart();
