@@ -27,6 +27,6 @@ if (theme) {
         circle.style.borderColor = "#008F96"
     })
     // setting favicon for light theme
-    favicon.href = "faviconLight.ico"
-    faviconApple.href = "appleTouchIconLight.png"
+    favicon.href = "%PUBLIC_URL%/faviconLight.ico"
+    faviconApple.href = "%PUBLIC_URL%/appleTouchIconLight.png"
 }

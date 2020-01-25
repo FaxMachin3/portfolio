@@ -3,13 +3,20 @@ import { gsap, Power2 } from "gsap";
 import ThemeContext from "../../common/ThemeContext";
 import "./ProjectStyle.scss";
 
+import Loader from "../loader/Loader";
+
 import ProjectSVGCode from "./ProjectSVGCode";
 import ProjectSVGWebsite from "./ProjectSVGWebsite";
-import DarkWeather from "../../assests/images/projectDarkWeather.png";
-import projectAnimate from "./ProjectAnimate";
 import Arrow from "../../common/Arrow";
+import DarkWeather from "../../assests/images/darkWeather.jpg";
+import ECommmerce from "../../assests/images/eCommerce.jpg";
+import MyPortfolio from "../../assests/images/myPortfolio.jpg";
+import BookMyEvent from "../../assests/images/bookMyEvent.jpg";
+import APS from "../../assests/images/APS.jpg";
 
-const Project = () => {
+import projectAnimate from "./ProjectAnimate";
+
+const Project = props => {
     const { currentTheme } = useContext(ThemeContext);
     const { background, primary, secondary } = currentTheme;
 
@@ -35,6 +42,7 @@ const Project = () => {
     const textSlidesProjectH2 = useRef([]);
     const textSlidesProjectPara = useRef([]);
     const imageSlidesProject = useRef([]);
+    const imageProject = useRef([]);
 
     const theme = {
         background: background,
@@ -78,12 +86,12 @@ const Project = () => {
 
         large.current
             ? timelineText
-                  .to(prevH2, { duration: .5, y: -100, opacity: 0 })
-                  .to(prevPara, { duration: .5, y: -100, opacity: 0 }, "-=0.4")
+                  .to(prevH2, { duration: 0.5, y: -100, opacity: 0 })
+                  .to(prevPara, { duration: 0.5, y: -100, opacity: 0 }, "-=0.4")
                   .to(
                       prevLink,
                       {
-                          duration: .5,
+                          duration: 0.5,
                           y: -100,
                           opacity: 0,
                           stagger: {
@@ -231,6 +239,35 @@ const Project = () => {
         });
     };
 
+    // lazy loading
+    useEffect(() => {
+        const imageProject = window.document.querySelectorAll(".image-project");
+
+        imageProject.forEach(image => {
+            image.addEventListener("load", () => {
+                const loaderCircles = image.previousElementSibling.childNodes;
+
+                props.theme
+                    ? loaderCircles.forEach(circle => {
+                          setTimeout(() => {
+                              circle.style.backgroundColor = "#A13251";
+                          }, 75);
+                      })
+                    : loaderCircles.forEach(circle => {
+                          setTimeout(() => {
+                              circle.style.backgroundColor = "#008F96";
+                          }, 75);
+                      });
+
+                image.style.opacity = "1";
+
+                setTimeout(() => {
+                    image.previousElementSibling.style.display = "none";
+                }, 500);
+            });
+        });
+    }, [props.theme]);
+
     useEffect(() => {
         changeSlideProject([leftArrowProject, rightArrowProject]);
 
@@ -252,6 +289,30 @@ const Project = () => {
             rightContainerProject
         ]);
         // eslint-disable-next-line
+    }, []);
+
+    // intersection observer for lazy loading
+    useEffect(() => {
+        const imageProject = window.document.querySelectorAll(".image-project");
+
+        const options = {
+            root: leftContainerProject.current
+        };
+
+        const lazyObserver = new IntersectionObserver(
+            (entries, lazyObserver) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.src = entry.target.dataset.src;
+                        lazyObserver.unobserve(entry.target);
+                    }
+                }, options);
+            }
+        );
+
+        imageProject.forEach(slide => {
+            lazyObserver.observe(slide);
+        });
     }, []);
 
     return (
@@ -299,10 +360,13 @@ const Project = () => {
                             ref={el => imageSlidesProject.current.push(el)}
                             className="image-container-project"
                         >
+                            <Loader image={0} />
                             <img
+                                ref={el => imageProject.current.push(el)}
                                 className="image-project"
-                                src={DarkWeather}
-                                alt="dark weather"
+                                src=""
+                                alt="e-commerce"
+                                data-src={ECommmerce}
                             />
                         </div>
 
@@ -310,10 +374,13 @@ const Project = () => {
                             ref={el => imageSlidesProject.current.push(el)}
                             className="image-container-project"
                         >
+                            <Loader image={1} />
                             <img
-                                className="image-project"
-                                src={DarkWeather}
-                                alt="dark weather"
+                                ref={el => imageProject.current.push(el)}
+                                className="image-project mobile-image-project"
+                                src=""
+                                alt="arizona public service"
+                                data-src={APS}
                             />
                         </div>
 
@@ -321,10 +388,13 @@ const Project = () => {
                             ref={el => imageSlidesProject.current.push(el)}
                             className="image-container-project"
                         >
+                            <Loader image={2} />
                             <img
-                                className="image-project"
-                                src={DarkWeather}
-                                alt="dark weather"
+                                ref={el => imageProject.current.push(el)}
+                                className="image-project mobile-image-project"
+                                src=""
+                                alt="portfolio"
+                                data-src={MyPortfolio}
                             />
                         </div>
 
@@ -332,10 +402,13 @@ const Project = () => {
                             ref={el => imageSlidesProject.current.push(el)}
                             className="image-container-project"
                         >
+                            <Loader image={3} />
                             <img
+                                ref={el => imageProject.current.push(el)}
                                 className="image-project"
-                                src={DarkWeather}
+                                src=""
                                 alt="dark weather"
+                                data-src={DarkWeather}
                             />
                         </div>
 
@@ -343,10 +416,13 @@ const Project = () => {
                             ref={el => imageSlidesProject.current.push(el)}
                             className="image-container-project"
                         >
+                            <Loader image={4} />
                             <img
+                                ref={el => imageProject.current.push(el)}
                                 className="image-project"
-                                src={DarkWeather}
-                                alt="dark weather"
+                                src=""
+                                alt="book my event"
+                                data-src={BookMyEvent}
                             />
                         </div>
                     </div>
@@ -367,7 +443,7 @@ const Project = () => {
                             <h2
                                 ref={el => textSlidesProjectH2.current.push(el)}
                             >
-                                Dark Weather:
+                                E-commerce:
                             </h2>
 
                             <p
@@ -375,9 +451,8 @@ const Project = () => {
                                     textSlidesProjectPara.current.push(el)
                                 }
                             >
-                                A small dark themed weather app built using
-                                Python's tkinter Library. Just enter a city or a
-                                country name to get the weather report.
+                                Responsive, full stack, e-commerce web app built
+                                using MERN stack with love.
                             </p>
 
                             <div
@@ -386,6 +461,82 @@ const Project = () => {
                             >
                                 <div>
                                     <ProjectSVGCode />
+                                </div>
+                                <div>
+                                    <ProjectSVGWebsite />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            ref={el => textSlidesProject.current.push(el)}
+                            className="text-slide-project"
+                        >
+                            <h2
+                                ref={el => textSlidesProjectH2.current.push(el)}
+                            >
+                                Arizona Public Service:
+                            </h2>
+
+                            <p
+                                ref={el =>
+                                    textSlidesProjectPara.current.push(el)
+                                }
+                            >
+                                Cross-platform mobile app built using Xamarin
+                                native. I worked on Xamarin iOS fornt-end and
+                                integration; and integration of Microsoft's App
+                                Center.
+                            </p>
+
+                            <div
+                                ref={el => linksProject.current.push(el)}
+                                className="links-project"
+                            >
+                                <div>
+                                    <a
+                                        href="https://play.google.com/store/apps/details?id=com.aps.apsconsumerapp"
+                                        target="__blank"
+                                    >
+                                        <ProjectSVGWebsite />
+                                    </a>
+                                </div>
+                                <div className="link-hide-project">
+                                    <ProjectSVGCode />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            ref={el => textSlidesProject.current.push(el)}
+                            className="text-slide-project"
+                        >
+                            <h2
+                                ref={el => textSlidesProjectH2.current.push(el)}
+                            >
+                                My Portfolio:
+                            </h2>
+
+                            <p
+                                ref={el =>
+                                    textSlidesProjectPara.current.push(el)
+                                }
+                            >
+                                I made this to improve and practice my front-end
+                                skills. This was made using React.js (Hooks).
+                            </p>
+
+                            <div
+                                ref={el => linksProject.current.push(el)}
+                                className="links-project"
+                            >
+                                <div>
+                                    <a
+                                        href="https://github.com/FaxMachin3/portfolio"
+                                        target="__blank"
+                                    >
+                                        <ProjectSVGCode />
+                                    </a>
                                 </div>
                                 <div>
                                     <ProjectSVGWebsite />
@@ -418,9 +569,14 @@ const Project = () => {
                                 className="links-project"
                             >
                                 <div>
-                                    <ProjectSVGCode />
+                                    <a
+                                        href="https://github.com/FaxMachin3/weather"
+                                        target="__blank"
+                                    >
+                                        <ProjectSVGCode />
+                                    </a>
                                 </div>
-                                <div>
+                                <div className="link-hide-project">
                                     <ProjectSVGWebsite />
                                 </div>
                             </div>
@@ -433,7 +589,7 @@ const Project = () => {
                             <h2
                                 ref={el => textSlidesProjectH2.current.push(el)}
                             >
-                                Dark Weather:
+                                Book My Event:
                             </h2>
 
                             <p
@@ -441,9 +597,9 @@ const Project = () => {
                                     textSlidesProjectPara.current.push(el)
                                 }
                             >
-                                A small dark themed weather app built using
-                                Python's tkinter Library. Just enter a city or a
-                                country name to get the weather report.
+                                This is pure, non-responsive-spaghetti code as
+                                this was the first college project I just made
+                                to have a taste of web development.
                             </p>
 
                             <div
@@ -451,75 +607,14 @@ const Project = () => {
                                 className="links-project"
                             >
                                 <div>
-                                    <ProjectSVGCode />
+                                    <a
+                                        href="https://github.com/FaxMachin3/BookMyEvent"
+                                        target="__blank"
+                                    >
+                                        <ProjectSVGCode />
+                                    </a>
                                 </div>
-                                <div>
-                                    <ProjectSVGWebsite />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div
-                            ref={el => textSlidesProject.current.push(el)}
-                            className="text-slide-project"
-                        >
-                            <h2
-                                ref={el => textSlidesProjectH2.current.push(el)}
-                            >
-                                Dark Weather:
-                            </h2>
-
-                            <p
-                                ref={el =>
-                                    textSlidesProjectPara.current.push(el)
-                                }
-                            >
-                                A small dark themed weather app built using
-                                Python's tkinter Library. Just enter a city or a
-                                country name to get the weather report.
-                            </p>
-
-                            <div
-                                ref={el => linksProject.current.push(el)}
-                                className="links-project"
-                            >
-                                <div>
-                                    <ProjectSVGCode />
-                                </div>
-                                <div>
-                                    <ProjectSVGWebsite />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div
-                            ref={el => textSlidesProject.current.push(el)}
-                            className="text-slide-project"
-                        >
-                            <h2
-                                ref={el => textSlidesProjectH2.current.push(el)}
-                            >
-                                Dark Weather:
-                            </h2>
-
-                            <p
-                                ref={el =>
-                                    textSlidesProjectPara.current.push(el)
-                                }
-                            >
-                                A small dark themed weather app built using
-                                Python's tkinter Library. Just enter a city or a
-                                country name to get the weather report.
-                            </p>
-
-                            <div
-                                ref={el => linksProject.current.push(el)}
-                                className="links-project"
-                            >
-                                <div>
-                                    <ProjectSVGCode />
-                                </div>
-                                <div>
+                                <div className="link-hide-project">
                                     <ProjectSVGWebsite />
                                 </div>
                             </div>

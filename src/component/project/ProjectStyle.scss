@@ -17,7 +17,7 @@
 
         h1 {
             font-weight: 500;
-            letter-spacing: .03rem;
+            letter-spacing: 0.03rem;
         }
 
         .line-project {
@@ -34,7 +34,7 @@
         position: relative;
         height: 30%;
         width: 315px;
-        overflow: hidden;
+        overflow-x: hidden;
 
         .left-arrow-container-project,
         .right-arrow-container-project {
@@ -52,7 +52,7 @@
                 top: 50%;
                 transform: translateY(-50%);
 
-                &:hover{
+                &:hover {
                     opacity: 0.8;
                 }
             }
@@ -62,7 +62,7 @@
             top: 0;
             left: -1.5em;
 
-            &:hover .left-arrow-project{
+            &:hover .left-arrow-project {
                 opacity: 0.8;
             }
 
@@ -76,7 +76,7 @@
             top: 0;
             right: -1.5em;
 
-            &:hover .right-arrow-project{
+            &:hover .right-arrow-project {
                 opacity: 0.8;
             }
 
@@ -98,6 +98,16 @@
                 width: 315px;
                 transition: opacity 500ms ease-out;
 
+                .loader-project{
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    height: 100%;
+                    width: 100%;
+                    background-color: teal;
+                }
+
                 .image-project {
                     position: absolute;
                     top: 50%;
@@ -105,6 +115,13 @@
                     transform: translate(-50%, -50%);
                     height: 15em;
                     width: 23em;
+                    opacity: 0;
+                    transition: opacity 500ms ease-in-out 300ms;
+                }
+
+                .mobile-image-project {
+                    width: 30%;
+                    height: 100%;
                 }
             }
         }
@@ -116,13 +133,13 @@
         width: 315px;
         overflow: hidden;
 
-        .text-slider-project{
+        .text-slider-project {
             height: 100%;
             width: 315 * 5px;
             display: flex;
             transition: transform 500ms ease-out;
 
-            .text-slide-project{
+            .text-slide-project {
                 height: 100%;
                 width: 315px;
                 padding: 2em;
@@ -130,29 +147,34 @@
                 flex-direction: column;
                 justify-content: space-between;
 
-                h2{
+                h2 {
                     font-size: 1.3rem;
                     word-spacing: 0.25rem;
-                    letter-spacing: .05rem;
+                    letter-spacing: 0.15rem;
                 }
 
-                p{
+                p {
                     font-size: 1rem;
                     word-spacing: 0.25rem;
-                    letter-spacing: .05rem;
+                    letter-spacing: 0.05rem;
                 }
 
-                .links-project{
+                .links-project {
                     display: flex;
 
+                    .link-hide-project {
+                        opacity: 0 !important;
+                        pointer-events: none;
+                    }
+
                     .svg-website-project,
-                    .svg-code-project{
+                    .svg-code-project {
                         cursor: pointer;
                         margin-right: 9em;
                         height: 2.5em;
                         width: 2.5em;
 
-                        &:hover{
+                        &:hover {
                             opacity: 0.8;
                         }
                     }
@@ -160,7 +182,7 @@
             }
         }
 
-        .block-project{
+        .block-project {
             z-index: -5;
             position: absolute;
             top: 0;
@@ -180,71 +202,75 @@
             display: none;
         }
 
-        .left-container-project{
+        .left-container-project {
             height: 60%;
             width: 40%;
 
-            .left-arrow-container-project{
+            .left-arrow-container-project {
                 left: -1em;
             }
 
-            .right-arrow-container-project{
+            .right-arrow-container-project {
                 right: -1em;
             }
 
-            .image-slider-project{
+            .image-slider-project {
                 width: 100 * 5%;
 
-                .image-container-project{
+                .image-container-project {
                     width: 100%;
 
-                    .image-project{
+                    .image-project {
                         width: 25vw;
                         height: 15vw;
+                    }
+
+                    .mobile-image-project {
+                        width: 40%;
+                        height: 100%;
                     }
                 }
             }
         }
 
-        .right-container-project{
+        .right-container-project {
             height: 60%;
             width: 50%;
 
-            .text-slider-project{
+            .text-slider-project {
                 height: 100 * 5%;
                 width: 100%;
                 flex-direction: column;
-                transform: translateY(-20*0%);
+                transform: translateY(-20 * 0%);
                 transition-duration: 0s;
                 transition-delay: 1s;
 
-                .text-slide-project{
+                .text-slide-project {
                     height: 100%;
                     width: 100%;
                     justify-content: space-around;
 
-                    h2{
+                    h2 {
                         font-size: 1.5vw;
                     }
 
-                    p{
+                    p {
                         width: 90%;
                         font-size: 1vw;
                         letter-spacing: 0.2vw;
                         word-spacing: 0.2vw;
                     }
 
-                    .links-project{
-
+                    .links-project {
                         .svg-website-project,
-                        .svg-code-project{
+                        .svg-code-project {
                             height: 3vw;
                             width: 3vw;
                         }
                     }
                 }
             }
-            .block-project{
+            .block-project {
                 border-radius: 10px;
             }
         }

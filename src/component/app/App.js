@@ -149,8 +149,12 @@ const App = () => {
         circleLoaders.forEach(circle => {
             setTimeout(() => {
                 circle.style.backgroundColor = colorBG;
-            }, 100);
+            }, 75);
         });
+
+        setTimeout(() => {
+            loaderContainer.style.display = "none"
+        },2000)
         // eslint-disable-next-line
     }, []);
 
@@ -187,12 +191,15 @@ const App = () => {
         const faviconApple = window.document.querySelector(
             "link[rel='apple-touch-icon']"
         );
+
         if (theme) {
-            favicon.href = "faviconDark.ico";
-            faviconApple.href = "appleTouchIconDark.png";
+            favicon.href = process.env.PUBLIC_URL + "/faviconDark.ico";
+            faviconApple.href =
+                process.env.PUBLIC_URL + "/appleTouchIconDark.png";
         } else {
-            favicon.href = "faviconLight.ico";
-            faviconApple.href = "appleTouchIconLight.png";
+            favicon.href = process.env.PUBLIC_URL + "/faviconLight.ico";
+            faviconApple.href =
+                process.env.PUBLIC_URL + "/appleTouchIconLight.png";
         }
     }, [theme]);
 
@@ -414,11 +421,11 @@ const App = () => {
                 hashCheck={hashCheck}
             />
             <Indicators />
-            <Home changePage={changeCurrentPage} />
-            <About changePage={changeCurrentPage} />
-            <Skill changePage={changeCurrentPage} />
-            <Project changePage={changeCurrentPage} />
-            <Contact changePage={changeCurrentPage} />
+            <Home />
+            <About theme={theme} />
+            <Skill />
+            <Project theme={theme} />
+            <Contact />
         </ThemeContext.Provider>
     );
 };

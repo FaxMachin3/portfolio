@@ -1,0 +1,39 @@
+.mini-loader-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .mini-loader {
+        height: 1em;
+        width: 1em;
+        margin: 0.25em;
+        border: 1px solid;
+        border-radius: 50%;
+        animation: animateCircle1 500ms ease-in infinite alternate;
+    }
+
+    .mini-circle2 {
+        animation-delay: 200ms;
+    }
+
+    .mini-circle3 {
+        animation-delay: 400ms;
+    }
+}
+
+@keyframes animateCircle1 {
+    from {
+        transform: translateY(0);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(-0.2em);
+        opacity: 1;
+    }
+}

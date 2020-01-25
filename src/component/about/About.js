@@ -2,10 +2,12 @@ import React, { useContext, useEffect, useRef } from "react";
 import ThemeContext from "../../common/ThemeContext";
 import "./AboutStyle.scss";
 
+import Loader from "../loader/Loader";
+
 import aboutAnimate from "./AboutAnimate";
 import avatar from "../../assests/images/avatar.jpg";
 
-const About = () => {
+const About = props => {
     const containerAbout = useRef(null);
     const headingAbout = useRef(null);
     const lineAbout = useRef(null);
@@ -14,7 +16,6 @@ const About = () => {
     const blockAbout = useRef(null);
     const rightContainerAbout = useRef(null);
     const textAbout = useRef([]);
-    const circleAbout = useRef([]);
 
     const { currentTheme } = useContext(ThemeContext);
     const { background, primary, secondary } = currentTheme;
@@ -41,9 +42,6 @@ const About = () => {
     };
 
     useEffect(() => {
-        const currentTheme = JSON.parse(localStorage.getItem("current-theme"));
-        const circles = window.document.querySelectorAll(".loader-about");
-
         aboutAnimate([
             containerAbout,
             headingAbout,
@@ -54,20 +52,33 @@ const About = () => {
             blockAbout,
             rightContainerAbout
         ]);
-
-        // lazy loading
-        imgAbout.current.addEventListener("load", () => {
-            currentTheme
-                ? circles.forEach(circle => {
-                      circle.style.backgroundColor = "#A13251";
-                  })
-                : circles.forEach(circle => {
-                      circle.style.backgroundColor = "#008F96";
-                  });
-            imgAbout.current.style.opacity = "1";
-        });
-        // eslint-disable-next-line
     }, []);
+
+    // lazy loading
+    useEffect(() => {
+        imgAbout.current.addEventListener("load", () => {
+            const loaderCircles =
+                imgAbout.current.previousElementSibling.childNodes;
+
+            props.theme
+                ? loaderCircles.forEach(circle => {
+                      setTimeout(() => {
+                          circle.style.backgroundColor = "#A13251";
+                      }, 75);
+                  })
+                : loaderCircles.forEach(circle => {
+                      setTimeout(() => {
+                          circle.style.backgroundColor = "#008F96";
+                      }, 75);
+                  });
+
+            imgAbout.current.style.opacity = "1";
+
+            setTimeout(() => {
+                imgAbout.current.previousElementSibling.style.display = "none";
+            }, 500);
+        });
+    }, [props.theme]);
 
     return (
         <section id="about" style={theme}>
@@ -92,23 +103,7 @@ const About = () => {
                     style={borderColor}
                     className="left-container-about"
                 >
-                    <div className="placeholder-about">
-                        <div
-                            ref={el => circleAbout.current.push(el)}
-                            style={borderColor}
-                            className="circle1 loader-about"
-                        ></div>
-                        <div
-                            ref={el => circleAbout.current.push(el)}
-                            style={borderColor}
-                            className="circle2 loader-about"
-                        ></div>
-                        <div
-                            ref={el => circleAbout.current.push(el)}
-                            style={borderColor}
-                            className="circle3 loader-about"
-                        ></div>
-                    </div>
+                    <Loader />
                     <img
                         ref={imgAbout}
                         className="img-about"
