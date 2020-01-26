@@ -82,11 +82,11 @@ const About = props => {
 
     return (
         <section id="about" style={theme}>
-            <div className="test" data-section="about">
-                About
-            </div>
-
-            <div ref={containerAbout} className="container-about">
+            <div
+                ref={containerAbout}
+                className="container-about containers"
+                data-section="about"
+            >
                 <div className="heading-about">
                     <h1 ref={headingAbout} style={secondaryColor}>
                         About

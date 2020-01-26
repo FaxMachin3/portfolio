@@ -349,9 +349,9 @@ const App = () => {
         window.document.body.style.backgroundColor = currentTheme.background;
     }, [currentTheme]);
 
-    // Intersection Observer
+    // intersection observer
     useEffect(() => {
-        const sections = window.document.querySelectorAll(".test");
+        const sections = window.document.querySelectorAll(".containers");
         const bars = window.document.querySelectorAll(".bar");
 
         // setting actual height onLoad

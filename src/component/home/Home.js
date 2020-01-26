@@ -48,10 +48,11 @@ const Home = () => {
 
     return (
         <section id="home" style={theme}>
-            <div className="test" data-section="home">
-                Home
-            </div>
-            <div ref={containerHome} className="container-home">
+            <div
+                ref={containerHome}
+                className="container-home containers"
+                data-section="home"
+            >
                 <div ref={rightContainerHome} className="right-container-home">
                     <HomeSVG />
                 </div>

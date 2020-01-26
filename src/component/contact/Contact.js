@@ -52,11 +52,11 @@ const Contact = () => {
 
     return (
         <section id="contact" style={theme}>
-            <div className="test" data-section="contact">
-                Contact
-            </div>
-
-            <div ref={containerContact} className="container-contact">
+            <div
+                ref={containerContact}
+                className="container-contact containers"
+                data-section="contact"
+            >
                 <div ref={headingContact} className="heading-contact">
                     <h1 style={secondaryColor}>Contact</h1>
 

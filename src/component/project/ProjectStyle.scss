@@ -34,7 +34,7 @@
         position: relative;
         height: 30%;
         width: 315px;
-        overflow-x: hidden;
+        overflow: hidden;
 
         .left-arrow-container-project,
         .right-arrow-container-project {
@@ -98,7 +98,7 @@
                 width: 315px;
                 transition: opacity 500ms ease-out;
 
-                .loader-project{
+                .loader-project {
                     position: absolute;
                     top: 50%;
                     left: 50%;
@@ -106,6 +106,10 @@
                     height: 100%;
                     width: 100%;
                     background-color: teal;
+                }
+
+                img{
+                    display: block !important;
                 }
 
                 .image-project {
@@ -120,8 +124,8 @@
                 }
 
                 .mobile-image-project {
-                    width: 30%;
-                    height: 100%;
+                    width: 27%;
+                    height: 95%;
                 }
             }
         }
@@ -226,8 +230,8 @@
                     }
 
                     .mobile-image-project {
-                        width: 40%;
-                        height: 100%;
+                        width: 37%;
+                        height: 95%;
                     }
                 }
             }

@@ -61,6 +61,12 @@ const Project = props => {
         backgroundColor: secondary
     };
 
+    const boxShadow = {
+        boxShadow: props.theme
+            ? "0px 5px 10px 5px rgba(0,0,0,0.25)"
+            : "0px 3px 10px rgba(0,0,0,0.25)"
+    };
+
     const animateTextProject = (heading, para, links, prevCount) => {
         const timelineText = gsap.timeline({
             defaults: { opacity: 0, duration: 0.75, ease: Power2.easeInOut }
@@ -317,11 +323,11 @@ const Project = props => {
 
     return (
         <section id="project" style={theme}>
-            <div className="test" data-section="project">
-                Project
-            </div>
-
-            <div ref={containerProject} className="container-project">
+            <div
+                ref={containerProject}
+                className="container-project containers"
+                data-section="project"
+            >
                 <div className="heading-project">
                     <h1 ref={headingProject} style={secondaryColor}>
                         Project
@@ -362,6 +368,7 @@ const Project = props => {
                         >
                             <Loader image={0} />
                             <img
+                                style={boxShadow}
                                 ref={el => imageProject.current.push(el)}
                                 className="image-project"
                                 src=""
@@ -376,6 +383,7 @@ const Project = props => {
                         >
                             <Loader image={1} />
                             <img
+                                style={boxShadow}
                                 ref={el => imageProject.current.push(el)}
                                 className="image-project mobile-image-project"
                                 src=""
@@ -390,6 +398,7 @@ const Project = props => {
                         >
                             <Loader image={2} />
                             <img
+                                style={boxShadow}
                                 ref={el => imageProject.current.push(el)}
                                 className="image-project mobile-image-project"
                                 src=""
@@ -404,6 +413,7 @@ const Project = props => {
                         >
                             <Loader image={3} />
                             <img
+                                style={boxShadow}
                                 ref={el => imageProject.current.push(el)}
                                 className="image-project"
                                 src=""
@@ -418,6 +428,7 @@ const Project = props => {
                         >
                             <Loader image={4} />
                             <img
+                                style={boxShadow}
                                 ref={el => imageProject.current.push(el)}
                                 className="image-project"
                                 src=""
