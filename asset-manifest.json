@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/FaxMachin3/portfolio/static/css/main.a772f22d.chunk.css",
+    "main.js": "/FaxMachin3/portfolio/static/js/main.2bdd2c75.chunk.js",
+    "main.js.map": "/FaxMachin3/portfolio/static/js/main.2bdd2c75.chunk.js.map",
+    "runtime-main.js": "/FaxMachin3/portfolio/static/js/runtime-main.989e6f0c.js",
+    "runtime-main.js.map": "/FaxMachin3/portfolio/static/js/runtime-main.989e6f0c.js.map",
+    "static/js/2.4848b6c4.chunk.js": "/FaxMachin3/portfolio/static/js/2.4848b6c4.chunk.js",
+    "static/js/2.4848b6c4.chunk.js.map": "/FaxMachin3/portfolio/static/js/2.4848b6c4.chunk.js.map",
+    "index.html": "/FaxMachin3/portfolio/index.html",
+    "precache-manifest.9a2088d65a08bbcf2429f4507390fe9b.js": "/FaxMachin3/portfolio/precache-manifest.9a2088d65a08bbcf2429f4507390fe9b.js",
+    "service-worker.js": "/FaxMachin3/portfolio/service-worker.js",
+    "static/css/main.a772f22d.chunk.css.map": "/FaxMachin3/portfolio/static/css/main.a772f22d.chunk.css.map",
+    "static/media/APS.jpg": "/FaxMachin3/portfolio/static/media/APS.6eb12d19.jpg",
+    "static/media/avatar.jpg": "/FaxMachin3/portfolio/static/media/avatar.7644de82.jpg",
+    "static/media/bookMyEvent.jpg": "/FaxMachin3/portfolio/static/media/bookMyEvent.9011bc0a.jpg",
+    "static/media/darkWeather.jpg": "/FaxMachin3/portfolio/static/media/darkWeather.82211aca.jpg",
+    "static/media/eCommerce.jpg": "/FaxMachin3/portfolio/static/media/eCommerce.4c32a30b.jpg",
+    "static/media/myPortfolio.jpg": "/FaxMachin3/portfolio/static/media/myPortfolio.f54edd1f.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.989e6f0c.js",
+    "static/js/2.4848b6c4.chunk.js",
+    "static/css/main.a772f22d.chunk.css",
+    "static/js/main.2bdd2c75.chunk.js"
+  ]
+}
