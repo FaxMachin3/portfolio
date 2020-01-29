@@ -38,13 +38,9 @@ const ToggleButton = () => {
         }
         // eslint-disable-next-line
     }, [background]);
-    
+
     return (
-        <div
-            className="outer"
-            ref={toggleButton}
-            style={themeOuter}
-        >
+        <div className="outer" ref={toggleButton} style={themeOuter}>
             <div
                 className="inner"
                 ref={toggleButtonCircle}

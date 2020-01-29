@@ -11,6 +11,7 @@ import Project from "../project/Project";
 import Contact from "../contact/Contact";
 import Navbar from "../navbar/Navbar";
 import Indicators from "../indicators/Indicators";
+import Error from "../error/Error";
 
 import { smoothScroll } from "./SmoothScroll";
 
@@ -153,8 +154,8 @@ const App = () => {
         });
 
         setTimeout(() => {
-            loaderContainer.style.display = "none"
-        },2000)
+            loaderContainer.style.display = "none";
+        }, 2000);
         // eslint-disable-next-line
     }, []);
 
@@ -182,25 +183,15 @@ const App = () => {
         // eslint-disable-next-line
     }, []);
 
-    // setting local storage for currentTheme
+    // setting local storage for currentTheme and metaTheme change
     useEffect(() => {
         localStorage.setItem("current-theme", JSON.stringify(theme));
 
-        // change favicon on theme change
-        const favicon = window.document.querySelector("link[rel='icon']");
-        const faviconApple = window.document.querySelector(
-            "link[rel='apple-touch-icon']"
+        const metaTheme = window.document.querySelector(
+            "meta[name='theme-color']"
         );
 
-        if (theme) {
-            favicon.href = process.env.PUBLIC_URL + "/faviconDark.ico";
-            faviconApple.href =
-                process.env.PUBLIC_URL + "/appleTouchIconDark.png";
-        } else {
-            favicon.href = process.env.PUBLIC_URL + "/faviconLight.ico";
-            faviconApple.href =
-                process.env.PUBLIC_URL + "/appleTouchIconLight.png";
-        }
+        metaTheme.content = theme ? "#121212" : "#E1E1E1";
     }, [theme]);
 
     // mobile smoothscroll
@@ -420,12 +411,14 @@ const App = () => {
                 scroll={allowScroll}
                 hashCheck={hashCheck}
             />
-            <Indicators />
-            <Home />
-            <About theme={theme} />
-            <Skill />
-            <Project theme={theme} />
-            <Contact />
+            <Error>
+                <Indicators />
+                <Home />
+                <About theme={theme} />
+                <Skill />
+                <Project theme={theme} />
+                <Contact />
+            </Error>
         </ThemeContext.Provider>
     );
 };
