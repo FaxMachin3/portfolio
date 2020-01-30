@@ -7,14 +7,16 @@ const ToggleButton = () => {
     let toggleButton = useRef(null);
     let toggleButtonCircle = useRef(null);
     const { currentTheme, changeTheme } = useContext(ThemeContext);
-    const { background, primary } = currentTheme;
+    const { background, primary, secondary } = currentTheme;
 
     const themeOuter = {
-        borderColor: primary
+        backgroundColor: primary
     };
+
     const themeInner = {
-        background: primary,
-        borderColor: primary
+        backgroundColor: window.matchMedia("(min-width: 769px)").matches
+            ? background
+            : secondary
     };
 
     // change background
