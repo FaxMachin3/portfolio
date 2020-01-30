@@ -22,7 +22,7 @@ class Error extends Component {
     };
 
     componentDidMount() {
-        document.title = "404! Page Not Found.";
+        // document.title = "404! Page Not Found.";
         window.location.href = "#error";
     }
 
