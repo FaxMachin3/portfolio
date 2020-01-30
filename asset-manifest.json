@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/portfolio/static/css/main.a30ff94d.chunk.css",
-    "main.js": "/portfolio/static/js/main.9a3177d3.chunk.js",
-    "main.js.map": "/portfolio/static/js/main.9a3177d3.chunk.js.map",
+    "main.css": "/portfolio/static/css/main.a67ee658.chunk.css",
+    "main.js": "/portfolio/static/js/main.abc2d55e.chunk.js",
+    "main.js.map": "/portfolio/static/js/main.abc2d55e.chunk.js.map",
     "runtime-main.js": "/portfolio/static/js/runtime-main.01d0503f.js",
     "runtime-main.js.map": "/portfolio/static/js/runtime-main.01d0503f.js.map",
-    "static/js/2.4848b6c4.chunk.js": "/portfolio/static/js/2.4848b6c4.chunk.js",
-    "static/js/2.4848b6c4.chunk.js.map": "/portfolio/static/js/2.4848b6c4.chunk.js.map",
+    "static/js/2.e925faae.chunk.js": "/portfolio/static/js/2.e925faae.chunk.js",
+    "static/js/2.e925faae.chunk.js.map": "/portfolio/static/js/2.e925faae.chunk.js.map",
     "index.html": "/portfolio/index.html",
-    "precache-manifest.b9c9232308de64affc799ddf05141198.js": "/portfolio/precache-manifest.b9c9232308de64affc799ddf05141198.js",
+    "precache-manifest.b5f803e031be9440e0820b4e600f1aa8.js": "/portfolio/precache-manifest.b5f803e031be9440e0820b4e600f1aa8.js",
     "service-worker.js": "/portfolio/service-worker.js",
-    "static/css/main.a30ff94d.chunk.css.map": "/portfolio/static/css/main.a30ff94d.chunk.css.map",
+    "static/css/main.a67ee658.chunk.css.map": "/portfolio/static/css/main.a67ee658.chunk.css.map",
     "static/media/APS.jpg": "/portfolio/static/media/APS.6eb12d19.jpg",
     "static/media/avatar.jpg": "/portfolio/static/media/avatar.7644de82.jpg",
     "static/media/bookMyEvent.jpg": "/portfolio/static/media/bookMyEvent.9011bc0a.jpg",
@@ -20,8 +20,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.01d0503f.js",
-    "static/js/2.4848b6c4.chunk.js",
-    "static/css/main.a30ff94d.chunk.css",
-    "static/js/main.9a3177d3.chunk.js"
+    "static/js/2.e925faae.chunk.js",
+    "static/css/main.a67ee658.chunk.css",
+    "static/js/main.abc2d55e.chunk.js"
   ]
 }
