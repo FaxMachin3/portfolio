@@ -252,8 +252,8 @@ const Skill = () => {
                                 Dev Tools & Other Skills:
                             </h2>
                             <p ref={el => slidesSkillPara.current.push(el)}>
-                                <span>Git/Github (Version Control)</span>
-                                <span>Figma/Adobe XD (Design)</span>
+                                <span>Git/ Github (Version Control)</span>
+                                <span>Figma/ Adobe XD (Design)</span>
                             </p>
                         </div>
                     </div>

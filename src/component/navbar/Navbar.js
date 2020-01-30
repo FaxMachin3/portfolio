@@ -95,8 +95,12 @@ const Navbar = props => {
         const logo = window.document.querySelector(".logo");
 
         logo.addEventListener("click", e => {
+            props.hashCheck.current = false;
             smoothScrollNav(e, props);
             removeClass();
+            setTimeout(() => {
+                props.hashCheck.current = true;
+            }, 1000);
         });
 
         links.forEach(link => {
