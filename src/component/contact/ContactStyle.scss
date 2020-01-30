@@ -137,7 +137,6 @@
 
 @media all and (min-width: 769px) {
     .container-contact {
-        // background-color: teal;
 
         .heading-contact {
             display: none;
@@ -147,7 +146,6 @@
             flex-direction: row-reverse;
             width: 100%;
             margin-bottom: 15vh;
-            // background-color: teal;
 
             .left-container-contact {
                 .svg-contact {
@@ -172,6 +170,7 @@
 
         .bottom-container-contact {
             position: absolute;
+            left: 7.5%;
             bottom: 0;
             width: 85%;
             flex-direction: row;
