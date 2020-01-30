@@ -35,19 +35,19 @@ $animationDelayLinks: 50ms;
             text-decoration: none;
             display: inline-block;
             transition: transform $animationDuration - 250ms ease-in-out,
-                        color $animationDuration - 250ms ease-in-out;
+                color $animationDuration - 250ms ease-in-out;
             will-change: transform, color;
 
-            &.active{
+            &.active {
                 transform: scale(2);
                 transition-delay: 500ms;
 
-                &:hover{
+                &:hover {
                     opacity: 1;
                 }
             }
 
-            &:hover{
+            &:hover {
                 opacity: 0.8;
             }
         }
@@ -128,6 +128,7 @@ $animationDelayLinks: 50ms;
         position: fixed;
         z-index: 10;
         top: 13%;
+        height: 90vh !important; // ie11 fallback
         height: calc(var(--actual-height) - 10vh) !important;
         width: 100% !important;
         flex-direction: column;
@@ -207,18 +208,18 @@ $animationDelayLinks: 50ms;
         font-size: 3em !important;
     }
 
-    .link{
+    .link {
         font-size: 2em !important;
 
-        &.active{
+        &.active {
             transition-delay: 0ms !important;
 
-            &:hover{
+            &:hover {
                 opacity: 1;
             }
         }
 
-        &:hover{
+        &:hover {
             opacity: 1;
         }
     }

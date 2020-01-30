@@ -2,6 +2,7 @@
 .container-project {
     z-index: 5;
     position: relative;
+    height: 80vh; // ie11 fallback
     height: calc(var(--actual-height) - 20vh);
     width: 100vw;
     display: flex;
@@ -108,7 +109,7 @@
                     background-color: teal;
                 }
 
-                img{
+                img {
                     display: block !important;
                 }
 
