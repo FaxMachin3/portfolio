@@ -86,7 +86,7 @@ const Home = () => {
                         >
                             I am a{" "}
                             <span className="profession-home">
-                                System Engineer
+                                Software Engineer
                             </span>
                             .
                         </p>

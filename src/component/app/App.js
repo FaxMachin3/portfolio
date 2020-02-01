@@ -172,14 +172,15 @@ const App = () => {
         // eslint-disable-next-line
     }, []);
 
-    // setting local storage for currentPage
+    // setting session storage for currentPage
     useEffect(() => {
-        const getCurrentPage = JSON.parse(localStorage.getItem("current-page"));
-        if (getCurrentPage !== null) {
-            changeCurrentPage(getCurrentPage);
+        const getSession = JSON.parse(sessionStorage.getItem("current-page"));
+        if (getSession === null) {
+            console.log("log-in");
+            sessionStorage.setItem("current-page", JSON.stringify(currentPage));
+        } else {
+            changeCurrentPage(getSession);
         }
-
-        localStorage.setItem("current-page", JSON.stringify(currentPage));
         // eslint-disable-next-line
     }, []);
 
@@ -331,8 +332,8 @@ const App = () => {
     useEffect(() => {
         smoothScroll(currentPage);
 
-        // setting current-page on local storage
-        localStorage.setItem("current-page", JSON.stringify(currentPage));
+        // setting current-page on session storage
+        sessionStorage.setItem("current-page", JSON.stringify(currentPage));
     }, [currentPage]);
 
     // body bg change on theme change
