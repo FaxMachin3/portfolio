@@ -8,6 +8,7 @@ import ContactSVGInstagram from "./ContactSVGInstagram";
 import ContactSVGLinkedin from "./ContactSVGLinkedin";
 import ContactSVGFacebook from "./ContactSVGFacebook";
 import ContactSVGGithub from "./ContactSVGGithub";
+import Intersecting from "../intersecting/Intersecting";
 
 const Contact = () => {
     const { currentTheme } = useContext(ThemeContext);
@@ -52,6 +53,8 @@ const Contact = () => {
 
     return (
         <section id="contact" style={theme}>
+            <Intersecting dataSection="contact" />
+
             <div
                 ref={containerContact}
                 className="container-contact containers"

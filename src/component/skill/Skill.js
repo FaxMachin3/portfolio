@@ -7,6 +7,7 @@ import "./SkillStyle.scss";
 import skillAnimate from "./SkillAnimate";
 import SkillSVG from "./SkillSVG";
 import Arrow from "../../common/Arrow";
+import Intersecting from "../intersecting/Intersecting";
 
 const Skill = () => {
     const slideCountSkill = useRef(0);
@@ -159,6 +160,8 @@ const Skill = () => {
 
     return (
         <section id="skill" style={theme}>
+            <Intersecting dataSection="skill" />
+
             <div
                 ref={containerSkill}
                 className="container-skill containers"

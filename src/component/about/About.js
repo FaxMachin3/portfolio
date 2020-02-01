@@ -6,6 +6,7 @@ import Loader from "../loader/Loader";
 
 import aboutAnimate from "./AboutAnimate";
 import avatar from "../../assests/images/avatar.jpg";
+import Intersecting from "../intersecting/Intersecting";
 
 const About = props => {
     const containerAbout = useRef(null);
@@ -82,6 +83,8 @@ const About = props => {
 
     return (
         <section id="about" style={theme}>
+            <Intersecting dataSection="about" />
+
             <div
                 ref={containerAbout}
                 className="container-about containers"

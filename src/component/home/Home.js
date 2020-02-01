@@ -5,6 +5,7 @@ import "./HomeStyle.scss";
 import Arrow from "../../common/Arrow";
 import homeAnimate from "./HomeAnimate";
 import HomeSVG from "./HomeSVG";
+import Intersecting from "../intersecting/Intersecting";
 
 const Home = () => {
     const containerHome = useRef(null);
@@ -50,6 +51,8 @@ const Home = () => {
 
     return (
         <section id="home" style={theme}>
+            <Intersecting dataSection="home"/>
+            
             <div
                 ref={containerHome}
                 className="container-home containers"

@@ -13,6 +13,7 @@ import ECommmerce from "../../assests/images/eCommerce.jpg";
 import MyPortfolio from "../../assests/images/myPortfolio.jpg";
 import BookMyEvent from "../../assests/images/bookMyEvent.jpg";
 import APS from "../../assests/images/APS.jpg";
+import Intersecting from "../intersecting/Intersecting";
 
 import projectAnimate from "./ProjectAnimate";
 
@@ -323,6 +324,8 @@ const Project = props => {
 
     return (
         <section id="project" style={theme}>
+            <Intersecting dataSection="project" />
+
             <div
                 ref={containerProject}
                 className="container-project containers"

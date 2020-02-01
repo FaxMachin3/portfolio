@@ -176,10 +176,14 @@ const App = () => {
     useEffect(() => {
         const getSession = JSON.parse(sessionStorage.getItem("current-page"));
         if (getSession === null) {
-            console.log("log-in");
             sessionStorage.setItem("current-page", JSON.stringify(currentPage));
         } else {
+            hashCheck.current = false;
+            clearTimeout(hashTimer.current);
             changeCurrentPage(getSession);
+            hashTimer.current = setTimeout(() => {
+                hashCheck.current = true;
+            }, 1000);
         }
         // eslint-disable-next-line
     }, []);
@@ -343,7 +347,9 @@ const App = () => {
 
     // intersection observer
     useEffect(() => {
-        const sections = window.document.querySelectorAll(".containers");
+        const intersectingDivs = window.document.querySelectorAll(
+            ".intersecting-div"
+        );
         const bars = window.document.querySelectorAll(".bar");
 
         // setting actual height onLoad
@@ -368,6 +374,7 @@ const App = () => {
 
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
+                console.log(entry);
                 if (entry.isIntersecting) {
                     let scale = "";
                     const newHash = entry.target.getAttribute("data-section");
@@ -392,8 +399,8 @@ const App = () => {
             }, options);
         });
 
-        sections.forEach(section => {
-            observer.observe(section);
+        intersectingDivs.forEach(iDiv => {
+            observer.observe(iDiv);
         });
 
         window.document.body.style.backgroundColor = currentTheme.background;
