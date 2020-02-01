@@ -374,7 +374,6 @@ const App = () => {
 
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
-                console.log(entry);
                 if (entry.isIntersecting) {
                     let scale = "";
                     const newHash = entry.target.getAttribute("data-section");
