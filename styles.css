@@ -1,10 +1,25 @@
-*{
+/* Importing Font */
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500&display=swap");
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.loader-container{
+body,
+html {
+    height: 100%;
+    width: 100%;
+    background-color: #121212;
+    color: #dadada;
+    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
+    overflow: hidden;
+}
+
+.loader-container {
     z-index: 15;
     position: fixed;
     height: 100vh;
@@ -13,15 +28,14 @@
     justify-content: center;
     align-items: center;
     background-color: white;
-    transition: transform 1s ease-in-out 400ms,
-                opacity 1s ease-in-out 400ms;
+    transition: transform 1s ease-in-out 400ms, opacity 1s ease-in-out 400ms;
 }
 
-.loader{
+.loader {
     display: flex;
 }
 
-.circle-loader{
+.circle-loader {
     height: 2em;
     width: 2em;
     margin: 1em;
@@ -31,30 +45,30 @@
     will-change: background-color;
 }
 
-.circle1{
+.circle1 {
     animation: animateCircle 500ms ease-in-out infinite alternate;
 }
 
-.circle2{
+.circle2 {
     animation: animateCircle 500ms ease-in-out 100ms infinite alternate;
 }
 
-.circle3{
+.circle3 {
     animation: animateCircle 500ms ease-in-out 200ms infinite alternate;
 }
 
-.fade-loader{
+.fade-loader {
     pointer-events: none;
     opacity: 0;
     transform: translateY(-100%);
 }
 
-@keyframes animateCircle{
-    from{
+@keyframes animateCircle {
+    from {
         transform: translateY(0);
         opacity: 0;
     }
-    to{
+    to {
         transform: translateY(-1em);
         opacity: 1;
     }
@@ -71,5 +85,88 @@
     body,
     html {
         font-size: 80%;
+    }
+}
+
+/* !error page */
+#error {
+    height: 100vh;
+    width: 100%;
+}
+.container-error {
+    z-index: 5;
+    position: relative;
+    height: 70vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: justify;
+    margin-top: 10vh;
+    /* background-color: teal; */
+}
+
+.top-container-error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+    width: 100%;
+}
+
+.svg-error {
+    height: 100%;
+    width: 100%;
+}
+
+.top-container-error div {
+    position: relative;
+    top: -8vh;
+}
+
+.top-container-error p {
+    letter-spacing: 0.2rem;
+    font-size: 2rem;
+    font-weight: 0;
+}
+.middle-container-error {
+    height: 25%;
+}
+
+.middle-container-error p {
+    font-size: 1.3rem;
+}
+
+.bottom-container-error {
+    cursor: pointer;
+}
+.bottom-container-error a {
+    text-decoration: none;
+    color: #dadada;
+}
+.bottom-container-error p {
+    font-size: 1.1rem;
+}
+.bottom-container-error span {
+    display: inline-block;
+    color: #a13251;
+    padding-right: 0.5em;
+}
+
+@media all and (min-width: 769px) {
+    .top-container-error div {
+        top: -10vh !important;
+    }
+    .top-container-error p {
+        font-size: 2.3vw;
+    }
+    .middle-container-error p {
+        font-size: 1.5vw;
+    }
+
+    .bottom-container-error p {
+        font-size: 1.3vw;
     }
 }
