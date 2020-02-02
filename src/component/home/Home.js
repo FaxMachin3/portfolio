@@ -36,8 +36,6 @@ const Home = () => {
             containerHome
         ]);
 
-        throw new Error("home")
-
         // adding click to navigate
         arrow.current.addEventListener("click", () => {
             window.document.querySelector("li .about").click();
