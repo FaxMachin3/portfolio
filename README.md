@@ -17,4 +17,4 @@ This is my portfolio website. My sole reason to built this was to improve my fro
     -   Web Storage API
     -   requestAnimationFrames API
 
-> Note: This was created with love <3
+> This was created with love <3
