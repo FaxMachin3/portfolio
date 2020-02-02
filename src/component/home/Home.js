@@ -36,7 +36,7 @@ const Home = () => {
             containerHome
         ]);
 
-        // throw new Error("home")
+        throw new Error("home")
 
         // adding click to navigate
         arrow.current.addEventListener("click", () => {

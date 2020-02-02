@@ -1,20 +1,7 @@
-import React, { useContext } from "react";
-import ThemeContext from "../../common/ThemeContext";
+import React from "react";
 import "./IntersectingStyle.scss";
 
 const Intersecting = props => {
-    const { currentTheme } = useContext(ThemeContext);
-    const { background, primary, secondary } = currentTheme;
-
-    const theme = {
-        background: background,
-        color: primary
-    };
-
-    const secondaryColor = {
-        color: secondary
-    };
-
     return (
         <div
             className="intersecting-div"
