@@ -5,6 +5,7 @@ This is my portfolio website. My sole reason to build this was to improve my fro
 ### Technologies Used:
 
 -   Front-end:
+    -   Figma (click [here](https://www.figma.com/file/Zdb8De5wRMLIt0p8sr4Deb/Portfolio) to see my design)
     -   HTML5/ CSS3
     -   Javascript (_mostly ecma5 and ecma6_)
     -   GSAP 3
@@ -14,6 +15,7 @@ This is my portfolio website. My sole reason to build this was to improve my fro
     -   DOM API
     -   Web Storage API
     -   requestAnimationFrames API
+    -   Context API
 
 ---
 
@@ -21,4 +23,4 @@ This is my portfolio website. My sole reason to build this was to improve my fro
 
 ---
 
-> This was created with love <3
+> This was created with love <3 Thanks to _flaticons_ for provide such great SVGs.
