@@ -1,6 +1,6 @@
 # My Portfolio:
 
-This is my portfolio website. My sole reason to built this was to improve my front-end skills.
+This is my portfolio website. My sole reason to build this was to improve my front-end skills.
 
 ### Technologies Used:
 
@@ -17,7 +17,7 @@ This is my portfolio website. My sole reason to built this was to improve my fro
 
 ---
 
->   Exciting features: This application has IE11 support, custom 404 page, lazy loading, dark mode and smooth scroll with Vanilla JS.
+> Exciting features ;): This application has IE11 support, custom 404 page, lazy loading, dark mode and smooth scroll with Vanilla JS.
 
 ---
 
