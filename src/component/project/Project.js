@@ -9,7 +9,7 @@ import ProjectSVGCode from "./ProjectSVGCode";
 import ProjectSVGWebsite from "./ProjectSVGWebsite";
 import Arrow from "../../common/Arrow";
 import DarkWeather from "../../assests/images/darkWeather.jpg";
-import ECommmerce from "../../assests/images/eCommerce.jpg";
+import Socialize from "../../assests/images/socialize.jpg";
 import MyPortfolio from "../../assests/images/myPortfolio.jpg";
 import BookMyEvent from "../../assests/images/bookMyEvent.jpg";
 import APS from "../../assests/images/APS.jpg";
@@ -375,8 +375,8 @@ const Project = props => {
                                 ref={el => imageProject.current.push(el)}
                                 className="image-project"
                                 src=""
-                                alt="e-commerce"
-                                data-src={ECommmerce}
+                                alt="socialize"
+                                data-src={Socialize}
                             />
                         </div>
 
@@ -457,7 +457,7 @@ const Project = props => {
                             <h2
                                 ref={el => textSlidesProjectH2.current.push(el)}
                             >
-                                E-commerce:
+                                Socialize:
                             </h2>
 
                             <p
@@ -465,7 +465,7 @@ const Project = props => {
                                     textSlidesProjectPara.current.push(el)
                                 }
                             >
-                                Responsive, full stack, e-commerce web app built
+                                Responsive, full stack, social-networking web app built
                                 using MERN stack with love.
                             </p>
 
@@ -474,10 +474,20 @@ const Project = props => {
                                 className="links-project"
                             >
                                 <div>
-                                    <ProjectSVGCode />
+                                    <a
+                                        href="https://github.com/FaxMachin3/socialize"
+                                        target="__blank"
+                                    >
+                                        <ProjectSVGCode />
+                                    </a>
                                 </div>
                                 <div>
-                                    <ProjectSVGWebsite />
+                                    <a
+                                        href="http://mighty-meadow-58912.herokuapp.com/"
+                                        target="__blank"
+                                    >
+                                        <ProjectSVGWebsite />
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -553,7 +563,11 @@ const Project = props => {
                                     </a>
                                 </div>
                                 <div>
-                                    <ProjectSVGWebsite />
+                                    <a
+                                        href="https://subhamraj.dev/"
+                                    >
+                                        <ProjectSVGWebsite />
+                                    </a>
                                 </div>
                             </div>
                         </div>

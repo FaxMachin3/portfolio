@@ -121,8 +121,8 @@ const About = props => {
                     className="right-container-about"
                 >
                     <p ref={el => textAbout.current.push(el)}>
-                        I'm twenty two, a software developer with good problem
-                        solving ablity, currently working in Infosys on MERN
+                        I'm twenty two, a full stack engineer with good problem
+                        solving skills, currently working with Infosys on MERN
                         stack.
                     </p>
 

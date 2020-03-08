@@ -10,7 +10,7 @@
 
     .right-container-home {
         height: 42.5%;
-        
+
         .svg-home {
             height: 100%;
             width: 400px;
@@ -27,9 +27,8 @@
             .profession-home {
                 font-weight: 500;
             }
-
-            .profession-home {
-                font-style: italic;
+            p:nth-child(3) {
+                font-size: 1.5rem;
             }
         }
 
@@ -38,6 +37,7 @@
             height: 4em;
             justify-content: space-evenly;
             align-items: center;
+            padding-bottom: 1.5rem;
 
             .resume-button,
             .work-button {
@@ -75,7 +75,7 @@
         height: 4em;
         width: 4em;
 
-        &:hover .arrow-home{
+        &:hover .arrow-home {
             opacity: 0.8;
         }
 
@@ -114,10 +114,17 @@
             line-height: 10vh;
             height: 70%;
             width: 35vw;
+
+            .text-home {
+                p:nth-child(3) {
+                    font-size: 2.3vw;
+                }
+            }
         }
 
         .button-home {
-            justify-content: space-around !important;
+            justify-content: flex-start !important;
+            padding-bottom: 0.5vw !important;
 
             .resume-button,
             .work-button {
@@ -131,6 +138,7 @@
 
             .resume-button {
                 color: white !important;
+                margin-right: 5vw;
             }
 
             .work-button {

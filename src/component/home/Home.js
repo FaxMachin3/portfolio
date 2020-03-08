@@ -49,8 +49,8 @@ const Home = () => {
 
     return (
         <section id="home" style={theme}>
-            <Intersecting dataSection="home"/>
-            
+            <Intersecting dataSection="home" />
+
             <div
                 ref={containerHome}
                 className="container-home containers"
@@ -85,11 +85,11 @@ const Home = () => {
                                 textHome.current.push(el);
                             }}
                         >
-                            I am a{" "}
-                            <span className="profession-home">
-                                Software Engineer
-                            </span>
-                            .
+                            I build{" "}
+                            <span className="profession-home">dope</span> stuffs
+                            for{" "}
+                            <span className="profession-home">dope</span>{" "}
+                            people.
                         </p>
                     </div>
 
