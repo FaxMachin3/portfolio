@@ -7,7 +7,6 @@
         "gsap": "^3.2.4",
         "node-sass": "^4.13.1",
         "react": "^16.13.0",
-        "react-app-polyfill": "^1.0.6",
         "react-dom": "^16.13.0",
         "react-scripts": "^3.4.0"
     },
@@ -30,8 +29,7 @@
         "development": [
             "last 1 chrome version",
             "last 1 firefox version",
-            "last 1 safari version",
-            "ie 11"
+            "last 1 safari version"
         ]
     },
     "devDependencies": {
