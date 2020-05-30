@@ -121,9 +121,8 @@ const About = props => {
                     className="right-container-about"
                 >
                     <p ref={el => textAbout.current.push(el)}>
-                        I'm twenty two, a full stack engineer with good problem
-                        solving skills, currently working with Infosys on MERN
-                        stack.
+                        I'm twenty two, a front-end engineer with good problem
+                        solving skills, currently working with Infosys on React JS.
                     </p>
 
                     <p ref={el => textAbout.current.push(el)}>
