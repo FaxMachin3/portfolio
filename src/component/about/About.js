@@ -8,7 +8,7 @@ import aboutAnimate from "./AboutAnimate";
 import avatar from "../../assests/images/avatar.jpg";
 import Intersecting from "../intersecting/Intersecting";
 
-const About = props => {
+const About = (props) => {
     const containerAbout = useRef(null);
     const headingAbout = useRef(null);
     const lineAbout = useRef(null);
@@ -23,23 +23,23 @@ const About = props => {
 
     const theme = {
         background: background,
-        color: primary
+        color: primary,
     };
 
     const secondaryColor = {
-        color: secondary
+        color: secondary,
     };
 
     const secondaryBG = {
-        backgroundColor: secondary
+        backgroundColor: secondary,
     };
 
     const borderColor = {
-        borderColor: secondary
+        borderColor: secondary,
     };
 
     const lineColor = {
-        backgroundColor: primary
+        backgroundColor: primary,
     };
 
     useEffect(() => {
@@ -51,7 +51,7 @@ const About = props => {
             imgAbout,
             textAbout,
             blockAbout,
-            rightContainerAbout
+            rightContainerAbout,
         ]);
     }, []);
 
@@ -62,12 +62,12 @@ const About = props => {
                 imgAbout.current.previousElementSibling.childNodes;
 
             props.theme
-                ? loaderCircles.forEach(circle => {
+                ? loaderCircles.forEach((circle) => {
                       setTimeout(() => {
                           circle.style.backgroundColor = "#A13251";
                       }, 75);
                   })
-                : loaderCircles.forEach(circle => {
+                : loaderCircles.forEach((circle) => {
                       setTimeout(() => {
                           circle.style.backgroundColor = "#008F96";
                       }, 75);
@@ -120,12 +120,13 @@ const About = props => {
                     ref={rightContainerAbout}
                     className="right-container-about"
                 >
-                    <p ref={el => textAbout.current.push(el)}>
-                        I'm twenty two, a front-end engineer with good problem
-                        solving skills, currently working with Infosys on React JS.
+                    <p ref={(el) => textAbout.current.push(el)}>
+                        I'm twenty two, a systems engineer with good problem
+                        solving skills, currently working with Infosys on React
+                        JS.
                     </p>
 
-                    <p ref={el => textAbout.current.push(el)}>
+                    <p ref={(el) => textAbout.current.push(el)}>
                         To know more about my project and skills please scroll
                         down.
                     </p>
