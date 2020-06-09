@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useContext } from "react";
 import ThemeContext from "../../common/ThemeContext";
 import "./HomeStyle.scss";
 
+import Resume from "../../assests/downlodables/Subham Raj (subhamraj4114@gmail.com).pdf";
+
 import Arrow from "../../common/Arrow";
 import homeAnimate from "./HomeAnimate";
 import HomeSVG from "./HomeSVG";
@@ -20,11 +22,11 @@ const Home = () => {
 
     const theme = {
         background: background,
-        color: primary
+        color: primary,
     };
 
     const secondaryColor = {
-        color: secondary
+        color: secondary,
     };
 
     useEffect(() => {
@@ -33,7 +35,7 @@ const Home = () => {
             buttonHome,
             rightContainerHome,
             textHome,
-            containerHome
+            containerHome,
         ]);
 
         // adding click to navigate
@@ -63,14 +65,14 @@ const Home = () => {
                 <div className="left-container-home">
                     <div className="text-home">
                         <p
-                            ref={el => {
+                            ref={(el) => {
                                 textHome.current.push(el);
                             }}
                         >
                             Hi!
                         </p>
                         <p
-                            ref={el => {
+                            ref={(el) => {
                                 textHome.current.push(el);
                             }}
                         >
@@ -81,25 +83,26 @@ const Home = () => {
                             .
                         </p>
                         <p
-                            ref={el => {
+                            ref={(el) => {
                                 textHome.current.push(el);
                             }}
                         >
                             I build{" "}
                             <span className="profession-home">dope</span> stuffs
-                            for{" "}
-                            <span className="profession-home">dope</span>{" "}
+                            for <span className="profession-home">dope</span>{" "}
                             people.
                         </p>
                     </div>
 
                     <div ref={buttonHome} className="button-home">
-                        <button
-                            className="resume-button"
-                            style={{ backgroundColor: secondary }}
-                        >
-                            <span>Resume</span>
-                        </button>
+                        <a href={Resume} download>
+                            <button
+                                className="resume-button"
+                                style={{ backgroundColor: secondary }}
+                            >
+                                <span>Resume</span>
+                            </button>
+                        </a>
                         <button ref={workButton} className="work-button">
                             <span>My Work</span>
                         </button>

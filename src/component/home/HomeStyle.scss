@@ -39,6 +39,10 @@
             align-items: center;
             padding-bottom: 1.5rem;
 
+            a{
+                display: flex;
+            }
+
             .resume-button,
             .work-button {
                 cursor: pointer;
