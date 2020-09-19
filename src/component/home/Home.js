@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useContext } from "react";
 import ThemeContext from "../../common/ThemeContext";
 import "./HomeStyle.scss";
 
-import Resume from "../../assests/downlodables/Subham Raj (subhamraj4114@gmail.com).pdf";
+import Resume from "../../assests/downlodables/Subham Raj (subhamraj4114@gmail.com) (19-9-2020).pdf";
 
 import Arrow from "../../common/Arrow";
 import homeAnimate from "./HomeAnimate";
